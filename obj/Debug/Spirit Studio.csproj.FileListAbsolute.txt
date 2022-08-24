@@ -1,0 +1,19 @@
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\Spirit Studio.exe.config
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\Spirit Studio.exe
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\Spirit Studio.pdb
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit Studio.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit_Studio.Properties.Resources.resources
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit Studio.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit Studio.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit Studio.exe
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit Studio.pdb
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\AForge.dll
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\Emgu.CV.Platform.NetStandard.dll
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\AForge.xml
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\Emgu.CV.Platform.NetStandard.xml
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit_Studio.Form1.resources
+C:\Users\Admin\source\repos\Spirit Studio\obj\Debug\Spirit Studio.csproj.CopyComplete
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\AForge.Video.dll
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\AForge.Video.xml
+C:\Users\Admin\source\repos\Spirit Studio\bin\Debug\AForge.Video.DirectShow.xml
