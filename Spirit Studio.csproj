@@ -75,16 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComputerVision.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Spirit Lab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Spirit Lab.Designer.cs">
+      <DependentUpon>Spirit Lab.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Spirit Lab.resx">
+      <DependentUpon>Spirit Lab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

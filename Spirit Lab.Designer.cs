@@ -43,6 +43,8 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelOnesOccurences = new System.Windows.Forms.Label();
             this.labelZerosOccurenses = new System.Windows.Forms.Label();
+            this.btnRandomStartStop = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
@@ -137,6 +139,8 @@ namespace Spirit_Studio
             // 
             // tabRandom
             // 
+            this.tabRandom.Controls.Add(this.label2);
+            this.tabRandom.Controls.Add(this.btnRandomStartStop);
             this.tabRandom.Controls.Add(this.labelZerosOccurenses);
             this.tabRandom.Controls.Add(this.labelOnesOccurences);
             this.tabRandom.Controls.Add(this.labelOnes);
@@ -185,9 +189,9 @@ namespace Spirit_Studio
             this.labelOnesOccurences.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelOnesOccurences.Location = new System.Drawing.Point(731, 155);
             this.labelOnesOccurences.Name = "labelOnesOccurences";
-            this.labelOnesOccurences.Size = new System.Drawing.Size(215, 153);
+            this.labelOnesOccurences.Size = new System.Drawing.Size(140, 153);
             this.labelOnesOccurences.TabIndex = 3;
-            this.labelOnesOccurences.Text = "50";
+            this.labelOnesOccurences.Text = "0";
             // 
             // labelZerosOccurenses
             // 
@@ -195,9 +199,30 @@ namespace Spirit_Studio
             this.labelZerosOccurenses.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelZerosOccurenses.Location = new System.Drawing.Point(731, 308);
             this.labelZerosOccurenses.Name = "labelZerosOccurenses";
-            this.labelZerosOccurenses.Size = new System.Drawing.Size(215, 153);
+            this.labelZerosOccurenses.Size = new System.Drawing.Size(140, 153);
             this.labelZerosOccurenses.TabIndex = 4;
-            this.labelZerosOccurenses.Text = "50";
+            this.labelZerosOccurenses.Text = "0";
+            // 
+            // btnRandomStartStop
+            // 
+            this.btnRandomStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRandomStartStop.Location = new System.Drawing.Point(382, 546);
+            this.btnRandomStartStop.Name = "btnRandomStartStop";
+            this.btnRandomStartStop.Size = new System.Drawing.Size(253, 47);
+            this.btnRandomStartStop.TabIndex = 5;
+            this.btnRandomStartStop.Text = "Start";
+            this.btnRandomStartStop.UseVisualStyleBackColor = true;
+            this.btnRandomStartStop.Click += new System.EventHandler(this.btnRandomStartStop_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(624, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 31);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "100 siste tall:";
             // 
             // Form1
             // 
@@ -237,6 +262,8 @@ namespace Spirit_Studio
         private System.Windows.Forms.Label labelOnes;
         private System.Windows.Forms.Label labelZeros;
         private System.Windows.Forms.Label labelValue;
+        private System.Windows.Forms.Button btnRandomStartStop;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -51,5 +51,69 @@ namespace Spirit_Studio
             if (videoCaptureDevice.IsRunning)
                 videoCaptureDevice.Stop();
         }
+
+        #region RandomNumbers
+
+        private bool randomNumbersRunning = false;
+        private Random random = new Random();
+        private int lastGeneratedValue;
+        private int poolGeneratedZeros = 0;
+        private int poolGeneratedOnes = 0;
+
+        private Queue<int> generatedValuesQueue = new Queue<int>();
+
+        private void btnRandomStartStop_Click(object sender, EventArgs e)
+        {
+            randomNumbersRunning = !randomNumbersRunning;
+
+            if (randomNumbersRunning)
+            {
+                btnRandomStartStop.Text = "Stop";
+                GenerateRandomNumberRecursive();
+            }
+            else
+            {
+                btnRandomStartStop.Text = "Start";
+                labelValue.Text = "#";
+
+                poolGeneratedOnes = poolGeneratedZeros = 0;
+                labelOnesOccurences.Text = labelZerosOccurenses.Text = "0";
+
+                generatedValuesQueue.Clear();
+            }
+        }
+
+        private async void GenerateRandomNumberRecursive()
+        {
+            lastGeneratedValue = random.Next(0, 2);
+            generatedValuesQueue.Enqueue(lastGeneratedValue);
+            labelValue.Text = lastGeneratedValue.ToString();
+
+            if (lastGeneratedValue == 0)
+                poolGeneratedZeros++;
+            else if (lastGeneratedValue == 1)
+                poolGeneratedOnes++;
+
+
+            if (generatedValuesQueue.Count > 100)
+            {
+                int dequeuedValue = generatedValuesQueue.Dequeue();
+
+                if (dequeuedValue == 0)
+                    poolGeneratedZeros--;
+                else if (dequeuedValue == 1)
+                    poolGeneratedOnes--;
+            }
+
+            labelOnesOccurences.Text = poolGeneratedZeros.ToString();
+            labelZerosOccurenses.Text = poolGeneratedOnes.ToString();
+
+            await Task.Delay(100);
+
+            if (randomNumbersRunning)
+                GenerateRandomNumberRecursive();
+        }
+
+        #endregion
     }
 }
