@@ -57,10 +57,10 @@ namespace Spirit_Studio
         private bool randomNumbersRunning = false;
         private Random random = new Random();
         private int lastGeneratedValue;
-        private int poolGeneratedZeros = 0;
-        private int poolGeneratedOnes = 0;
+        private int sumGeneratedZeros = 0;
+        private int sumGeneratedOnes = 0;
 
-        private Queue<int> generatedValuesQueue = new Queue<int>();
+        private List<int> generatedValuesQueue = new List<int>();
 
         private void btnRandomStartStop_Click(object sender, EventArgs e)
         {
@@ -69,49 +69,39 @@ namespace Spirit_Studio
             if (randomNumbersRunning)
             {
                 btnRandomStartStop.Text = "Stop";
-                GenerateRandomNumberRecursive();
+                GenerateRandomNumbers();
             }
             else
             {
                 btnRandomStartStop.Text = "Start";
                 labelValue.Text = "#";
 
-                poolGeneratedOnes = poolGeneratedZeros = 0;
-                labelOnesOccurences.Text = labelZerosOccurenses.Text = "0";
-
-                generatedValuesQueue.Clear();
+                sumGeneratedOnes = sumGeneratedZeros = 0;
+                labelOnesPercentage.Text = labelZerosPercentages.Text = labelOnesTotal.Text = labelZerosTotal.Text = "0";
             }
         }
 
-        private async void GenerateRandomNumberRecursive()
+        private async void GenerateRandomNumbers()
         {
-            lastGeneratedValue = random.Next(0, 2);
-            generatedValuesQueue.Enqueue(lastGeneratedValue);
-            labelValue.Text = lastGeneratedValue.ToString();
-
-            if (lastGeneratedValue == 0)
-                poolGeneratedZeros++;
-            else if (lastGeneratedValue == 1)
-                poolGeneratedOnes++;
-
-
-            if (generatedValuesQueue.Count > 100)
+            while(randomNumbersRunning)
             {
-                int dequeuedValue = generatedValuesQueue.Dequeue();
+                lastGeneratedValue = random.Next(0, 2);
 
-                if (dequeuedValue == 0)
-                    poolGeneratedZeros--;
-                else if (dequeuedValue == 1)
-                    poolGeneratedOnes--;
+                labelValue.Text = lastGeneratedValue.ToString();
+
+                if (lastGeneratedValue == 0)
+                    sumGeneratedZeros++;
+                else if (lastGeneratedValue == 1)
+                    sumGeneratedOnes++;
+
+                labelOnesTotal.Text = sumGeneratedOnes.ToString();
+                labelZerosTotal.Text = sumGeneratedZeros.ToString();
+
+                labelZerosPercentages.Text = (((float)sumGeneratedZeros / ((float)sumGeneratedZeros + (float)sumGeneratedOnes)) * 100.0f).ToString("0.0");
+                labelOnesPercentage.Text = (100.0f - float.Parse(labelZerosPercentages.Text)).ToString();
+
+                await Task.Delay(50);
             }
-
-            labelOnesOccurences.Text = poolGeneratedZeros.ToString();
-            labelZerosOccurenses.Text = poolGeneratedOnes.ToString();
-
-            await Task.Delay(100);
-
-            if (randomNumbersRunning)
-                GenerateRandomNumberRecursive();
         }
 
         #endregion
