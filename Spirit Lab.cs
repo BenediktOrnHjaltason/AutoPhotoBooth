@@ -20,22 +20,27 @@ namespace Spirit_Studio
             InitializeComponent();
         }
 
+        #region Photo shoot
+
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
 
-        private void OnClick_Start(object sender, MouseEventArgs e)
-        {
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCamera.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            videoCaptureDevice.Start();
-        }
+        
 
+        Image capturedStill;
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            picCamera.Image = (Bitmap)eventArgs.Frame.Clone();
+            capturedStill = (Bitmap)eventArgs.Frame.Clone();
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+            GetCameraSources();
+        }
+
+        
+
+        private void GetCameraSources()
         {
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo filterInfo in filterInfoCollection)
@@ -46,11 +51,54 @@ namespace Spirit_Studio
             videoCaptureDevice = new VideoCaptureDevice();
         }
 
+        private bool runningReferenceCountdown = false;
+
+        private int countdownDuration = 5;
+        private DateTime referenceCountdownEnd;
+        private DateTime referenceCountdownStart;
+        private int countdownIterator = 0;
+
+        private void OnClick_Start(object sender, MouseEventArgs e)
+        {
+            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCamera.SelectedIndex].MonikerString);
+            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            videoCaptureDevice.Start();
+
+            runningReferenceCountdown = true;
+
+            SetupReferenceImage();
+        }
+
+        private async void SetupReferenceImage()
+        {
+            referenceCountdownStart = DateTime.Now;
+            referenceCountdownEnd = referenceCountdownStart.AddSeconds(5);
+
+            while (DateTime.Now < referenceCountdownEnd)
+            {
+                if (DateTime.Now > referenceCountdownStart.AddSeconds(countdownIterator))
+                {
+                    countdownIterator++;
+
+                    labelReferenceImageCountdown.Text = (countdownDuration - countdownIterator + 1).ToString();
+                    labelReferenceImageCountdown.Refresh();
+                }
+            }
+
+            //picCamera.Image =
+            picReference.Image = capturedStill;
+
+            labelReferenceImageCountdown.Visible = false;
+            labelReferenceImageNotifier.Visible = false;
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (videoCaptureDevice.IsRunning)
                 videoCaptureDevice.Stop();
         }
+
+        #endregion
 
         #region RandomNumbers
 

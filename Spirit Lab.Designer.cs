@@ -48,11 +48,16 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
+            this.labelReferenceImageCountdown = new System.Windows.Forms.Label();
+            this.labelReferenceImageNotifier = new System.Windows.Forms.Label();
+            this.picReference = new System.Windows.Forms.PictureBox();
+            this.labelReference = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
             this.tabPhotoshoot.SuspendLayout();
             this.tabRandom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCamera
@@ -109,7 +114,7 @@ namespace Spirit_Studio
             this.tabKeyboard.Margin = new System.Windows.Forms.Padding(2);
             this.tabKeyboard.Name = "tabKeyboard";
             this.tabKeyboard.Padding = new System.Windows.Forms.Padding(2);
-            this.tabKeyboard.Size = new System.Drawing.Size(1228, 627);
+            this.tabKeyboard.Size = new System.Drawing.Size(1440, 627);
             this.tabKeyboard.TabIndex = 0;
             this.tabKeyboard.Text = "Keyboard";
             this.tabKeyboard.UseVisualStyleBackColor = true;
@@ -127,6 +132,10 @@ namespace Spirit_Studio
             // 
             // tabPhotoshoot
             // 
+            this.tabPhotoshoot.Controls.Add(this.labelReference);
+            this.tabPhotoshoot.Controls.Add(this.picReference);
+            this.tabPhotoshoot.Controls.Add(this.labelReferenceImageNotifier);
+            this.tabPhotoshoot.Controls.Add(this.labelReferenceImageCountdown);
             this.tabPhotoshoot.Controls.Add(this.picCamera);
             this.tabPhotoshoot.Controls.Add(this.label1);
             this.tabPhotoshoot.Controls.Add(this.cboCamera);
@@ -135,7 +144,7 @@ namespace Spirit_Studio
             this.tabPhotoshoot.Margin = new System.Windows.Forms.Padding(2);
             this.tabPhotoshoot.Name = "tabPhotoshoot";
             this.tabPhotoshoot.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPhotoshoot.Size = new System.Drawing.Size(1228, 627);
+            this.tabPhotoshoot.Size = new System.Drawing.Size(1440, 627);
             this.tabPhotoshoot.TabIndex = 1;
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
@@ -260,6 +269,44 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
+            // labelReferenceImageCountdown
+            // 
+            this.labelReferenceImageCountdown.AutoSize = true;
+            this.labelReferenceImageCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelReferenceImageCountdown.Location = new System.Drawing.Point(443, 233);
+            this.labelReferenceImageCountdown.Name = "labelReferenceImageCountdown";
+            this.labelReferenceImageCountdown.Size = new System.Drawing.Size(140, 153);
+            this.labelReferenceImageCountdown.TabIndex = 4;
+            this.labelReferenceImageCountdown.Text = "5";
+            // 
+            // labelReferenceImageNotifier
+            // 
+            this.labelReferenceImageNotifier.AutoSize = true;
+            this.labelReferenceImageNotifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelReferenceImageNotifier.Location = new System.Drawing.Point(356, 142);
+            this.labelReferenceImageNotifier.Name = "labelReferenceImageNotifier";
+            this.labelReferenceImageNotifier.Size = new System.Drawing.Size(327, 31);
+            this.labelReferenceImageNotifier.TabIndex = 5;
+            this.labelReferenceImageNotifier.Text = "Saving reference image in";
+            // 
+            // picReference
+            // 
+            this.picReference.Location = new System.Drawing.Point(1008, 103);
+            this.picReference.Name = "picReference";
+            this.picReference.Size = new System.Drawing.Size(409, 283);
+            this.picReference.TabIndex = 6;
+            this.picReference.TabStop = false;
+            // 
+            // labelReference
+            // 
+            this.labelReference.AutoSize = true;
+            this.labelReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelReference.Location = new System.Drawing.Point(1157, 57);
+            this.labelReference.Name = "labelReference";
+            this.labelReference.Size = new System.Drawing.Size(140, 31);
+            this.labelReference.TabIndex = 7;
+            this.labelReference.Text = "Reference";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -278,6 +325,7 @@ namespace Spirit_Studio
             this.tabPhotoshoot.PerformLayout();
             this.tabRandom.ResumeLayout(false);
             this.tabRandom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -303,6 +351,10 @@ namespace Spirit_Studio
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelZerosTotal;
         private System.Windows.Forms.Label labelOnesTotal;
+        private System.Windows.Forms.Label labelReference;
+        private System.Windows.Forms.PictureBox picReference;
+        private System.Windows.Forms.Label labelReferenceImageNotifier;
+        private System.Windows.Forms.Label labelReferenceImageCountdown;
     }
 }
 
