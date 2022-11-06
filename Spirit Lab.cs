@@ -86,7 +86,14 @@ namespace Spirit_Studio
             }
 
             //picCamera.Image =
-            picReference.Image = capturedStill;
+
+            Debug.WriteLine($"captured still dimensions: Height: {capturedStill.Height}, Width: {capturedStill.Width}");
+
+            Debug.WriteLine($"picReference control dimensions: Height: {picReference.Height}, Width: {picReference.Width}");
+
+            
+
+            picReference.Image = ComputerVision.resizeImage(capturedStill, new Size(picReference.Width, picReference.Height));
 
             labelReferenceImageCountdown.Visible = false;
             labelReferenceImageNotifier.Visible = false;
