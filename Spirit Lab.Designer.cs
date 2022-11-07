@@ -30,7 +30,7 @@ namespace Spirit_Studio
         private void InitializeComponent()
         {
             this.cboCamera = new System.Windows.Forms.ComboBox();
-            this.btnStart = new System.Windows.Forms.Button();
+            this.btnStartPhotoshoot = new System.Windows.Forms.Button();
             this.picCamera = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -69,15 +69,15 @@ namespace Spirit_Studio
             this.cboCamera.Size = new System.Drawing.Size(358, 21);
             this.cboCamera.TabIndex = 0;
             // 
-            // btnStart
+            // btnStartPhotoshoot
             // 
-            this.btnStart.Location = new System.Drawing.Point(879, 592);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(123, 32);
-            this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "&Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnClick_Start);
+            this.btnStartPhotoshoot.Location = new System.Drawing.Point(879, 592);
+            this.btnStartPhotoshoot.Name = "btnStartPhotoshoot";
+            this.btnStartPhotoshoot.Size = new System.Drawing.Size(123, 32);
+            this.btnStartPhotoshoot.TabIndex = 1;
+            this.btnStartPhotoshoot.Text = "&Start";
+            this.btnStartPhotoshoot.UseVisualStyleBackColor = true;
+            this.btnStartPhotoshoot.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnClick_Start);
             // 
             // picCamera
             // 
@@ -141,7 +141,7 @@ namespace Spirit_Studio
             this.tabPhotoshoot.Controls.Add(this.picCamera);
             this.tabPhotoshoot.Controls.Add(this.label1);
             this.tabPhotoshoot.Controls.Add(this.cboCamera);
-            this.tabPhotoshoot.Controls.Add(this.btnStart);
+            this.tabPhotoshoot.Controls.Add(this.btnStartPhotoshoot);
             this.tabPhotoshoot.Location = new System.Drawing.Point(4, 22);
             this.tabPhotoshoot.Margin = new System.Windows.Forms.Padding(2);
             this.tabPhotoshoot.Name = "tabPhotoshoot";
@@ -344,7 +344,7 @@ namespace Spirit_Studio
         #endregion
 
         private System.Windows.Forms.ComboBox cboCamera;
-        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnStartPhotoshoot;
         private System.Windows.Forms.PictureBox picCamera;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;

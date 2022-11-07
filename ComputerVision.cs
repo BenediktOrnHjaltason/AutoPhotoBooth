@@ -16,7 +16,8 @@ namespace Spirit_Studio
             return new Bitmap(imgToResize, size);
         }
 
-        public static Mat GetMatFromSDImage(System.Drawing.Image image)
+        //Stolen from https://stackoverflow.com/questions/40384487/system-drawing-image-to-emgu-cv-mat
+        public static Mat GetMatFromSDImage(Image image)
         {
             int stride;
             Bitmap bmp = new Bitmap(image);
@@ -40,8 +41,18 @@ namespace Spirit_Studio
 
             return cvImage.Mat;
         }
+
+        public static Image GetAbsDifference(Image reference, Image newImage)
+        {
+            Mat output = new Mat();
+
+            CvInvoke.AbsDiff(GetMatFromSDImage(reference), GetMatFromSDImage(newImage), output);
+
+            return output.ToImage<Bgr, Int32>().ToBitmap();
+        }
+
+        //public static 
+
     }
-
-
 }
 

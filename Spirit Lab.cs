@@ -17,6 +17,8 @@ namespace Spirit_Studio
         public Form1()
         {
             InitializeComponent();
+
+            btnStartPhotoshoot.Enabled = false;
         }
 
         private PhotoShoot photoShoot = new PhotoShoot();
@@ -27,6 +29,8 @@ namespace Spirit_Studio
         {
             foreach (var cameraName in photoShoot.GetCameras())
                 cboCamera.Items.Add(cameraName);
+
+            btnStartPhotoshoot.Enabled = cboCamera.Items.Count > 0;
 
             cboCamera.SelectedIndex = 0;
         }
@@ -47,7 +51,9 @@ namespace Spirit_Studio
 
         private async void StartPhotoShoot()
         {
-            await photoShoot.TakeReferenceImage(picReference, labelReferenceImageCountdown, labelReferenceImageNotifier);
+            await photoShoot.TakeReferenceImage(picReference, labelReferenceImageCountdown);
+
+            await photoShoot.TakeSpiritImagesContinuous(picCamera, labelReferenceImageCountdown, labelReferenceImageNotifier);
         }
 
         #endregion

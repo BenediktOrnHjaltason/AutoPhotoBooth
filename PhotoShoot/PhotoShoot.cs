@@ -7,6 +7,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 
 namespace Spirit_Studio
@@ -32,6 +33,11 @@ namespace Spirit_Studio
         }
 
         Image capturedStill;
+
+        Image savedReference;
+        Image savedNewImage;
+
+
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             capturedStill = (Bitmap)eventArgs.Frame.Clone();
@@ -51,18 +57,17 @@ namespace Spirit_Studio
             return cameraNames.ToArray();
         }
 
+        int countdownDuration = 5;
+        DateTime referenceCountdownEnd;
+        DateTime referenceCountdownStart;
+        int countdownIterator = 0;
+
         public async Task TakeReferenceImage(
             PictureBox referenceImage, 
-            Label lblReferenceImageCountdown,
-            Label lblReferenceImageNotifierText)
+            Label lblCountdown)
         {
-            int countdownDuration = 5;
-            DateTime referenceCountdownEnd;
-            DateTime referenceCountdownStart;
-            int countdownIterator = 0;
-
             referenceCountdownStart = DateTime.Now;
-            referenceCountdownEnd = referenceCountdownStart.AddSeconds(5);
+            referenceCountdownEnd = referenceCountdownStart.AddSeconds(countdownDuration);
 
             await Task.Delay(100);
 
@@ -72,17 +77,49 @@ namespace Spirit_Studio
                 {
                     countdownIterator++;
 
-                    lblReferenceImageCountdown.Text = (countdownDuration - countdownIterator + 1).ToString();
-                    lblReferenceImageCountdown.Refresh();
+                    lblCountdown.Text = (countdownDuration - countdownIterator + 1).ToString();
+                    lblCountdown.Refresh();
                 }
             }
 
             //picCamera.Image =
 
             referenceImage.Image = ComputerVision.resizeImage(capturedStill, new Size(referenceImage.Width, referenceImage.Height));
+            referenceImage.Refresh();
 
-            lblReferenceImageCountdown.Text = "";
-            lblReferenceImageNotifierText.Text = "Next image in:";
+            savedReference = capturedStill;
+
+            lblCountdown.Text = "";
+            countdownIterator = 0;
+            
+        }
+
+        public async Task TakeSpiritImagesContinuous(
+            PictureBox mainImage,
+            Label lblCountdown,
+            Label lblNotifier)
+        {
+            lblNotifier.Text = "Next image in:";
+
+            referenceCountdownStart = DateTime.Now;
+            referenceCountdownEnd = referenceCountdownStart.AddSeconds(countdownDuration);
+
+            while (DateTime.Now < referenceCountdownEnd)
+            {
+                if (DateTime.Now > referenceCountdownStart.AddSeconds(countdownIterator))
+                {
+                    countdownIterator++;
+
+                    lblCountdown.Text = (countdownDuration - countdownIterator + 1).ToString();
+                    lblCountdown.Refresh();
+                }
+            }
+
+            savedNewImage = capturedStill;
+            mainImage.Image = ComputerVision.resizeImage(
+                ComputerVision.GetAbsDifference(savedReference, savedNewImage), new Size(mainImage.Width, mainImage.Height));
+
+            //mainImage.Image = ComputerVision.resizeImage(capturedStill, new Size(mainImage.Width, mainImage.Height));
         }
     }
 }
