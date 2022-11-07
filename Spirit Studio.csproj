@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComputerVision.cs" />
+    <Compile Include="PhotoShoot\PhotoShoot.cs" />
     <Compile Include="Spirit Lab.cs">
       <SubType>Form</SubType>
     </Compile>
