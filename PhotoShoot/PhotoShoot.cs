@@ -32,10 +32,10 @@ namespace Spirit_Studio
             videoCaptureDevice.Start();
         }
 
-        Image capturedStill;
+        Bitmap capturedStill;
 
-        Image savedReference;
-        Image savedNewImage;
+        Bitmap savedReference;
+        Bitmap savedNewImage;
 
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -115,11 +115,17 @@ namespace Spirit_Studio
                 }
             }
 
-            savedNewImage = capturedStill;
-            mainImage.Image = ComputerVision.resizeImage(
-                ComputerVision.GetAbsDifference(savedReference, savedNewImage), new Size(mainImage.Width, mainImage.Height));
+            lblCountdown.Visible = false;
+            lblNotifier.Visible = false;
 
-            //mainImage.Image = ComputerVision.resizeImage(capturedStill, new Size(mainImage.Width, mainImage.Height));
+            savedNewImage = capturedStill;
+
+            Image convertedImage = ComputerVision.GetAbsDifference(savedReference, savedNewImage);
+            Image resizedConvertedImage = ComputerVision.resizeImage(convertedImage, new Size(mainImage.Width, mainImage.Height));
+
+            mainImage.Image = resizedConvertedImage;
+
+            mainImage.Refresh();
         }
     }
 }

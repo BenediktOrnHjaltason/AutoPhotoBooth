@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace Spirit_Studio
 {
@@ -13,6 +14,12 @@ namespace Spirit_Studio
     {
         public static Image resizeImage(Image imgToResize, Size size)
         {
+            if (imgToResize == null)
+                Debug.WriteLine("imgToResize is NULL");
+
+            if (size == null)
+                Debug.WriteLine("size is NULL");
+
             return new Bitmap(imgToResize, size);
         }
 
@@ -42,13 +49,19 @@ namespace Spirit_Studio
             return cvImage.Mat;
         }
 
-        public static Image GetAbsDifference(Image reference, Image newImage)
+        public static Bitmap GetAbsDifference(Image reference, Image newImage)
         {
+            Mat referenceMat = ((Bitmap)reference).ToMat();
+            //GetMatFromSDImage(reference);
+            Mat newImageMat = ((Bitmap)newImage).ToMat();
+
             Mat output = new Mat();
 
-            CvInvoke.AbsDiff(GetMatFromSDImage(reference), GetMatFromSDImage(newImage), output);
+            CvInvoke.Subtract(referenceMat, newImageMat, output);
 
-            return output.ToImage<Bgr, Int32>().ToBitmap();
+            //CvInvoke.AbsDiff(GetMatFromSDImage(reference), GetMatFromSDImage(newImage), output);
+
+            return output.ToBitmap(); //ToImage<Bgra, Int16>().ToBitmap();
         }
 
         //public static 
