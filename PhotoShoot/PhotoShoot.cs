@@ -118,8 +118,8 @@ namespace Spirit_Studio
                 }
             }
 
-            lblCountdown.Visible = false;
-            lblNotifier.Visible = false;
+            //lblCountdown.Visible = false;
+            //lblNotifier.Visible = false;
 
             savedNewImage = capturedStill;
 

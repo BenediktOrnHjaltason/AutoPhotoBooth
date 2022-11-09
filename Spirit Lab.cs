@@ -38,12 +38,12 @@ namespace Spirit_Studio
             cboCamera.SelectedIndex = 0;
         }
 
-        bool photoShootStarted = false;
+        private bool photoShootRunning = false;
         private void OnClick_Start(object sender, MouseEventArgs e)
         {
-            if (photoShootStarted == false)
+            if (photoShootRunning == false)
             {
-                photoShootStarted = true;
+                photoShootRunning = true;
 
                 labelReferenceImageNotifier.Visible = true;
                 labelReferenceImageCountdown.Visible = true;
@@ -51,15 +51,33 @@ namespace Spirit_Studio
                 photoShoot.Initialize(cboCamera.SelectedIndex);
                 StartPhotoShoot();
             }
-
-            else Debug.WriteLine("REGISTERING CLICK WHILE ASYNC METHOD IS SETTING LABEL CONTENTS");
         }
 
         private async void StartPhotoShoot()
         {
+            
             await photoShoot.TakeReferenceImage(picReference, labelReferenceImageCountdown);
 
+            RefreshLabels();
+
             await photoShoot.TakeSpiritImagesContinuous(picCamera, picNewImage, labelReferenceImageCountdown, labelReferenceImageNotifier, lblDiffPercentage);
+
+
+            SetNotificationLabelsVisible(false);
+            RefreshLabels();
+            photoShootRunning = false;
+        }
+
+        private void RefreshLabels()
+        {
+            labelReferenceImageCountdown.Refresh();
+            labelReferenceImageNotifier.Refresh();
+        }
+
+        private void SetNotificationLabelsVisible(bool visible)
+        {
+            labelReferenceImageCountdown.Visible = visible;
+            labelReferenceImageNotifier.Visible = visible;
         }
 
         #endregion
