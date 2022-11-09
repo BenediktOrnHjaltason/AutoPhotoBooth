@@ -59,7 +59,7 @@ namespace Spirit_Studio
         {
             await photoShoot.TakeReferenceImage(picReference, labelReferenceImageCountdown);
 
-            await photoShoot.TakeSpiritImagesContinuous(picCamera, picNewImage, labelReferenceImageCountdown, labelReferenceImageNotifier);
+            await photoShoot.TakeSpiritImagesContinuous(picCamera, picNewImage, labelReferenceImageCountdown, labelReferenceImageNotifier, lblDiffPercentage);
         }
 
         #endregion

@@ -37,6 +37,8 @@ namespace Spirit_Studio
             this.tabKeyboard = new System.Windows.Forms.TabPage();
             this.labelEmf = new System.Windows.Forms.Label();
             this.tabPhotoshoot = new System.Windows.Forms.TabPage();
+            this.lblNewImage = new System.Windows.Forms.Label();
+            this.picNewImage = new System.Windows.Forms.PictureBox();
             this.btnGetCameras = new System.Windows.Forms.Button();
             this.labelReference = new System.Windows.Forms.Label();
             this.picReference = new System.Windows.Forms.PictureBox();
@@ -53,15 +55,14 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.picNewImage = new System.Windows.Forms.PictureBox();
-            this.lblNewImage = new System.Windows.Forms.Label();
+            this.lblDiffPercentage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
             this.tabPhotoshoot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.tabRandom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCamera
@@ -136,6 +137,7 @@ namespace Spirit_Studio
             // 
             // tabPhotoshoot
             // 
+            this.tabPhotoshoot.Controls.Add(this.lblDiffPercentage);
             this.tabPhotoshoot.Controls.Add(this.lblNewImage);
             this.tabPhotoshoot.Controls.Add(this.picNewImage);
             this.tabPhotoshoot.Controls.Add(this.btnGetCameras);
@@ -155,6 +157,24 @@ namespace Spirit_Studio
             this.tabPhotoshoot.TabIndex = 1;
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
+            // 
+            // lblNewImage
+            // 
+            this.lblNewImage.AutoSize = true;
+            this.lblNewImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewImage.Location = new System.Drawing.Point(1168, 312);
+            this.lblNewImage.Name = "lblNewImage";
+            this.lblNewImage.Size = new System.Drawing.Size(109, 25);
+            this.lblNewImage.TabIndex = 10;
+            this.lblNewImage.Text = "New image";
+            // 
+            // picNewImage
+            // 
+            this.picNewImage.Location = new System.Drawing.Point(1020, 340);
+            this.picNewImage.Name = "picNewImage";
+            this.picNewImage.Size = new System.Drawing.Size(397, 246);
+            this.picNewImage.TabIndex = 9;
+            this.picNewImage.TabStop = false;
             // 
             // btnGetCameras
             // 
@@ -325,23 +345,15 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // picNewImage
+            // lblDiffPercentage
             // 
-            this.picNewImage.Location = new System.Drawing.Point(1020, 340);
-            this.picNewImage.Name = "picNewImage";
-            this.picNewImage.Size = new System.Drawing.Size(397, 246);
-            this.picNewImage.TabIndex = 9;
-            this.picNewImage.TabStop = false;
-            // 
-            // lblNewImage
-            // 
-            this.lblNewImage.AutoSize = true;
-            this.lblNewImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNewImage.Location = new System.Drawing.Point(1168, 312);
-            this.lblNewImage.Name = "lblNewImage";
-            this.lblNewImage.Size = new System.Drawing.Size(109, 25);
-            this.lblNewImage.TabIndex = 10;
-            this.lblNewImage.Text = "New image";
+            this.lblDiffPercentage.AutoSize = true;
+            this.lblDiffPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiffPercentage.Location = new System.Drawing.Point(1015, 593);
+            this.lblDiffPercentage.Name = "lblDiffPercentage";
+            this.lblDiffPercentage.Size = new System.Drawing.Size(106, 25);
+            this.lblDiffPercentage.TabIndex = 11;
+            this.lblDiffPercentage.Text = "Difference:";
             // 
             // Form1
             // 
@@ -357,10 +369,10 @@ namespace Spirit_Studio
             this.tabKeyboard.PerformLayout();
             this.tabPhotoshoot.ResumeLayout(false);
             this.tabPhotoshoot.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.tabRandom.ResumeLayout(false);
             this.tabRandom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -393,6 +405,7 @@ namespace Spirit_Studio
         private System.Windows.Forms.Button btnGetCameras;
         private System.Windows.Forms.Label lblNewImage;
         private System.Windows.Forms.PictureBox picNewImage;
+        private System.Windows.Forms.Label lblDiffPercentage;
     }
 }
 

@@ -98,7 +98,8 @@ namespace Spirit_Studio
             PictureBox mainImageBox,
             PictureBox newImageBox,
             Label lblCountdown,
-            Label lblNotifier)
+            Label lblNotifier,
+            Label lblDifferencePercentage)
         {
             lblNotifier.Text = "Next image in:";
             lblNotifier.Refresh();
@@ -122,7 +123,10 @@ namespace Spirit_Studio
 
             savedNewImage = capturedStill;
 
-            Image convertedImage = ComputerVision.GetAbsDifference(savedReference, savedNewImage);
+            double? differencePercentage = 0;
+            Image convertedImage = ComputerVision.GetAbsDifference(savedReference, savedNewImage, out differencePercentage);
+            lblDifferencePercentage.Text = $"Difference: {differencePercentage.Value.ToString("0.0")}%";
+
             Image resizedConvertedImage = ComputerVision.resizeImage(convertedImage, new Size(mainImageBox.Width, mainImageBox.Height));
             Image resizedNewImage = ComputerVision.resizeImage(savedNewImage, new Size(newImageBox.Width, newImageBox.Height));
 

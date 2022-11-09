@@ -49,7 +49,7 @@ namespace Spirit_Studio
             return cvImage.Mat;
         }
 
-        public static Bitmap GetAbsDifference(Image reference, Image newImage)
+        public static Bitmap GetAbsDifference(Image reference, Image newImage, out double? differencePercentage)
         {
             Mat referenceMat = ((Bitmap)reference).ToMat();
             Mat newImageMat = ((Bitmap)newImage).ToMat();
@@ -71,10 +71,14 @@ namespace Spirit_Studio
 
             double percentageChanged = (nonZeroelements / totalPixels) * 100;
 
+            differencePercentage = percentageChanged;
+
             Debug.WriteLine($"percentage of pixels that changed: {percentageChanged}");
 
             return thresholded.ToBitmap();
         }
+
+
     }
 }
 
