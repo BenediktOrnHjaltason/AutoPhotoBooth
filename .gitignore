@@ -17,6 +17,9 @@
 .dotnet/
 .packages/
 
+bin/Debug/
+obj/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -313,6 +316,8 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
+
+bin/**
 
 # Tabs Studio
 *.tss

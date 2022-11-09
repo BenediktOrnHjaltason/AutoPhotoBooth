@@ -19,6 +19,9 @@ namespace Spirit_Studio
             InitializeComponent();
 
             btnStartPhotoshoot.Enabled = false;
+
+            labelReferenceImageNotifier.Visible = false;
+            labelReferenceImageCountdown.Visible = false;
         }
 
         private PhotoShoot photoShoot = new PhotoShoot();
@@ -42,6 +45,9 @@ namespace Spirit_Studio
             {
                 photoShootStarted = true;
 
+                labelReferenceImageNotifier.Visible = true;
+                labelReferenceImageCountdown.Visible = true;
+
                 photoShoot.Initialize(cboCamera.SelectedIndex);
                 StartPhotoShoot();
             }
@@ -53,7 +59,7 @@ namespace Spirit_Studio
         {
             await photoShoot.TakeReferenceImage(picReference, labelReferenceImageCountdown);
 
-            await photoShoot.TakeSpiritImagesContinuous(picCamera, labelReferenceImageCountdown, labelReferenceImageNotifier);
+            await photoShoot.TakeSpiritImagesContinuous(picCamera, picNewImage, labelReferenceImageCountdown, labelReferenceImageNotifier);
         }
 
         #endregion

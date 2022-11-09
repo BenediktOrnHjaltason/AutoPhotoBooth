@@ -95,11 +95,13 @@ namespace Spirit_Studio
         }
 
         public async Task TakeSpiritImagesContinuous(
-            PictureBox mainImage,
+            PictureBox mainImageBox,
+            PictureBox newImageBox,
             Label lblCountdown,
             Label lblNotifier)
         {
             lblNotifier.Text = "Next image in:";
+            lblNotifier.Refresh();
 
             referenceCountdownStart = DateTime.Now;
             referenceCountdownEnd = referenceCountdownStart.AddSeconds(countdownDuration);
@@ -121,11 +123,15 @@ namespace Spirit_Studio
             savedNewImage = capturedStill;
 
             Image convertedImage = ComputerVision.GetAbsDifference(savedReference, savedNewImage);
-            Image resizedConvertedImage = ComputerVision.resizeImage(convertedImage, new Size(mainImage.Width, mainImage.Height));
+            Image resizedConvertedImage = ComputerVision.resizeImage(convertedImage, new Size(mainImageBox.Width, mainImageBox.Height));
+            Image resizedNewImage = ComputerVision.resizeImage(savedNewImage, new Size(newImageBox.Width, newImageBox.Height));
 
-            mainImage.Image = resizedConvertedImage;
+            mainImageBox.Image = resizedConvertedImage;
+            newImageBox.Image = resizedNewImage;
 
-            mainImage.Refresh();
+
+            mainImageBox.Refresh();
+            newImageBox.Refresh();
         }
     }
 }
