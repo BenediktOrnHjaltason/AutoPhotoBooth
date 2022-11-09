@@ -54,61 +54,28 @@ namespace Spirit_Studio
             Mat referenceMat = ((Bitmap)reference).ToMat();
             Mat newImageMat = ((Bitmap)newImage).ToMat();
 
-            MCvScalar refSum = CvInvoke.Sum(referenceMat);
-            MCvScalar newSum = CvInvoke.Sum(newImageMat);
-
-            Bitmap referenceBitmap = (Bitmap)reference;
-
-
-            //double totalRefSum = refSum.V0 + refSum.V1 + refSum.V2;
-            //double totalNewSum = newSum.V0 + newSum.V1 + newSum.V2;
-
-            //Debug.WriteLine($"SUM of reference image: V0: {refSum.V0}. V1: {refSum.V1}. V2: {refSum.V2}. TotalSum = {totalRefSum}");
-
-            //Debug.WriteLine($"SUM of new image: V0: {newSum.V0}. V1: {newSum.V1}. V2: {newSum.V2}. TotalSum = {totalNewSum}");
-
-            //double similarityPercentage = totalNewSum < totalRefSum ? (totalNewSum / totalRefSum * 100) : (totalRefSum / totalNewSum * 100);
-
-            //Debug.WriteLine($"NEW Image is {similarityPercentage} identical to reference image");
-
             Mat absDiffed = new Mat();
-
             CvInvoke.AbsDiff( referenceMat, newImageMat, absDiffed);
 
             Mat thresholded = new Mat();
-
             CvInvoke.Threshold(absDiffed, thresholded, 50, 255, Emgu.CV.CvEnum.ThresholdType.ToZero);
 
             Mat grayScaleConverted = new Mat();
+            CvInvoke.CvtColor(thresholded, grayScaleConverted, Emgu.CV.CvEnum.ColorConversion.Rgb2Gray);
 
-            CvInvoke.CvtColor(absDiffed, grayScaleConverted, Emgu.CV.CvEnum.ColorConversion.Rgb2Gray);
+            double nonZeroelements = CvInvoke.CountNonZero(grayScaleConverted);
+            double totalPixels = grayScaleConverted.Height * grayScaleConverted.Width;
 
-            
+            Debug.WriteLine($"Pixels that changed: {nonZeroelements}");
+            Debug.WriteLine($"Pixels total in image: {totalPixels} ");
 
+            double percentageChanged = (nonZeroelements / totalPixels) * 100;
 
-            //Image<Gray,byte> grayScale = 
+            Debug.WriteLine($"percentage of pixels that changed: {percentageChanged}");
 
-            
-
-            var nonZeroelements = CvInvoke.CountNonZero(grayScaleConverted);
-
-            double percentageDifference = ((double)nonZeroelements / (double)(grayScaleConverted.Height * grayScaleConverted.Width));
-
-            var sumOfAbsDiff = CvInvoke.Sum(grayScaleConverted);
-
-            Debug.WriteLine($"Sum of difference: {sumOfAbsDiff.V0}");
-
-            //double similarityPercentage = ((CvInvoke.CountNonZero(output) / (reference.Width * reference.Height))) * 100;
-
-            //Debug.WriteLine($"NEW Image is {similarityPercentage} identical to reference image");
-
-            //CvInvoke.AbsDiff(GetMatFromSDImage(reference), GetMatFromSDImage(newImage), output);
-
-            return thresholded.ToBitmap(); //ToImage<Bgra, Int16>().ToBitmap();
+            return thresholded.ToBitmap();
         }
-
-        //public static 
-
     }
 }
+
 
