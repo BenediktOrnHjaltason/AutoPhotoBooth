@@ -44,17 +44,29 @@ namespace Spirit_Studio
         {
             if (photoShootRunning == false)
             {
+                btnStartPhotoshoot.Text = "Stop";
+
                 photoShootRunning = true;
 
                 lblRefImageNotifier.Visible = true;
                 lblRefImageCountdown.Visible = true;
 
                 photoShoot.Initialize(cboCamera.SelectedIndex);
-                StartPhotoShoot();
+                RunPhotoShoot();
+            }
+
+            else
+            {
+                photoShootRunning = false;
+                btnStartPhotoshoot.Text = "Stop";
+                lblRefImageNotifier.Text = "Saving reference image in";
+                lblRefImageNotifier.Visible = false;
+                lblRefImageCountdown.Text = "5";
+                lblRefImageCountdown.Visible = false;
             }
         }
 
-        private async void StartPhotoShoot()
+        private async void RunPhotoShoot()
         {
             await CountDown(5);
 
@@ -62,18 +74,22 @@ namespace Spirit_Studio
 
             lblRefImageNotifier.Text = "Next image in";
 
-            await CountDown(5);
+            while (photoShootRunning)
+            {
+                await CountDown(5);
 
-            PhotoshootResult result = photoShoot.TakeSpiritImage();
+                PhotoshootResult result = photoShoot.TakeSpiritImage();
 
-            lblDiffPercentage.Text = $"Difference: {result.DifferencePercentage.ToString("0.0")}%";
+                lblDiffPercentage.Text = $"Difference: {result.DifferencePercentage.ToString("0.000")}%";
 
-            picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
-            picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
+                picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
+                picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
+            }
+            
 
-            SetNotificationLabelsVisible(false);
-            RefreshLabels();
-            photoShootRunning = false;
+            //SetNotificationLabelsVisible(false);
+            //RefreshLabels();
+
         }
 
         private async Task CountDown(int duration)
@@ -88,18 +104,6 @@ namespace Spirit_Studio
 
                 countDownIterator--;
             }
-        }
-
-        private void RefreshLabels()
-        {
-            lblRefImageCountdown.Refresh();
-            lblRefImageNotifier.Refresh();
-        }
-
-        private void SetNotificationLabelsVisible(bool visible)
-        {
-            lblRefImageCountdown.Visible = visible;
-            lblRefImageNotifier.Visible = visible;
         }
 
         #endregion
