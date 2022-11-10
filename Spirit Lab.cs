@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Spirit_Studio.CustomTypes;
 using System.Diagnostics;
 using Spirit_Studio.Utilities;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace Spirit_Studio
 {
@@ -84,12 +86,13 @@ namespace Spirit_Studio
 
                 picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
                 picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
+
+                if (result.DifferencePercentage > 10)
+                {
+                    lblDiffPercentage.Text += ". Saving image to disk";
+                    result.NewImage.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
+                }
             }
-            
-
-            //SetNotificationLabelsVisible(false);
-            //RefreshLabels();
-
         }
 
         private async Task CountDown(int duration)
