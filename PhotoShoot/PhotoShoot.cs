@@ -8,6 +8,7 @@ using AForge.Video.DirectShow;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Spirit_Studio.CustomTypes;
 
 
 namespace Spirit_Studio
@@ -57,85 +58,25 @@ namespace Spirit_Studio
             return cameraNames.ToArray();
         }
 
-        int countdownDuration = 5;
-        DateTime referenceCountdownEnd;
-        DateTime referenceCountdownStart;
-        int countdownIterator = 0;
-
-        public async Task TakeReferenceImage(
-            PictureBox referenceImage, 
-            Label lblCountdown)
+        public Image TakeReferenceImage()
         {
-            referenceCountdownStart = DateTime.Now;
-            referenceCountdownEnd = referenceCountdownStart.AddSeconds(countdownDuration);
-
-            await Task.Delay(100);
-
-            while (DateTime.Now < referenceCountdownEnd)
-            {
-                if (DateTime.Now > referenceCountdownStart.AddSeconds(countdownIterator))
-                {
-                    countdownIterator++;
-
-                    lblCountdown.Text = (countdownDuration - countdownIterator + 1).ToString();
-                    lblCountdown.Refresh();
-                }
-            }
-
-            //picCamera.Image =
-
-            referenceImage.Image = ComputerVision.resizeImage(capturedStill, new Size(referenceImage.Width, referenceImage.Height));
-            referenceImage.Refresh();
-
             savedReference = capturedStill;
 
-            lblCountdown.Text = "";
-            countdownIterator = 0;
-            
+            return savedReference;
         }
 
-        public async Task TakeSpiritImagesContinuous(
-            PictureBox mainImageBox,
-            PictureBox newImageBox,
-            Label lblCountdown,
-            Label lblNotifier,
-            Label lblDifferencePercentage)
+        public PhotoshootResult TakeSpiritImage()
         {
-            lblNotifier.Text = "Next image in:";
-            lblNotifier.Refresh();
-
-            referenceCountdownStart = DateTime.Now;
-            referenceCountdownEnd = referenceCountdownStart.AddSeconds(countdownDuration);
-
-            while (DateTime.Now < referenceCountdownEnd)
-            {
-                if (DateTime.Now > referenceCountdownStart.AddSeconds(countdownIterator))
-                {
-                    countdownIterator++;
-
-                    lblCountdown.Text = (countdownDuration - countdownIterator + 1).ToString();
-                    lblCountdown.Refresh();
-                }
-            }
-
-            //lblCountdown.Visible = false;
-            //lblNotifier.Visible = false;
-
             savedNewImage = capturedStill;
 
-            double? differencePercentage = 0;
-            Image convertedImage = ComputerVision.GetAbsDifference(savedReference, savedNewImage, out differencePercentage);
-            lblDifferencePercentage.Text = $"Difference: {differencePercentage.Value.ToString("0.0")}%";
+            ImageDifference difference = ComputerVision.GetAbsDifference(savedReference, savedNewImage);
 
-            Image resizedConvertedImage = ComputerVision.resizeImage(convertedImage, new Size(mainImageBox.Width, mainImageBox.Height));
-            Image resizedNewImage = ComputerVision.resizeImage(savedNewImage, new Size(newImageBox.Width, newImageBox.Height));
-
-            mainImageBox.Image = resizedConvertedImage;
-            newImageBox.Image = resizedNewImage;
-
-
-            mainImageBox.Refresh();
-            newImageBox.Refresh();
+            return new PhotoshootResult
+            {
+                ProcessedImage = difference.ProcessedImage,
+                NewImage = savedNewImage,
+                DifferencePercentage = difference.Percentage,
+            };
         }
     }
 }

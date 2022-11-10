@@ -37,13 +37,14 @@ namespace Spirit_Studio
             this.tabKeyboard = new System.Windows.Forms.TabPage();
             this.labelEmf = new System.Windows.Forms.Label();
             this.tabPhotoshoot = new System.Windows.Forms.TabPage();
+            this.lblDiffPercentage = new System.Windows.Forms.Label();
             this.lblNewImage = new System.Windows.Forms.Label();
             this.picNewImage = new System.Windows.Forms.PictureBox();
             this.btnGetCameras = new System.Windows.Forms.Button();
             this.labelReference = new System.Windows.Forms.Label();
             this.picReference = new System.Windows.Forms.PictureBox();
-            this.labelReferenceImageNotifier = new System.Windows.Forms.Label();
-            this.labelReferenceImageCountdown = new System.Windows.Forms.Label();
+            this.lblRefImageNotifier = new System.Windows.Forms.Label();
+            this.lblRefImageCountdown = new System.Windows.Forms.Label();
             this.tabRandom = new System.Windows.Forms.TabPage();
             this.labelZerosTotal = new System.Windows.Forms.Label();
             this.labelOnesTotal = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.lblDiffPercentage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
@@ -143,8 +143,8 @@ namespace Spirit_Studio
             this.tabPhotoshoot.Controls.Add(this.btnGetCameras);
             this.tabPhotoshoot.Controls.Add(this.labelReference);
             this.tabPhotoshoot.Controls.Add(this.picReference);
-            this.tabPhotoshoot.Controls.Add(this.labelReferenceImageNotifier);
-            this.tabPhotoshoot.Controls.Add(this.labelReferenceImageCountdown);
+            this.tabPhotoshoot.Controls.Add(this.lblRefImageNotifier);
+            this.tabPhotoshoot.Controls.Add(this.lblRefImageCountdown);
             this.tabPhotoshoot.Controls.Add(this.picCamera);
             this.tabPhotoshoot.Controls.Add(this.label1);
             this.tabPhotoshoot.Controls.Add(this.cboCamera);
@@ -157,6 +157,16 @@ namespace Spirit_Studio
             this.tabPhotoshoot.TabIndex = 1;
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
+            // 
+            // lblDiffPercentage
+            // 
+            this.lblDiffPercentage.AutoSize = true;
+            this.lblDiffPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiffPercentage.Location = new System.Drawing.Point(1015, 593);
+            this.lblDiffPercentage.Name = "lblDiffPercentage";
+            this.lblDiffPercentage.Size = new System.Drawing.Size(106, 25);
+            this.lblDiffPercentage.TabIndex = 11;
+            this.lblDiffPercentage.Text = "Difference:";
             // 
             // lblNewImage
             // 
@@ -205,25 +215,25 @@ namespace Spirit_Studio
             this.picReference.TabIndex = 6;
             this.picReference.TabStop = false;
             // 
-            // labelReferenceImageNotifier
+            // lblRefImageNotifier
             // 
-            this.labelReferenceImageNotifier.AutoSize = true;
-            this.labelReferenceImageNotifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReferenceImageNotifier.Location = new System.Drawing.Point(356, 142);
-            this.labelReferenceImageNotifier.Name = "labelReferenceImageNotifier";
-            this.labelReferenceImageNotifier.Size = new System.Drawing.Size(327, 31);
-            this.labelReferenceImageNotifier.TabIndex = 5;
-            this.labelReferenceImageNotifier.Text = "Saving reference image in";
+            this.lblRefImageNotifier.AutoSize = true;
+            this.lblRefImageNotifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefImageNotifier.Location = new System.Drawing.Point(356, 142);
+            this.lblRefImageNotifier.Name = "lblRefImageNotifier";
+            this.lblRefImageNotifier.Size = new System.Drawing.Size(327, 31);
+            this.lblRefImageNotifier.TabIndex = 5;
+            this.lblRefImageNotifier.Text = "Saving reference image in";
             // 
-            // labelReferenceImageCountdown
+            // lblRefImageCountdown
             // 
-            this.labelReferenceImageCountdown.AutoSize = true;
-            this.labelReferenceImageCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReferenceImageCountdown.Location = new System.Drawing.Point(443, 233);
-            this.labelReferenceImageCountdown.Name = "labelReferenceImageCountdown";
-            this.labelReferenceImageCountdown.Size = new System.Drawing.Size(140, 153);
-            this.labelReferenceImageCountdown.TabIndex = 4;
-            this.labelReferenceImageCountdown.Text = "5";
+            this.lblRefImageCountdown.AutoSize = true;
+            this.lblRefImageCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefImageCountdown.Location = new System.Drawing.Point(443, 233);
+            this.lblRefImageCountdown.Name = "lblRefImageCountdown";
+            this.lblRefImageCountdown.Size = new System.Drawing.Size(140, 153);
+            this.lblRefImageCountdown.TabIndex = 4;
+            this.lblRefImageCountdown.Text = "5";
             // 
             // tabRandom
             // 
@@ -345,16 +355,6 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // lblDiffPercentage
-            // 
-            this.lblDiffPercentage.AutoSize = true;
-            this.lblDiffPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiffPercentage.Location = new System.Drawing.Point(1015, 593);
-            this.lblDiffPercentage.Name = "lblDiffPercentage";
-            this.lblDiffPercentage.Size = new System.Drawing.Size(106, 25);
-            this.lblDiffPercentage.TabIndex = 11;
-            this.lblDiffPercentage.Text = "Difference:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,8 +400,8 @@ namespace Spirit_Studio
         private System.Windows.Forms.Label labelOnesTotal;
         private System.Windows.Forms.Label labelReference;
         private System.Windows.Forms.PictureBox picReference;
-        private System.Windows.Forms.Label labelReferenceImageNotifier;
-        private System.Windows.Forms.Label labelReferenceImageCountdown;
+        private System.Windows.Forms.Label lblRefImageNotifier;
+        private System.Windows.Forms.Label lblRefImageCountdown;
         private System.Windows.Forms.Button btnGetCameras;
         private System.Windows.Forms.Label lblNewImage;
         private System.Windows.Forms.PictureBox picNewImage;

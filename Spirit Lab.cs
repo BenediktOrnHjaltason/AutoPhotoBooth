@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Spirit_Studio.CustomTypes;
 using System.Diagnostics;
+using Spirit_Studio.Utilities;
 
 namespace Spirit_Studio
 {
@@ -20,8 +21,8 @@ namespace Spirit_Studio
 
             btnStartPhotoshoot.Enabled = false;
 
-            labelReferenceImageNotifier.Visible = false;
-            labelReferenceImageCountdown.Visible = false;
+            lblRefImageNotifier.Visible = false;
+            lblRefImageCountdown.Visible = false;
         }
 
         private PhotoShoot photoShoot = new PhotoShoot();
@@ -45,8 +46,8 @@ namespace Spirit_Studio
             {
                 photoShootRunning = true;
 
-                labelReferenceImageNotifier.Visible = true;
-                labelReferenceImageCountdown.Visible = true;
+                lblRefImageNotifier.Visible = true;
+                lblRefImageCountdown.Visible = true;
 
                 photoShoot.Initialize(cboCamera.SelectedIndex);
                 StartPhotoShoot();
@@ -55,29 +56,50 @@ namespace Spirit_Studio
 
         private async void StartPhotoShoot()
         {
-            
-            await photoShoot.TakeReferenceImage(picReference, labelReferenceImageCountdown);
+            await CountDown(5);
 
-            RefreshLabels();
+            picReference.Image =  Utils.ResizeImage(photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
-            await photoShoot.TakeSpiritImagesContinuous(picCamera, picNewImage, labelReferenceImageCountdown, labelReferenceImageNotifier, lblDiffPercentage);
+            lblRefImageNotifier.Text = "Next image in";
 
+            await CountDown(5);
+
+            PhotoshootResult result = photoShoot.TakeSpiritImage();
+
+            lblDiffPercentage.Text = $"Difference: {result.DifferencePercentage.ToString("0.0")}%";
+
+            picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
+            picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
 
             SetNotificationLabelsVisible(false);
             RefreshLabels();
             photoShootRunning = false;
         }
 
+        private async Task CountDown(int duration)
+        {
+            int countDownIterator = duration;
+
+            while (countDownIterator > 0)
+            {
+                lblRefImageCountdown.Text = countDownIterator.ToString();
+
+                await Task.Delay(1000);
+
+                countDownIterator--;
+            }
+        }
+
         private void RefreshLabels()
         {
-            labelReferenceImageCountdown.Refresh();
-            labelReferenceImageNotifier.Refresh();
+            lblRefImageCountdown.Refresh();
+            lblRefImageNotifier.Refresh();
         }
 
         private void SetNotificationLabelsVisible(bool visible)
         {
-            labelReferenceImageCountdown.Visible = visible;
-            labelReferenceImageNotifier.Visible = visible;
+            lblRefImageCountdown.Visible = visible;
+            lblRefImageNotifier.Visible = visible;
         }
 
         #endregion
