@@ -37,6 +37,8 @@ namespace Spirit_Studio
             this.tabKeyboard = new System.Windows.Forms.TabPage();
             this.labelEmf = new System.Windows.Forms.Label();
             this.tabPhotoshoot = new System.Windows.Forms.TabPage();
+            this.lblTrackBarFileSave = new System.Windows.Forms.Label();
+            this.trackBarSaveFileThreshold = new System.Windows.Forms.TrackBar();
             this.lblDiffPercentage = new System.Windows.Forms.Label();
             this.lblNewImage = new System.Windows.Forms.Label();
             this.picNewImage = new System.Windows.Forms.PictureBox();
@@ -56,10 +58,12 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
+            this.lblSavedToFile = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
             this.tabPhotoshoot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.tabRandom.SuspendLayout();
@@ -68,16 +72,17 @@ namespace Spirit_Studio
             // cboCamera
             // 
             this.cboCamera.FormattingEnabled = true;
-            this.cboCamera.Location = new System.Drawing.Point(54, 31);
+            this.cboCamera.Location = new System.Drawing.Point(73, 26);
             this.cboCamera.Name = "cboCamera";
             this.cboCamera.Size = new System.Drawing.Size(358, 21);
             this.cboCamera.TabIndex = 0;
             // 
             // btnStartPhotoshoot
             // 
-            this.btnStartPhotoshoot.Location = new System.Drawing.Point(879, 592);
+            this.btnStartPhotoshoot.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartPhotoshoot.Location = new System.Drawing.Point(633, 627);
             this.btnStartPhotoshoot.Name = "btnStartPhotoshoot";
-            this.btnStartPhotoshoot.Size = new System.Drawing.Size(123, 32);
+            this.btnStartPhotoshoot.Size = new System.Drawing.Size(151, 83);
             this.btnStartPhotoshoot.TabIndex = 1;
             this.btnStartPhotoshoot.Text = "&Start";
             this.btnStartPhotoshoot.UseVisualStyleBackColor = true;
@@ -85,7 +90,7 @@ namespace Spirit_Studio
             // 
             // picCamera
             // 
-            this.picCamera.Location = new System.Drawing.Point(54, 57);
+            this.picCamera.Location = new System.Drawing.Point(73, 52);
             this.picCamera.Name = "picCamera";
             this.picCamera.Size = new System.Drawing.Size(948, 529);
             this.picCamera.TabIndex = 2;
@@ -94,7 +99,7 @@ namespace Spirit_Studio
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 15);
+            this.label1.Location = new System.Drawing.Point(70, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 3;
@@ -105,11 +110,11 @@ namespace Spirit_Studio
             this.tabControl1.Controls.Add(this.tabKeyboard);
             this.tabControl1.Controls.Add(this.tabPhotoshoot);
             this.tabControl1.Controls.Add(this.tabRandom);
-            this.tabControl1.Location = new System.Drawing.Point(31, 24);
+            this.tabControl1.Location = new System.Drawing.Point(11, 24);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1448, 653);
+            this.tabControl1.Size = new System.Drawing.Size(1646, 785);
             this.tabControl1.TabIndex = 4;
             // 
             // tabKeyboard
@@ -119,7 +124,7 @@ namespace Spirit_Studio
             this.tabKeyboard.Margin = new System.Windows.Forms.Padding(2);
             this.tabKeyboard.Name = "tabKeyboard";
             this.tabKeyboard.Padding = new System.Windows.Forms.Padding(2);
-            this.tabKeyboard.Size = new System.Drawing.Size(1440, 627);
+            this.tabKeyboard.Size = new System.Drawing.Size(1514, 759);
             this.tabKeyboard.TabIndex = 0;
             this.tabKeyboard.Text = "Keyboard";
             this.tabKeyboard.UseVisualStyleBackColor = true;
@@ -137,6 +142,9 @@ namespace Spirit_Studio
             // 
             // tabPhotoshoot
             // 
+            this.tabPhotoshoot.Controls.Add(this.lblSavedToFile);
+            this.tabPhotoshoot.Controls.Add(this.lblTrackBarFileSave);
+            this.tabPhotoshoot.Controls.Add(this.trackBarSaveFileThreshold);
             this.tabPhotoshoot.Controls.Add(this.lblDiffPercentage);
             this.tabPhotoshoot.Controls.Add(this.lblNewImage);
             this.tabPhotoshoot.Controls.Add(this.picNewImage);
@@ -153,18 +161,37 @@ namespace Spirit_Studio
             this.tabPhotoshoot.Margin = new System.Windows.Forms.Padding(2);
             this.tabPhotoshoot.Name = "tabPhotoshoot";
             this.tabPhotoshoot.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPhotoshoot.Size = new System.Drawing.Size(1440, 627);
+            this.tabPhotoshoot.Size = new System.Drawing.Size(1638, 759);
             this.tabPhotoshoot.TabIndex = 1;
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
             // 
+            // lblTrackBarFileSave
+            // 
+            this.lblTrackBarFileSave.AutoSize = true;
+            this.lblTrackBarFileSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrackBarFileSave.Location = new System.Drawing.Point(1035, 722);
+            this.lblTrackBarFileSave.Name = "lblTrackBarFileSave";
+            this.lblTrackBarFileSave.Size = new System.Drawing.Size(416, 24);
+            this.lblTrackBarFileSave.TabIndex = 13;
+            this.lblTrackBarFileSave.Text = "Change percentage required to save new image";
+            // 
+            // trackBarSaveFileThreshold
+            // 
+            this.trackBarSaveFileThreshold.Location = new System.Drawing.Point(1039, 665);
+            this.trackBarSaveFileThreshold.Maximum = 100;
+            this.trackBarSaveFileThreshold.Name = "trackBarSaveFileThreshold";
+            this.trackBarSaveFileThreshold.Size = new System.Drawing.Size(394, 45);
+            this.trackBarSaveFileThreshold.TabIndex = 12;
+            this.trackBarSaveFileThreshold.Scroll += new System.EventHandler(this.trackBarSaveFileThreshold_Scroll);
+            // 
             // lblDiffPercentage
             // 
             this.lblDiffPercentage.AutoSize = true;
-            this.lblDiffPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiffPercentage.Location = new System.Drawing.Point(1015, 593);
+            this.lblDiffPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiffPercentage.Location = new System.Drawing.Point(1460, 267);
             this.lblDiffPercentage.Name = "lblDiffPercentage";
-            this.lblDiffPercentage.Size = new System.Drawing.Size(106, 25);
+            this.lblDiffPercentage.Size = new System.Drawing.Size(147, 31);
             this.lblDiffPercentage.TabIndex = 11;
             this.lblDiffPercentage.Text = "Difference:";
             // 
@@ -172,7 +199,7 @@ namespace Spirit_Studio
             // 
             this.lblNewImage.AutoSize = true;
             this.lblNewImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNewImage.Location = new System.Drawing.Point(1168, 312);
+            this.lblNewImage.Location = new System.Drawing.Point(1187, 307);
             this.lblNewImage.Name = "lblNewImage";
             this.lblNewImage.Size = new System.Drawing.Size(109, 25);
             this.lblNewImage.TabIndex = 10;
@@ -180,7 +207,7 @@ namespace Spirit_Studio
             // 
             // picNewImage
             // 
-            this.picNewImage.Location = new System.Drawing.Point(1020, 340);
+            this.picNewImage.Location = new System.Drawing.Point(1039, 335);
             this.picNewImage.Name = "picNewImage";
             this.picNewImage.Size = new System.Drawing.Size(397, 246);
             this.picNewImage.TabIndex = 9;
@@ -189,7 +216,7 @@ namespace Spirit_Studio
             // btnGetCameras
             // 
             this.btnGetCameras.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetCameras.Location = new System.Drawing.Point(418, 25);
+            this.btnGetCameras.Location = new System.Drawing.Point(437, 20);
             this.btnGetCameras.Name = "btnGetCameras";
             this.btnGetCameras.Size = new System.Drawing.Size(153, 29);
             this.btnGetCameras.TabIndex = 8;
@@ -201,7 +228,7 @@ namespace Spirit_Studio
             // 
             this.labelReference.AutoSize = true;
             this.labelReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReference.Location = new System.Drawing.Point(1168, 29);
+            this.labelReference.Location = new System.Drawing.Point(1187, 24);
             this.labelReference.Name = "labelReference";
             this.labelReference.Size = new System.Drawing.Size(101, 25);
             this.labelReference.TabIndex = 7;
@@ -209,7 +236,7 @@ namespace Spirit_Studio
             // 
             // picReference
             // 
-            this.picReference.Location = new System.Drawing.Point(1020, 57);
+            this.picReference.Location = new System.Drawing.Point(1039, 52);
             this.picReference.Name = "picReference";
             this.picReference.Size = new System.Drawing.Size(397, 246);
             this.picReference.TabIndex = 6;
@@ -219,7 +246,7 @@ namespace Spirit_Studio
             // 
             this.lblRefImageNotifier.AutoSize = true;
             this.lblRefImageNotifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRefImageNotifier.Location = new System.Drawing.Point(356, 142);
+            this.lblRefImageNotifier.Location = new System.Drawing.Point(67, 635);
             this.lblRefImageNotifier.Name = "lblRefImageNotifier";
             this.lblRefImageNotifier.Size = new System.Drawing.Size(327, 31);
             this.lblRefImageNotifier.TabIndex = 5;
@@ -228,10 +255,10 @@ namespace Spirit_Studio
             // lblRefImageCountdown
             // 
             this.lblRefImageCountdown.AutoSize = true;
-            this.lblRefImageCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRefImageCountdown.Location = new System.Drawing.Point(443, 233);
+            this.lblRefImageCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 90F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefImageCountdown.Location = new System.Drawing.Point(414, 584);
             this.lblRefImageCountdown.Name = "lblRefImageCountdown";
-            this.lblRefImageCountdown.Size = new System.Drawing.Size(140, 153);
+            this.lblRefImageCountdown.Size = new System.Drawing.Size(124, 135);
             this.lblRefImageCountdown.TabIndex = 4;
             this.lblRefImageCountdown.Text = "5";
             // 
@@ -249,7 +276,7 @@ namespace Spirit_Studio
             this.tabRandom.Controls.Add(this.labelValue);
             this.tabRandom.Location = new System.Drawing.Point(4, 22);
             this.tabRandom.Name = "tabRandom";
-            this.tabRandom.Size = new System.Drawing.Size(1440, 627);
+            this.tabRandom.Size = new System.Drawing.Size(1514, 759);
             this.tabRandom.TabIndex = 2;
             this.tabRandom.Text = "Random number generator";
             this.tabRandom.UseVisualStyleBackColor = true;
@@ -355,11 +382,21 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
+            // lblSavedToFile
+            // 
+            this.lblSavedToFile.AutoSize = true;
+            this.lblSavedToFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSavedToFile.Location = new System.Drawing.Point(1451, 406);
+            this.lblSavedToFile.Name = "lblSavedToFile";
+            this.lblSavedToFile.Size = new System.Drawing.Size(171, 31);
+            this.lblSavedToFile.TabIndex = 14;
+            this.lblSavedToFile.Text = "Saved to file!";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1542, 727);
+            this.ClientSize = new System.Drawing.Size(1668, 814);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -369,6 +406,7 @@ namespace Spirit_Studio
             this.tabKeyboard.PerformLayout();
             this.tabPhotoshoot.ResumeLayout(false);
             this.tabPhotoshoot.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.tabRandom.ResumeLayout(false);
@@ -406,6 +444,9 @@ namespace Spirit_Studio
         private System.Windows.Forms.Label lblNewImage;
         private System.Windows.Forms.PictureBox picNewImage;
         private System.Windows.Forms.Label lblDiffPercentage;
+        private System.Windows.Forms.TrackBar trackBarSaveFileThreshold;
+        private System.Windows.Forms.Label lblTrackBarFileSave;
+        private System.Windows.Forms.Label lblSavedToFile;
     }
 }
 

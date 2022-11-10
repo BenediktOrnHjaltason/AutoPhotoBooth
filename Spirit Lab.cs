@@ -23,8 +23,12 @@ namespace Spirit_Studio
 
             btnStartPhotoshoot.Enabled = false;
 
-            lblRefImageNotifier.Visible = false;
-            lblRefImageCountdown.Visible = false;
+            lblRefImageNotifier.Visible =
+            lblRefImageCountdown.Visible =
+            lblDiffPercentage.Visible =
+            lblSavedToFile.Visible = false;
+
+            UpdateTrackBarThresholdLabel();
         }
 
         private PhotoShoot photoShoot = new PhotoShoot();
@@ -46,7 +50,7 @@ namespace Spirit_Studio
         {
             if (photoShootRunning == false)
             {
-                btnStartPhotoshoot.Text = "Stop";
+                btnStartPhotoshoot.Text = "Stop after\nnext";
 
                 photoShootRunning = true;
 
@@ -60,11 +64,12 @@ namespace Spirit_Studio
             else
             {
                 photoShootRunning = false;
-                btnStartPhotoshoot.Text = "Stop";
+                btnStartPhotoshoot.Text = "Start";
                 lblRefImageNotifier.Text = "Saving reference image in";
                 lblRefImageNotifier.Visible = false;
                 lblRefImageCountdown.Text = "5";
                 lblRefImageCountdown.Visible = false;
+                lblDiffPercentage.Visible = false;
             }
         }
 
@@ -82,17 +87,23 @@ namespace Spirit_Studio
 
                 PhotoshootResult result = photoShoot.TakeSpiritImage();
 
-                lblDiffPercentage.Text = $"Difference: {result.DifferencePercentage.ToString("0.000")}%";
+                lblDiffPercentage.Visible = true;
+                lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
 
                 picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
                 picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
 
-                if (result.DifferencePercentage > 10)
+                if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
                 {
-                    lblDiffPercentage.Text += ". Saving image to disk";
+                    lblSavedToFile.Visible = true;
                     result.NewImage.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
                 }
+                else lblSavedToFile.Visible = false;
             }
+
+            picCamera.Image = null;
+            picReference.Image = null;
+            picNewImage.Image = null;
         }
 
         private async Task CountDown(int duration)
@@ -107,6 +118,16 @@ namespace Spirit_Studio
 
                 countDownIterator--;
             }
+        }
+
+        private void trackBarSaveFileThreshold_Scroll(object sender, EventArgs e)
+        {
+            UpdateTrackBarThresholdLabel();
+        }
+
+        private void UpdateTrackBarThresholdLabel()
+        {
+            lblTrackBarFileSave.Text = $"Change percentage required to save new image: {trackBarSaveFileThreshold.Value}%";
         }
 
         #endregion
