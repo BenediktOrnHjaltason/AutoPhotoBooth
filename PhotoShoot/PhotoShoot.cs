@@ -20,17 +20,17 @@ namespace Spirit_Studio
 
         public PhotoShoot() { }
 
-        ~PhotoShoot()
-        {
-            if (videoCaptureDevice.IsRunning)
-                videoCaptureDevice.Stop();
-        }
-
         public void Initialize(int selectedCameraIndex)
         {
             videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[selectedCameraIndex].MonikerString);
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
+        }
+
+        public void CloseVideoContext()
+        {
+            if (videoCaptureDevice != null && videoCaptureDevice.IsRunning)
+                videoCaptureDevice.Stop();
         }
 
         Bitmap capturedStill;

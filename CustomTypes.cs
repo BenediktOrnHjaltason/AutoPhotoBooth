@@ -19,4 +19,9 @@ namespace Spirit_Studio.CustomTypes
         public Image ProcessedImage;
         public float Percentage;
     }
+
+    public class Config
+    {
+        public int FileSaveThreshold;
+    }
 }

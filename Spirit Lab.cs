@@ -17,6 +17,8 @@ namespace Spirit_Studio
 {
     public partial class Form1 : Form
     {
+        private readonly string configPath = "C:/ProgramData/Spirit Lab/config.json";
+
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +29,14 @@ namespace Spirit_Studio
             lblRefImageCountdown.Visible =
             lblDiffPercentage.Visible =
             lblSavedToFile.Visible = false;
+
+            Config config = ConfigurationHandler.LoadConfig(configPath);
+
+            if(config != null)
+            {
+                trackBarSaveFileThreshold.Value = config.FileSaveThreshold;
+                lblTrackBarFileSave.Text = config.FileSaveThreshold.ToString();
+            }
 
             UpdateTrackBarThresholdLabel();
         }
@@ -185,5 +195,12 @@ namespace Spirit_Studio
         }
 
         #endregion
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
+
+            photoShoot.CloseVideoContext();
+        }
     }
 }

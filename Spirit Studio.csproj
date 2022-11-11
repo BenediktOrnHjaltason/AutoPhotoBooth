@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComputerVision.cs" />
+    <Compile Include="ConfigurationHandler.cs" />
     <Compile Include="PhotoShoot\PhotoShoot.cs" />
     <Compile Include="Spirit Lab.cs">
       <SubType>Form</SubType>
@@ -57,7 +58,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structs.cs" />
+    <Compile Include="CustomTypes.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Spirit Lab.resx">
       <DependentUpon>Spirit Lab.cs</DependentUpon>
@@ -96,6 +97,9 @@
     </PackageReference>
     <PackageReference Include="Emgu.CV.runtime.windows">
       <Version>4.6.0.5131</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
