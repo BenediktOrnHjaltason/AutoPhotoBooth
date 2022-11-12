@@ -95,6 +95,9 @@ namespace Spirit_Studio
             {
                 await CountDown(5);
 
+                if (!photoShootRunning)
+                    break;
+
                 PhotoshootResult result = photoShoot.TakeSpiritImage();
 
                 lblDiffPercentage.Visible = true;
@@ -122,6 +125,9 @@ namespace Spirit_Studio
 
             while (countDownIterator > 0)
             {
+                if (!photoShootRunning)
+                    break;
+
                 lblRefImageCountdown.Text = countDownIterator.ToString();
 
                 await Task.Delay(1000);
