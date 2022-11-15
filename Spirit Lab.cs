@@ -12,12 +12,14 @@ using System.Diagnostics;
 using Spirit_Studio.Utilities;
 using System.IO;
 using System.Drawing.Imaging;
+using Spirit_Studio.Forms;
 
 namespace Spirit_Studio
 {
     public partial class Form1 : Form
     {
-        private readonly string configPath = "C:/ProgramData/Spirit Lab/config.json";
+        private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
+        private SpiritUI _spiritUI;
 
         public Form1()
         {
@@ -68,6 +70,10 @@ namespace Spirit_Studio
                 lblRefImageCountdown.Visible = true;
 
                 photoShoot.Initialize(cboCamera.SelectedIndex);
+
+                _spiritUI = new SpiritUI();
+                _spiritUI.Show();
+
                 RunPhotoShoot();
             }
 
@@ -85,7 +91,8 @@ namespace Spirit_Studio
 
         private async void RunPhotoShoot()
         {
-            await CountDown(5);
+            _spiritUI.SetCountdownVisible(false);
+            await CountDown(3);
 
             picReference.Image =  Utils.ResizeImage(photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
@@ -93,10 +100,18 @@ namespace Spirit_Studio
 
             while (photoShootRunning)
             {
-                await CountDown(5);
+
+                _spiritUI.SetCountdownVisible(true);
+                lblRefImageCountdown.Visible = true;
+
+                await CountDown(3);
 
                 if (!photoShootRunning)
                     break;
+
+                _spiritUI.SetCountdownVisible(false);
+                _spiritUI.SetImageVisible(false);
+
 
                 PhotoshootResult result = photoShoot.TakeSpiritImage();
 
@@ -104,6 +119,9 @@ namespace Spirit_Studio
                 lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
 
                 picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
+                _spiritUI.UpdateImage(result.NewImage);
+                _spiritUI.SetImageVisible(true);
+
                 picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
 
                 if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
@@ -112,6 +130,10 @@ namespace Spirit_Studio
                     result.NewImage.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
                 }
                 else lblSavedToFile.Visible = false;
+
+                lblRefImageCountdown.Visible = false;
+
+                await Task.Delay(5000);
             }
 
             picCamera.Image = null;
@@ -129,6 +151,9 @@ namespace Spirit_Studio
                     break;
 
                 lblRefImageCountdown.Text = countDownIterator.ToString();
+
+                if (_spiritUI != null)
+                    _spiritUI.UpdateCounter(countDownIterator.ToString());
 
                 await Task.Delay(1000);
 
