@@ -72,7 +72,7 @@ namespace Spirit_Studio
                 photoShoot.Initialize(cboCamera.SelectedIndex);
 
                 _spiritUI = new SpiritUI();
-                _spiritUI.Show();
+                //_spiritUI.Show();
 
                 RunPhotoShoot();
             }
@@ -92,7 +92,7 @@ namespace Spirit_Studio
         private async void RunPhotoShoot()
         {
             _spiritUI.SetCountdownVisible(false);
-            await CountDown(3);
+            await CountDown(5);
 
             picReference.Image =  Utils.ResizeImage(photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
@@ -100,11 +100,11 @@ namespace Spirit_Studio
 
             while (photoShootRunning)
             {
-
+                _spiritUI.UpdateCommunication("Might we have a picture of you?");
                 _spiritUI.SetCountdownVisible(true);
                 lblRefImageCountdown.Visible = true;
 
-                await CountDown(3);
+                await CountDown(5);
 
                 if (!photoShootRunning)
                     break;
@@ -126,6 +126,7 @@ namespace Spirit_Studio
 
                 if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
                 {
+                    _spiritUI.UpdateCommunication("Thank you!");
                     lblSavedToFile.Visible = true;
                     result.NewImage.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
                 }
@@ -133,7 +134,7 @@ namespace Spirit_Studio
 
                 lblRefImageCountdown.Visible = false;
 
-                await Task.Delay(5000);
+                await Task.Delay(3000);
             }
 
             picCamera.Image = null;
@@ -232,6 +233,15 @@ namespace Spirit_Studio
             ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
 
             photoShoot.CloseVideoContext();
+        }
+
+        private void btnOpenSpiritUI_Click(object sender, EventArgs e)
+        {
+
+            
+            //if (_spiritUI != null)
+                _spiritUI.Show();
+
         }
     }
 }

@@ -16,9 +16,11 @@ namespace Spirit_Studio.Forms
         {
             InitializeComponent();
 
-            lblCountdown.Parent = picDisplay;
+            lblCountdown.Parent =
+            lblCommunication.Parent = picDisplay;
 
             lblCountdown.BackColor = Color.Transparent;
+
         }
 
         public void UpdateImage(Image image)
@@ -41,6 +43,20 @@ namespace Spirit_Studio.Forms
         {
             lblCountdown.BackColor = Color.Transparent;
             lblCountdown.Visible = visible;
+        }
+
+        public void UpdateCommunication(string text)
+        {
+            lblCommunication.Text = text;
+        }
+
+        private void SpiritUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
         }
     }
 }

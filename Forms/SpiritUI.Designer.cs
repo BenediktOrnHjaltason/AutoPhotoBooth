@@ -31,6 +31,7 @@ namespace Spirit_Studio.Forms
         {
             this.picDisplay = new System.Windows.Forms.PictureBox();
             this.lblCountdown = new System.Windows.Forms.Label();
+            this.lblCommunication = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,7 +41,7 @@ namespace Spirit_Studio.Forms
             this.picDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picDisplay.Location = new System.Drawing.Point(0, 0);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(1355, 795);
+            this.picDisplay.Size = new System.Drawing.Size(1422, 805);
             this.picDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
@@ -52,24 +53,39 @@ namespace Spirit_Studio.Forms
             this.lblCountdown.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblCountdown.Font = new System.Drawing.Font("Times New Roman", 500.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountdown.ForeColor = System.Drawing.Color.White;
-            this.lblCountdown.Location = new System.Drawing.Point(380, 96);
+            this.lblCountdown.Location = new System.Drawing.Point(415, 54);
             this.lblCountdown.Name = "lblCountdown";
-            this.lblCountdown.Size = new System.Drawing.Size(803, 777);
+            this.lblCountdown.Size = new System.Drawing.Size(803, 864);
             this.lblCountdown.TabIndex = 1;
             this.lblCountdown.Text = "5";
+            // 
+            // lblCommunication
+            // 
+            this.lblCommunication.AutoSize = true;
+            this.lblCommunication.BackColor = System.Drawing.Color.Transparent;
+            this.lblCommunication.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCommunication.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblCommunication.Location = new System.Drawing.Point(224, 18);
+            this.lblCommunication.Name = "lblCommunication";
+            this.lblCommunication.Size = new System.Drawing.Size(0, 63);
+            this.lblCommunication.TabIndex = 2;
+            this.lblCommunication.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // SpiritUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1355, 795);
+            this.ClientSize = new System.Drawing.Size(1422, 805);
+            this.Controls.Add(this.lblCommunication);
             this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.picDisplay);
             this.Name = "SpiritUI";
             this.Text = "SpiritUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpiritUI_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -77,5 +93,6 @@ namespace Spirit_Studio.Forms
 
         private System.Windows.Forms.PictureBox picDisplay;
         private System.Windows.Forms.Label lblCountdown;
+        private System.Windows.Forms.Label lblCommunication;
     }
 }

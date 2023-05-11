@@ -37,6 +37,7 @@ namespace Spirit_Studio
             this.tabKeyboard = new System.Windows.Forms.TabPage();
             this.labelEmf = new System.Windows.Forms.Label();
             this.tabPhotoshoot = new System.Windows.Forms.TabPage();
+            this.lblSavedToFile = new System.Windows.Forms.Label();
             this.lblTrackBarFileSave = new System.Windows.Forms.Label();
             this.trackBarSaveFileThreshold = new System.Windows.Forms.TrackBar();
             this.lblDiffPercentage = new System.Windows.Forms.Label();
@@ -58,7 +59,7 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.lblSavedToFile = new System.Windows.Forms.Label();
+            this.btnOpenSpiritUI = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
@@ -124,7 +125,7 @@ namespace Spirit_Studio
             this.tabKeyboard.Margin = new System.Windows.Forms.Padding(2);
             this.tabKeyboard.Name = "tabKeyboard";
             this.tabKeyboard.Padding = new System.Windows.Forms.Padding(2);
-            this.tabKeyboard.Size = new System.Drawing.Size(1514, 759);
+            this.tabKeyboard.Size = new System.Drawing.Size(1638, 759);
             this.tabKeyboard.TabIndex = 0;
             this.tabKeyboard.Text = "Keyboard";
             this.tabKeyboard.UseVisualStyleBackColor = true;
@@ -142,6 +143,7 @@ namespace Spirit_Studio
             // 
             // tabPhotoshoot
             // 
+            this.tabPhotoshoot.Controls.Add(this.btnOpenSpiritUI);
             this.tabPhotoshoot.Controls.Add(this.lblSavedToFile);
             this.tabPhotoshoot.Controls.Add(this.lblTrackBarFileSave);
             this.tabPhotoshoot.Controls.Add(this.trackBarSaveFileThreshold);
@@ -165,6 +167,16 @@ namespace Spirit_Studio
             this.tabPhotoshoot.TabIndex = 1;
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
+            // 
+            // lblSavedToFile
+            // 
+            this.lblSavedToFile.AutoSize = true;
+            this.lblSavedToFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSavedToFile.Location = new System.Drawing.Point(1451, 406);
+            this.lblSavedToFile.Name = "lblSavedToFile";
+            this.lblSavedToFile.Size = new System.Drawing.Size(171, 31);
+            this.lblSavedToFile.TabIndex = 14;
+            this.lblSavedToFile.Text = "Saved to file!";
             // 
             // lblTrackBarFileSave
             // 
@@ -276,7 +288,7 @@ namespace Spirit_Studio
             this.tabRandom.Controls.Add(this.labelValue);
             this.tabRandom.Location = new System.Drawing.Point(4, 22);
             this.tabRandom.Name = "tabRandom";
-            this.tabRandom.Size = new System.Drawing.Size(1514, 759);
+            this.tabRandom.Size = new System.Drawing.Size(1638, 759);
             this.tabRandom.TabIndex = 2;
             this.tabRandom.Text = "Random number generator";
             this.tabRandom.UseVisualStyleBackColor = true;
@@ -382,15 +394,16 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // lblSavedToFile
+            // btnOpenSpiritUI
             // 
-            this.lblSavedToFile.AutoSize = true;
-            this.lblSavedToFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSavedToFile.Location = new System.Drawing.Point(1451, 406);
-            this.lblSavedToFile.Name = "lblSavedToFile";
-            this.lblSavedToFile.Size = new System.Drawing.Size(171, 31);
-            this.lblSavedToFile.TabIndex = 14;
-            this.lblSavedToFile.Text = "Saved to file!";
+            this.btnOpenSpiritUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSpiritUI.Location = new System.Drawing.Point(827, 630);
+            this.btnOpenSpiritUI.Name = "btnOpenSpiritUI";
+            this.btnOpenSpiritUI.Size = new System.Drawing.Size(117, 79);
+            this.btnOpenSpiritUI.TabIndex = 15;
+            this.btnOpenSpiritUI.Text = "Open Spirit UI";
+            this.btnOpenSpiritUI.UseVisualStyleBackColor = true;
+            this.btnOpenSpiritUI.Click += new System.EventHandler(this.btnOpenSpiritUI_Click);
             // 
             // Form1
             // 
@@ -448,6 +461,7 @@ namespace Spirit_Studio
         private System.Windows.Forms.TrackBar trackBarSaveFileThreshold;
         private System.Windows.Forms.Label lblTrackBarFileSave;
         private System.Windows.Forms.Label lblSavedToFile;
+        private System.Windows.Forms.Button btnOpenSpiritUI;
     }
 }
 
