@@ -19,41 +19,7 @@ namespace Spirit_Studio
         [STAThread]
         static void Main()
         {
-            /*
-            EDSDKLib.EdsInitializeSDK();
-
-            IntPtr cameraList = IntPtr.Zero;
-            var error1 = EDSDKLib.EdsGetCameraList(out cameraList);
-
-            int cameraCount = 0;
-            var error2 = EDSDKLib.EdsGetChildCount(cameraList, out cameraCount);
-
-            IntPtr cameraRef = IntPtr.Zero;
-
-            EDSDKLib.EdsGetChildAtIndex(cameraList, 0, out cameraRef);
-
-            Debug.WriteLine("Camera count: " + cameraCount);
-
-            EDSDKLib.EdsDeviceInfo cameraInfo = new EDSDKLib.EdsDeviceInfo();
-
-            var error3 =  EDSDKLib.EdsGetDeviceInfo(cameraRef, out cameraInfo);
-
-            Debug.WriteLine($"Camera info:{cameraInfo.szDeviceDescription}");
-
-            var error4 = EDSDKLib.EdsOpenSession(cameraRef);
-
-            Debug.WriteLine("OpenSession error: " + error4);
-            */
-
-            SDKHandler sdkHandler = new SDKHandler();
-
-            var cameraList = sdkHandler.GetCameraList();
-
-            Debug.WriteLine("number of cameras:" +  cameraList.Count);
-
-            sdkHandler.OpenSession(cameraList.First());
-
-            sdkHandler.TakePhoto();
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -13,6 +13,7 @@ using Spirit_Studio.Utilities;
 using System.IO;
 using System.Drawing.Imaging;
 using Spirit_Studio.Forms;
+using EDSDK;
 
 namespace Spirit_Studio
 {
@@ -20,6 +21,7 @@ namespace Spirit_Studio
     {
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
         private CountDownUI _spiritUI;
+        private SDKHandler _sdkHandler;
 
         public Form1()
         {
@@ -41,6 +43,70 @@ namespace Spirit_Studio
             }
 
             UpdateTrackBarThresholdLabel();
+
+            /*
+            EDSDKLib.EdsInitializeSDK();
+
+            IntPtr cameraList = IntPtr.Zero;
+            var error1 = EDSDKLib.EdsGetCameraList(out cameraList);
+
+            int cameraCount = 0;
+            var error2 = EDSDKLib.EdsGetChildCount(cameraList, out cameraCount);
+
+            IntPtr cameraRef = IntPtr.Zero;
+
+            EDSDKLib.EdsGetChildAtIndex(cameraList, 0, out cameraRef);
+
+            Debug.WriteLine("Camera count: " + cameraCount);
+
+            EDSDKLib.EdsDeviceInfo cameraInfo = new EDSDKLib.EdsDeviceInfo();
+
+            var error3 =  EDSDKLib.EdsGetDeviceInfo(cameraRef, out cameraInfo);
+
+            Debug.WriteLine($"Camera info:{cameraInfo.szDeviceDescription}");
+
+            var error4 = EDSDKLib.EdsOpenSession(cameraRef);
+
+            Debug.WriteLine("OpenSession error: " + error4);
+            */
+
+            _sdkHandler = new SDKHandler();
+
+            var cameraList = _sdkHandler.GetCameraList();
+
+            Debug.WriteLine("number of cameras:" + cameraList.Count);
+
+            _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
+            _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
+
+            _sdkHandler.OpenSession(cameraList.First());
+
+
+
+            _sdkHandler.TakePhoto();
+
+            //sdkHandler.DownloadImage(,)
+        }
+
+        public uint EdsObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
+        {
+
+            Debug.WriteLine($"EdsObjectEventReceiver CALLED. InEvent {inEvent}");
+
+            if ( inEvent == 516 ) 
+            {
+                _sdkHandler.DownloadImage(inRef);
+            }
+
+            return 0;
+        }
+
+        public void ReceiveDownloadedImage(Bitmap bitmap)
+        {
+            if (bitmap != null)
+            {
+                Debug.WriteLine($"Bitmap received: {bitmap.PhysicalDimension}");
+            }
         }
 
         private PhotoShoot photoShoot = new PhotoShoot();

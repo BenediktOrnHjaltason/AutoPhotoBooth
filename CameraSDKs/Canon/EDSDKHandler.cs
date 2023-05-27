@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 
 using static EDSDK.EDSDKLib;
 using Emgu.CV.DepthAI;
+using System.Diagnostics;
 
 namespace EDSDK
 {
@@ -579,6 +580,8 @@ namespace EDSDK
         /// <param name="directory">Path to where the image will be saved to</param>
         public void DownloadImage(IntPtr ObjectPointer, string directory)
         {
+            Debug.WriteLine("DownloadImage called");
+
             EdsDirectoryItemInfo dirInfo;
             IntPtr streamRef;
             //get information about object
