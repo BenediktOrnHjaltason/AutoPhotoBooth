@@ -996,6 +996,7 @@ namespace EDSDK
 
                         //fire the LiveViewUpdated event with the live view image stream
                         if (LiveViewUpdated != null) LiveViewUpdated(ums);
+                        else Debug.WriteLine("LiveViewUpdated IS NULL!!");
                         ums.Close();
                     }
 

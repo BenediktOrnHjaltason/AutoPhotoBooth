@@ -35,8 +35,8 @@ namespace Spirit_Studio
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabKeyboard = new System.Windows.Forms.TabPage();
-            this.labelEmf = new System.Windows.Forms.Label();
             this.tabPhotoshoot = new System.Windows.Forms.TabPage();
+            this.btnOpenSpiritUI = new System.Windows.Forms.Button();
             this.lblSavedToFile = new System.Windows.Forms.Label();
             this.lblTrackBarFileSave = new System.Windows.Forms.Label();
             this.trackBarSaveFileThreshold = new System.Windows.Forms.TrackBar();
@@ -59,7 +59,7 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.btnOpenSpiritUI = new System.Windows.Forms.Button();
+            this.pictureBoxtTextCameraReceive = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
@@ -68,6 +68,7 @@ namespace Spirit_Studio
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.tabRandom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCamera
@@ -120,7 +121,7 @@ namespace Spirit_Studio
             // 
             // tabKeyboard
             // 
-            this.tabKeyboard.Controls.Add(this.labelEmf);
+            this.tabKeyboard.Controls.Add(this.pictureBoxtTextCameraReceive);
             this.tabKeyboard.Location = new System.Drawing.Point(4, 22);
             this.tabKeyboard.Margin = new System.Windows.Forms.Padding(2);
             this.tabKeyboard.Name = "tabKeyboard";
@@ -129,17 +130,6 @@ namespace Spirit_Studio
             this.tabKeyboard.TabIndex = 0;
             this.tabKeyboard.Text = "Keyboard";
             this.tabKeyboard.UseVisualStyleBackColor = true;
-            // 
-            // labelEmf
-            // 
-            this.labelEmf.AutoSize = true;
-            this.labelEmf.Font = new System.Drawing.Font("Microsoft Sans Serif", 150.6F);
-            this.labelEmf.Location = new System.Drawing.Point(293, 189);
-            this.labelEmf.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelEmf.Name = "labelEmf";
-            this.labelEmf.Size = new System.Drawing.Size(519, 227);
-            this.labelEmf.TabIndex = 0;
-            this.labelEmf.Text = "EMF";
             // 
             // tabPhotoshoot
             // 
@@ -167,6 +157,17 @@ namespace Spirit_Studio
             this.tabPhotoshoot.TabIndex = 1;
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
+            // 
+            // btnOpenSpiritUI
+            // 
+            this.btnOpenSpiritUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSpiritUI.Location = new System.Drawing.Point(827, 630);
+            this.btnOpenSpiritUI.Name = "btnOpenSpiritUI";
+            this.btnOpenSpiritUI.Size = new System.Drawing.Size(117, 79);
+            this.btnOpenSpiritUI.TabIndex = 15;
+            this.btnOpenSpiritUI.Text = "Open Spirit UI";
+            this.btnOpenSpiritUI.UseVisualStyleBackColor = true;
+            this.btnOpenSpiritUI.Click += new System.EventHandler(this.btnOpenSpiritUI_Click);
             // 
             // lblSavedToFile
             // 
@@ -394,16 +395,13 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // btnOpenSpiritUI
+            // pictureBoxtTextCameraReceive
             // 
-            this.btnOpenSpiritUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSpiritUI.Location = new System.Drawing.Point(827, 630);
-            this.btnOpenSpiritUI.Name = "btnOpenSpiritUI";
-            this.btnOpenSpiritUI.Size = new System.Drawing.Size(117, 79);
-            this.btnOpenSpiritUI.TabIndex = 15;
-            this.btnOpenSpiritUI.Text = "Open Spirit UI";
-            this.btnOpenSpiritUI.UseVisualStyleBackColor = true;
-            this.btnOpenSpiritUI.Click += new System.EventHandler(this.btnOpenSpiritUI_Click);
+            this.pictureBoxtTextCameraReceive.Location = new System.Drawing.Point(55, 44);
+            this.pictureBoxtTextCameraReceive.Name = "pictureBoxtTextCameraReceive";
+            this.pictureBoxtTextCameraReceive.Size = new System.Drawing.Size(1241, 635);
+            this.pictureBoxtTextCameraReceive.TabIndex = 0;
+            this.pictureBoxtTextCameraReceive.TabStop = false;
             // 
             // Form1
             // 
@@ -417,7 +415,6 @@ namespace Spirit_Studio
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabKeyboard.ResumeLayout(false);
-            this.tabKeyboard.PerformLayout();
             this.tabPhotoshoot.ResumeLayout(false);
             this.tabPhotoshoot.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).EndInit();
@@ -425,6 +422,7 @@ namespace Spirit_Studio
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.tabRandom.ResumeLayout(false);
             this.tabRandom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -438,7 +436,6 @@ namespace Spirit_Studio
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabKeyboard;
         private System.Windows.Forms.TabPage tabPhotoshoot;
-        private System.Windows.Forms.Label labelEmf;
         private System.Windows.Forms.TabPage tabRandom;
         private System.Windows.Forms.Label labelZerosPercentages;
         private System.Windows.Forms.Label labelOnesPercentage;
@@ -462,6 +459,7 @@ namespace Spirit_Studio
         private System.Windows.Forms.Label lblTrackBarFileSave;
         private System.Windows.Forms.Label lblSavedToFile;
         private System.Windows.Forms.Button btnOpenSpiritUI;
+        private System.Windows.Forms.PictureBox pictureBoxtTextCameraReceive;
     }
 }
 

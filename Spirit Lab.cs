@@ -78,6 +78,7 @@ namespace Spirit_Studio
 
             _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
             _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
+            
 
             _sdkHandler.OpenSession(cameraList.First());
 
@@ -105,7 +106,20 @@ namespace Spirit_Studio
         {
             if (bitmap != null)
             {
-                Debug.WriteLine($"Bitmap received: {bitmap.PhysicalDimension}");
+                pictureBoxtTextCameraReceive.Image = Utils.ResizeImage(bitmap, pictureBoxtTextCameraReceive.Size);
+
+                _sdkHandler.LiveViewUpdated += ReceiveLiveViewstream;
+                _sdkHandler.StartLiveView();
+            }
+        }
+
+        public void ReceiveLiveViewstream(Stream str)
+        {
+            Debug.WriteLine("ReceiveLiveViewStream CALLED");
+
+            if (str != null) 
+            {
+                pictureBoxtTextCameraReceive.Image = Image.FromStream(str);
             }
         }
 
@@ -299,6 +313,7 @@ namespace Spirit_Studio
             ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
 
             photoShoot.CloseVideoContext();
+            _sdkHandler.CloseSession();
         }
 
         private void btnOpenSpiritUI_Click(object sender, EventArgs e)
