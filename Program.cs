@@ -19,6 +19,7 @@ namespace Spirit_Studio
         [STAThread]
         static void Main()
         {
+            /*
             EDSDKLib.EdsInitializeSDK();
 
             IntPtr cameraList = IntPtr.Zero;
@@ -38,6 +39,21 @@ namespace Spirit_Studio
             var error3 =  EDSDKLib.EdsGetDeviceInfo(cameraRef, out cameraInfo);
 
             Debug.WriteLine($"Camera info:{cameraInfo.szDeviceDescription}");
+
+            var error4 = EDSDKLib.EdsOpenSession(cameraRef);
+
+            Debug.WriteLine("OpenSession error: " + error4);
+            */
+
+            SDKHandler sdkHandler = new SDKHandler();
+
+            var cameraList = sdkHandler.GetCameraList();
+
+            Debug.WriteLine("number of cameras:" +  cameraList.Count);
+
+            sdkHandler.OpenSession(cameraList.First());
+
+            sdkHandler.TakePhoto();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
