@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Spirit_Studio.Forms
 {
-    public partial class SpiritUI : Form
+    public partial class CountDownUI : Form
     {
-        public SpiritUI()
+        public CountDownUI()
         {
             InitializeComponent();
 

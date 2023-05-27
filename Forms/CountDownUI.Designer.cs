@@ -1,7 +1,7 @@
 ﻿
 namespace Spirit_Studio.Forms
 {
-    partial class SpiritUI
+    partial class CountDownUI
     {
         /// <summary>
         /// Required designer variable.

@@ -19,7 +19,7 @@ namespace Spirit_Studio
     public partial class Form1 : Form
     {
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
-        private SpiritUI _spiritUI;
+        private CountDownUI _spiritUI;
 
         public Form1()
         {
@@ -71,7 +71,7 @@ namespace Spirit_Studio
 
                 photoShoot.Initialize(cboCamera.SelectedIndex);
 
-                _spiritUI = new SpiritUI();
+                _spiritUI = new CountDownUI();
                 //_spiritUI.Show();
 
                 RunPhotoShoot();

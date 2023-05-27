@@ -9,6 +9,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Spirit_Studio.CustomTypes;
+using System.Runtime.InteropServices;
+using EDSDK;
 
 
 namespace Spirit_Studio
