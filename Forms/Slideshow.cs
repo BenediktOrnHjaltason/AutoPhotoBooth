@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Spirit_Studio.Forms
+namespace SpiritLab.Forms
 {
     public partial class Slideshow : Form
     {

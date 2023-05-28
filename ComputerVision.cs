@@ -7,9 +7,9 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using System.Drawing;
 using System.Diagnostics;
-using Spirit_Studio.CustomTypes;
+using SpiritLab.CustomTypes;
 
-namespace Spirit_Studio
+namespace SpiritLab
 {
     class ComputerVision
     {

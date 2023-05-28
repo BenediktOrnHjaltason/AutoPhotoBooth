@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace Spirit_Studio.CustomTypes
+namespace SpiritLab.CustomTypes
 {
     public struct PhotoshootResult
     {

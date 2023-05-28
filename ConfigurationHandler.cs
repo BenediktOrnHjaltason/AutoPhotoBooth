@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
-using Spirit_Studio.CustomTypes;
+using SpiritLab.CustomTypes;
 
-namespace Spirit_Studio
+namespace SpiritLab.Configuration
 {
     public class ConfigurationHandler
     {

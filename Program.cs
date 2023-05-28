@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Spirit_Studio
+namespace SpiritLab
 {
     static class Program
     {
@@ -13,7 +13,7 @@ namespace Spirit_Studio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new SpiritLabForm());
         }
     }
 }

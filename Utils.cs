@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Diagnostics;
 
-namespace Spirit_Studio.Utilities
+namespace SpiritLab.Utilities
 {
     public class Utils
     {

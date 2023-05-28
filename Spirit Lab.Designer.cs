@@ -1,7 +1,7 @@
 ﻿
-namespace Spirit_Studio
+namespace SpiritLab
 {
-    partial class Form1
+    partial class SpiritLabForm
     {
         /// <summary>
         /// Required designer variable.
@@ -393,14 +393,14 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // Form1
+            // SpiritLabForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1668, 814);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "SpiritLabForm";
+            this.Text = "Spirit Lab";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.tabControl1.ResumeLayout(false);

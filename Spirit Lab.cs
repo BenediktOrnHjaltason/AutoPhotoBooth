@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Spirit_Studio.CustomTypes;
 using System.Diagnostics;
-using Spirit_Studio.Utilities;
+using SpiritLab.Utilities;
 using System.IO;
 using System.Drawing.Imaging;
-using Spirit_Studio.Forms;
+using SpiritLab.CustomTypes;
+using SpiritLab.Configuration;
+using SpiritLab.Forms;
 using EDSDK;
 
-namespace Spirit_Studio
+namespace SpiritLab
 {
-    public partial class Form1 : Form
+    public partial class SpiritLabForm : Form
     {
         private PhotoShoot _photoShoot = new PhotoShoot();
 
@@ -26,7 +27,7 @@ namespace Spirit_Studio
         private Slideshow _slideshowUI;
         private SDKHandler _sdkHandler;
 
-        public Form1()
+        public SpiritLabForm()
         {
             InitializeComponent();
 

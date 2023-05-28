@@ -2,10 +2,10 @@
 using AForge.Video;
 using AForge.Video.DirectShow;
 using System.Drawing;
-using Spirit_Studio.CustomTypes;
+using SpiritLab.CustomTypes;
 
 
-namespace Spirit_Studio
+namespace SpiritLab
 {
     public class PhotoShoot
     {

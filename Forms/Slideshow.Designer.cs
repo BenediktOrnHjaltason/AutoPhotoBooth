@@ -1,4 +1,4 @@
-﻿namespace Spirit_Studio.Forms
+﻿namespace SpiritLab.Forms
 {
     partial class Slideshow
     {
