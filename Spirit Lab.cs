@@ -120,6 +120,8 @@ namespace Spirit_Studio
                 _countdownUI = new CountDown();
                 _slideshowUI = new Slideshow();
 
+                btnOpenCountDownUI.Enabled = btnOpenSlideshowUI.Enabled = true;
+
                 RunPhotoShoot();
             }
 
@@ -132,6 +134,8 @@ namespace Spirit_Studio
                 lblRefImageCountdown.Text = "5";
                 lblRefImageCountdown.Visible = false;
                 lblDiffPercentage.Visible = false;
+
+                btnOpenCountDownUI.Enabled = btnOpenSlideshowUI.Enabled = false;
             }
         }
 

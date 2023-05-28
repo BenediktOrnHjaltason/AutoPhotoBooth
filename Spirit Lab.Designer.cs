@@ -145,6 +145,7 @@ namespace Spirit_Studio
             // 
             // btnOpenSlideshowUI
             // 
+            this.btnOpenSlideshowUI.Enabled = false;
             this.btnOpenSlideshowUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSlideshowUI.Location = new System.Drawing.Point(745, 676);
             this.btnOpenSlideshowUI.Name = "btnOpenSlideshowUI";
@@ -156,6 +157,7 @@ namespace Spirit_Studio
             // 
             // btnOpenCountDownUI
             // 
+            this.btnOpenCountDownUI.Enabled = false;
             this.btnOpenCountDownUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenCountDownUI.Location = new System.Drawing.Point(745, 591);
             this.btnOpenCountDownUI.Name = "btnOpenCountDownUI";
