@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Diagnostics;
 using Spirit_Studio.CustomTypes;
-using System.Runtime.InteropServices;
-using EDSDK;
 
 
 namespace Spirit_Studio

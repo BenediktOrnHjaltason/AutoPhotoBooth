@@ -19,7 +19,6 @@ namespace Spirit_Studio
 
                 return JsonConvert.DeserializeObject<Config>(jsonString);
             }
-                
 
             return null;
         }

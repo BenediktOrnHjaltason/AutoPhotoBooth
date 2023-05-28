@@ -19,6 +19,8 @@ namespace Spirit_Studio
 {
     public partial class Form1 : Form
     {
+        private PhotoShoot _photoShoot = new PhotoShoot();
+
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
         private CountDown _countdownUI;
         private Slideshow _slideshowUI;
@@ -64,9 +66,6 @@ namespace Spirit_Studio
 
         public uint EdsObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
         {
-
-            Debug.WriteLine($"EdsObjectEventReceiver CALLED. InEvent {inEvent}");
-
             if ( inEvent == 516 ) 
             {
                 _sdkHandler.DownloadImage(inRef);
@@ -88,21 +87,17 @@ namespace Spirit_Studio
 
         public void ReceiveLiveViewstream(Stream str)
         {
-            Debug.WriteLine("ReceiveLiveViewStream CALLED");
-
             if (str != null) 
             {
                 pictureBoxtTextCameraReceive.Image = Image.FromStream(str);
             }
         }
 
-        private PhotoShoot photoShoot = new PhotoShoot();
-
         #region Photo shoot
 
         private void btnGetCameras_Click(object sender, EventArgs e)
         {
-            foreach (var cameraName in photoShoot.GetCameras())
+            foreach (var cameraName in _photoShoot.GetCameras())
                 cboCamera.Items.Add(cameraName);
 
             btnStartPhotoshoot.Enabled = cboCamera.Items.Count > 0;
@@ -122,7 +117,7 @@ namespace Spirit_Studio
                 lblRefImageNotifier.Visible = true;
                 lblRefImageCountdown.Visible = true;
 
-                photoShoot.Initialize(cboCamera.SelectedIndex);
+                _photoShoot.Initialize(cboCamera.SelectedIndex);
 
                 _countdownUI = new CountDown();
                 _slideshowUI = new Slideshow();
@@ -147,7 +142,7 @@ namespace Spirit_Studio
             _countdownUI.SetCountdownVisible(false);
             await CountDown(5);
 
-            picReference.Image =  Utils.ResizeImage(photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
+            picReference.Image =  Utils.ResizeImage(_photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
             lblRefImageNotifier.Text = "Next image in";
 
@@ -166,7 +161,7 @@ namespace Spirit_Studio
                 _countdownUI.SetImageVisible(false);
 
 
-                PhotoshootResult result = photoShoot.TakeSpiritImage();
+                PhotoshootResult result = _photoShoot.TakeSpiritImage();
 
                 lblDiffPercentage.Visible = true;
                 lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
@@ -286,7 +281,7 @@ namespace Spirit_Studio
         {
             ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
 
-            photoShoot.CloseVideoContext();
+            _photoShoot.CloseVideoContext();
             //_sdkHandler.CloseSession();
         }
 
