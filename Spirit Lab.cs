@@ -20,7 +20,8 @@ namespace Spirit_Studio
     public partial class Form1 : Form
     {
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
-        private CountDownUI _spiritUI;
+        private CountDown _countdownUI;
+        private Slideshow _slideshowUI;
         private SDKHandler _sdkHandler;
 
         public Form1()
@@ -45,33 +46,9 @@ namespace Spirit_Studio
             UpdateTrackBarThresholdLabel();
 
             /*
-            EDSDKLib.EdsInitializeSDK();
-
-            IntPtr cameraList = IntPtr.Zero;
-            var error1 = EDSDKLib.EdsGetCameraList(out cameraList);
-
-            int cameraCount = 0;
-            var error2 = EDSDKLib.EdsGetChildCount(cameraList, out cameraCount);
-
-            IntPtr cameraRef = IntPtr.Zero;
-
-            EDSDKLib.EdsGetChildAtIndex(cameraList, 0, out cameraRef);
-
-            Debug.WriteLine("Camera count: " + cameraCount);
-
-            EDSDKLib.EdsDeviceInfo cameraInfo = new EDSDKLib.EdsDeviceInfo();
-
-            var error3 =  EDSDKLib.EdsGetDeviceInfo(cameraRef, out cameraInfo);
-
-            Debug.WriteLine($"Camera info:{cameraInfo.szDeviceDescription}");
-
-            var error4 = EDSDKLib.EdsOpenSession(cameraRef);
-
-            Debug.WriteLine("OpenSession error: " + error4);
-            */
-
             _sdkHandler = new SDKHandler();
-
+            
+            
             var cameraList = _sdkHandler.GetCameraList();
 
             Debug.WriteLine("number of cameras:" + cameraList.Count);
@@ -79,14 +56,10 @@ namespace Spirit_Studio
             _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
             _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
             
-
             _sdkHandler.OpenSession(cameraList.First());
 
-
-
             _sdkHandler.TakePhoto();
-
-            //sdkHandler.DownloadImage(,)
+            */
         }
 
         public uint EdsObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
@@ -151,8 +124,8 @@ namespace Spirit_Studio
 
                 photoShoot.Initialize(cboCamera.SelectedIndex);
 
-                _spiritUI = new CountDownUI();
-                //_spiritUI.Show();
+                _countdownUI = new CountDown();
+                _slideshowUI = new Slideshow();
 
                 RunPhotoShoot();
             }
@@ -171,7 +144,7 @@ namespace Spirit_Studio
 
         private async void RunPhotoShoot()
         {
-            _spiritUI.SetCountdownVisible(false);
+            _countdownUI.SetCountdownVisible(false);
             await CountDown(5);
 
             picReference.Image =  Utils.ResizeImage(photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
@@ -180,8 +153,8 @@ namespace Spirit_Studio
 
             while (photoShootRunning)
             {
-                _spiritUI.UpdateCommunication("Might we have a picture of you?");
-                _spiritUI.SetCountdownVisible(true);
+                _countdownUI.UpdateCommunication("Might we have a picture of you?");
+                _countdownUI.SetCountdownVisible(true);
                 lblRefImageCountdown.Visible = true;
 
                 await CountDown(5);
@@ -189,8 +162,8 @@ namespace Spirit_Studio
                 if (!photoShootRunning)
                     break;
 
-                _spiritUI.SetCountdownVisible(false);
-                _spiritUI.SetImageVisible(false);
+                _countdownUI.SetCountdownVisible(false);
+                _countdownUI.SetImageVisible(false);
 
 
                 PhotoshootResult result = photoShoot.TakeSpiritImage();
@@ -199,16 +172,17 @@ namespace Spirit_Studio
                 lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
 
                 picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
-                _spiritUI.UpdateImage(result.NewImage);
-                _spiritUI.SetImageVisible(true);
+                _countdownUI.UpdateImage(result.NewImage);
+                _countdownUI.SetImageVisible(true);
 
                 picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
 
                 if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
                 {
-                    _spiritUI.UpdateCommunication("Thank you!");
+                    _countdownUI.UpdateCommunication("Thank you!");
                     lblSavedToFile.Visible = true;
                     result.NewImage.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
+                    _slideshowUI.AddImage(result.NewImage);
                 }
                 else lblSavedToFile.Visible = false;
 
@@ -233,8 +207,8 @@ namespace Spirit_Studio
 
                 lblRefImageCountdown.Text = countDownIterator.ToString();
 
-                if (_spiritUI != null)
-                    _spiritUI.UpdateCounter(countDownIterator.ToString());
+                if (_countdownUI != null)
+                    _countdownUI.UpdateCounter(countDownIterator.ToString());
 
                 await Task.Delay(1000);
 
@@ -313,16 +287,19 @@ namespace Spirit_Studio
             ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
 
             photoShoot.CloseVideoContext();
-            _sdkHandler.CloseSession();
+            //_sdkHandler.CloseSession();
         }
 
-        private void btnOpenSpiritUI_Click(object sender, EventArgs e)
+        private void btnOpenSlideshowUI_Click(object sender, EventArgs e)
         {
+            if (_slideshowUI != null)
+            _slideshowUI.Show();
+        }
 
-            
-            //if (_spiritUI != null)
-                _spiritUI.Show();
-
+        private void btnOpenCountDownUI_Click(object sender, EventArgs e)
+        {
+            if (_countdownUI != null)
+                _countdownUI.Show();
         }
     }
 }

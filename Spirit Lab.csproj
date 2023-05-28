@@ -55,11 +55,17 @@
     <Compile Include="ConfigurationHandler.cs" />
     <Compile Include="CameraSDKs\Canon\EDSDK.cs" />
     <Compile Include="CameraSDKs\Canon\EDSDKHandler.cs" />
-    <Compile Include="Forms\CountDownUI.cs">
+    <Compile Include="Forms\CountDown.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CountDownUI.Designer.cs">
-      <DependentUpon>CountDownUI.cs</DependentUpon>
+    <Compile Include="Forms\CountDown.Designer.cs">
+      <DependentUpon>CountDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Slideshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Slideshow.Designer.cs">
+      <DependentUpon>Slideshow.cs</DependentUpon>
     </Compile>
     <Compile Include="PhotoShoot\PhotoShoot.cs" />
     <Compile Include="Spirit Lab.cs">
@@ -73,8 +79,11 @@
     <Compile Include="CustomTypes.cs" />
     <Compile Include="STATThread.cs" />
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Forms\CountDownUI.resx">
-      <DependentUpon>CountDownUI.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CountDown.resx">
+      <DependentUpon>CountDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Slideshow.resx">
+      <DependentUpon>Slideshow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Spirit Lab.resx">
       <DependentUpon>Spirit Lab.cs</DependentUpon>

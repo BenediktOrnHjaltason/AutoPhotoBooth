@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Spirit_Studio.Forms
 {
-    public partial class CountDownUI : Form
+    public partial class CountDown : Form
     {
-        public CountDownUI()
+        public CountDown()
         {
             InitializeComponent();
 
@@ -50,7 +50,7 @@ namespace Spirit_Studio.Forms
             lblCommunication.Text = text;
         }
 
-        private void SpiritUI_FormClosing(object sender, FormClosingEventArgs e)
+        private void CountDownUI_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {

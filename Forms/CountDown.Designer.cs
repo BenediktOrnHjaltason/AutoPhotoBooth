@@ -1,7 +1,7 @@
 ﻿
 namespace Spirit_Studio.Forms
 {
-    partial class CountDownUI
+    partial class CountDown
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@ namespace Spirit_Studio.Forms
             this.lblCommunication.TabIndex = 2;
             this.lblCommunication.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // SpiritUI
+            // CountDown
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,9 +80,9 @@ namespace Spirit_Studio.Forms
             this.Controls.Add(this.lblCommunication);
             this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.picDisplay);
-            this.Name = "SpiritUI";
+            this.Name = "CountDown";
             this.Text = "SpiritUI";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpiritUI_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CountDownUI_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

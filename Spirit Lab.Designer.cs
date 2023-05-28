@@ -35,8 +35,10 @@ namespace Spirit_Studio
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabKeyboard = new System.Windows.Forms.TabPage();
+            this.pictureBoxtTextCameraReceive = new System.Windows.Forms.PictureBox();
             this.tabPhotoshoot = new System.Windows.Forms.TabPage();
-            this.btnOpenSpiritUI = new System.Windows.Forms.Button();
+            this.btnOpenSlideshowUI = new System.Windows.Forms.Button();
+            this.btnOpenCountDownUI = new System.Windows.Forms.Button();
             this.lblSavedToFile = new System.Windows.Forms.Label();
             this.lblTrackBarFileSave = new System.Windows.Forms.Label();
             this.trackBarSaveFileThreshold = new System.Windows.Forms.TrackBar();
@@ -59,16 +61,15 @@ namespace Spirit_Studio
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.pictureBoxtTextCameraReceive = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabKeyboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).BeginInit();
             this.tabPhotoshoot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.tabRandom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCamera
@@ -82,7 +83,7 @@ namespace Spirit_Studio
             // btnStartPhotoshoot
             // 
             this.btnStartPhotoshoot.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartPhotoshoot.Location = new System.Drawing.Point(633, 627);
+            this.btnStartPhotoshoot.Location = new System.Drawing.Point(564, 627);
             this.btnStartPhotoshoot.Name = "btnStartPhotoshoot";
             this.btnStartPhotoshoot.Size = new System.Drawing.Size(151, 83);
             this.btnStartPhotoshoot.TabIndex = 1;
@@ -131,9 +132,18 @@ namespace Spirit_Studio
             this.tabKeyboard.Text = "Keyboard";
             this.tabKeyboard.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxtTextCameraReceive
+            // 
+            this.pictureBoxtTextCameraReceive.Location = new System.Drawing.Point(55, 44);
+            this.pictureBoxtTextCameraReceive.Name = "pictureBoxtTextCameraReceive";
+            this.pictureBoxtTextCameraReceive.Size = new System.Drawing.Size(1241, 635);
+            this.pictureBoxtTextCameraReceive.TabIndex = 0;
+            this.pictureBoxtTextCameraReceive.TabStop = false;
+            // 
             // tabPhotoshoot
             // 
-            this.tabPhotoshoot.Controls.Add(this.btnOpenSpiritUI);
+            this.tabPhotoshoot.Controls.Add(this.btnOpenSlideshowUI);
+            this.tabPhotoshoot.Controls.Add(this.btnOpenCountDownUI);
             this.tabPhotoshoot.Controls.Add(this.lblSavedToFile);
             this.tabPhotoshoot.Controls.Add(this.lblTrackBarFileSave);
             this.tabPhotoshoot.Controls.Add(this.trackBarSaveFileThreshold);
@@ -158,16 +168,27 @@ namespace Spirit_Studio
             this.tabPhotoshoot.Text = "Photoshoot";
             this.tabPhotoshoot.UseVisualStyleBackColor = true;
             // 
-            // btnOpenSpiritUI
+            // btnOpenSlideshowUI
             // 
-            this.btnOpenSpiritUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSpiritUI.Location = new System.Drawing.Point(827, 630);
-            this.btnOpenSpiritUI.Name = "btnOpenSpiritUI";
-            this.btnOpenSpiritUI.Size = new System.Drawing.Size(117, 79);
-            this.btnOpenSpiritUI.TabIndex = 15;
-            this.btnOpenSpiritUI.Text = "Open Spirit UI";
-            this.btnOpenSpiritUI.UseVisualStyleBackColor = true;
-            this.btnOpenSpiritUI.Click += new System.EventHandler(this.btnOpenSpiritUI_Click);
+            this.btnOpenSlideshowUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSlideshowUI.Location = new System.Drawing.Point(745, 676);
+            this.btnOpenSlideshowUI.Name = "btnOpenSlideshowUI";
+            this.btnOpenSlideshowUI.Size = new System.Drawing.Size(163, 74);
+            this.btnOpenSlideshowUI.TabIndex = 16;
+            this.btnOpenSlideshowUI.Text = "Slideshow";
+            this.btnOpenSlideshowUI.UseVisualStyleBackColor = true;
+            this.btnOpenSlideshowUI.Click += new System.EventHandler(this.btnOpenSlideshowUI_Click);
+            // 
+            // btnOpenCountDownUI
+            // 
+            this.btnOpenCountDownUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenCountDownUI.Location = new System.Drawing.Point(745, 591);
+            this.btnOpenCountDownUI.Name = "btnOpenCountDownUI";
+            this.btnOpenCountDownUI.Size = new System.Drawing.Size(163, 79);
+            this.btnOpenCountDownUI.TabIndex = 15;
+            this.btnOpenCountDownUI.Text = "Countdown";
+            this.btnOpenCountDownUI.UseVisualStyleBackColor = true;
+            this.btnOpenCountDownUI.Click += new System.EventHandler(this.btnOpenCountDownUI_Click);
             // 
             // lblSavedToFile
             // 
@@ -395,14 +416,6 @@ namespace Spirit_Studio
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // pictureBoxtTextCameraReceive
-            // 
-            this.pictureBoxtTextCameraReceive.Location = new System.Drawing.Point(55, 44);
-            this.pictureBoxtTextCameraReceive.Name = "pictureBoxtTextCameraReceive";
-            this.pictureBoxtTextCameraReceive.Size = new System.Drawing.Size(1241, 635);
-            this.pictureBoxtTextCameraReceive.TabIndex = 0;
-            this.pictureBoxtTextCameraReceive.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,6 +428,7 @@ namespace Spirit_Studio
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabKeyboard.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).EndInit();
             this.tabPhotoshoot.ResumeLayout(false);
             this.tabPhotoshoot.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).EndInit();
@@ -422,7 +436,6 @@ namespace Spirit_Studio
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.tabRandom.ResumeLayout(false);
             this.tabRandom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -458,8 +471,9 @@ namespace Spirit_Studio
         private System.Windows.Forms.TrackBar trackBarSaveFileThreshold;
         private System.Windows.Forms.Label lblTrackBarFileSave;
         private System.Windows.Forms.Label lblSavedToFile;
-        private System.Windows.Forms.Button btnOpenSpiritUI;
+        private System.Windows.Forms.Button btnOpenCountDownUI;
         private System.Windows.Forms.PictureBox pictureBoxtTextCameraReceive;
+        private System.Windows.Forms.Button btnOpenSlideshowUI;
     }
 }
 
