@@ -78,8 +78,6 @@ namespace Spirit_Studio
         {
             if (bitmap != null)
             {
-                pictureBoxtTextCameraReceive.Image = Utils.ResizeImage(bitmap, pictureBoxtTextCameraReceive.Size);
-
                 _sdkHandler.LiveViewUpdated += ReceiveLiveViewstream;
                 _sdkHandler.StartLiveView();
             }
@@ -89,7 +87,7 @@ namespace Spirit_Studio
         {
             if (str != null) 
             {
-                pictureBoxtTextCameraReceive.Image = Image.FromStream(str);
+
             }
         }
 

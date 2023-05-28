@@ -34,9 +34,7 @@ namespace Spirit_Studio
             this.picCamera = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabKeyboard = new System.Windows.Forms.TabPage();
-            this.pictureBoxtTextCameraReceive = new System.Windows.Forms.PictureBox();
-            this.tabPhotoshoot = new System.Windows.Forms.TabPage();
+            this.tabPhotoBooth = new System.Windows.Forms.TabPage();
             this.btnOpenSlideshowUI = new System.Windows.Forms.Button();
             this.btnOpenCountDownUI = new System.Windows.Forms.Button();
             this.lblSavedToFile = new System.Windows.Forms.Label();
@@ -63,9 +61,7 @@ namespace Spirit_Studio
             this.labelValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabKeyboard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).BeginInit();
-            this.tabPhotoshoot.SuspendLayout();
+            this.tabPhotoBooth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
@@ -110,8 +106,7 @@ namespace Spirit_Studio
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabKeyboard);
-            this.tabControl1.Controls.Add(this.tabPhotoshoot);
+            this.tabControl1.Controls.Add(this.tabPhotoBooth);
             this.tabControl1.Controls.Add(this.tabRandom);
             this.tabControl1.Location = new System.Drawing.Point(11, 24);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
@@ -120,53 +115,33 @@ namespace Spirit_Studio
             this.tabControl1.Size = new System.Drawing.Size(1646, 785);
             this.tabControl1.TabIndex = 4;
             // 
-            // tabKeyboard
+            // tabPhotoBooth
             // 
-            this.tabKeyboard.Controls.Add(this.pictureBoxtTextCameraReceive);
-            this.tabKeyboard.Location = new System.Drawing.Point(4, 22);
-            this.tabKeyboard.Margin = new System.Windows.Forms.Padding(2);
-            this.tabKeyboard.Name = "tabKeyboard";
-            this.tabKeyboard.Padding = new System.Windows.Forms.Padding(2);
-            this.tabKeyboard.Size = new System.Drawing.Size(1638, 759);
-            this.tabKeyboard.TabIndex = 0;
-            this.tabKeyboard.Text = "Keyboard";
-            this.tabKeyboard.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxtTextCameraReceive
-            // 
-            this.pictureBoxtTextCameraReceive.Location = new System.Drawing.Point(55, 44);
-            this.pictureBoxtTextCameraReceive.Name = "pictureBoxtTextCameraReceive";
-            this.pictureBoxtTextCameraReceive.Size = new System.Drawing.Size(1241, 635);
-            this.pictureBoxtTextCameraReceive.TabIndex = 0;
-            this.pictureBoxtTextCameraReceive.TabStop = false;
-            // 
-            // tabPhotoshoot
-            // 
-            this.tabPhotoshoot.Controls.Add(this.btnOpenSlideshowUI);
-            this.tabPhotoshoot.Controls.Add(this.btnOpenCountDownUI);
-            this.tabPhotoshoot.Controls.Add(this.lblSavedToFile);
-            this.tabPhotoshoot.Controls.Add(this.lblTrackBarFileSave);
-            this.tabPhotoshoot.Controls.Add(this.trackBarSaveFileThreshold);
-            this.tabPhotoshoot.Controls.Add(this.lblDiffPercentage);
-            this.tabPhotoshoot.Controls.Add(this.lblNewImage);
-            this.tabPhotoshoot.Controls.Add(this.picNewImage);
-            this.tabPhotoshoot.Controls.Add(this.btnGetCameras);
-            this.tabPhotoshoot.Controls.Add(this.labelReference);
-            this.tabPhotoshoot.Controls.Add(this.picReference);
-            this.tabPhotoshoot.Controls.Add(this.lblRefImageNotifier);
-            this.tabPhotoshoot.Controls.Add(this.lblRefImageCountdown);
-            this.tabPhotoshoot.Controls.Add(this.picCamera);
-            this.tabPhotoshoot.Controls.Add(this.label1);
-            this.tabPhotoshoot.Controls.Add(this.cboCamera);
-            this.tabPhotoshoot.Controls.Add(this.btnStartPhotoshoot);
-            this.tabPhotoshoot.Location = new System.Drawing.Point(4, 22);
-            this.tabPhotoshoot.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPhotoshoot.Name = "tabPhotoshoot";
-            this.tabPhotoshoot.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPhotoshoot.Size = new System.Drawing.Size(1638, 759);
-            this.tabPhotoshoot.TabIndex = 1;
-            this.tabPhotoshoot.Text = "Photoshoot";
-            this.tabPhotoshoot.UseVisualStyleBackColor = true;
+            this.tabPhotoBooth.Controls.Add(this.btnOpenSlideshowUI);
+            this.tabPhotoBooth.Controls.Add(this.btnOpenCountDownUI);
+            this.tabPhotoBooth.Controls.Add(this.lblSavedToFile);
+            this.tabPhotoBooth.Controls.Add(this.lblTrackBarFileSave);
+            this.tabPhotoBooth.Controls.Add(this.trackBarSaveFileThreshold);
+            this.tabPhotoBooth.Controls.Add(this.lblDiffPercentage);
+            this.tabPhotoBooth.Controls.Add(this.lblNewImage);
+            this.tabPhotoBooth.Controls.Add(this.picNewImage);
+            this.tabPhotoBooth.Controls.Add(this.btnGetCameras);
+            this.tabPhotoBooth.Controls.Add(this.labelReference);
+            this.tabPhotoBooth.Controls.Add(this.picReference);
+            this.tabPhotoBooth.Controls.Add(this.lblRefImageNotifier);
+            this.tabPhotoBooth.Controls.Add(this.lblRefImageCountdown);
+            this.tabPhotoBooth.Controls.Add(this.picCamera);
+            this.tabPhotoBooth.Controls.Add(this.label1);
+            this.tabPhotoBooth.Controls.Add(this.cboCamera);
+            this.tabPhotoBooth.Controls.Add(this.btnStartPhotoshoot);
+            this.tabPhotoBooth.Location = new System.Drawing.Point(4, 22);
+            this.tabPhotoBooth.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPhotoBooth.Name = "tabPhotoBooth";
+            this.tabPhotoBooth.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPhotoBooth.Size = new System.Drawing.Size(1638, 759);
+            this.tabPhotoBooth.TabIndex = 1;
+            this.tabPhotoBooth.Text = "Photo booth";
+            this.tabPhotoBooth.UseVisualStyleBackColor = true;
             // 
             // btnOpenSlideshowUI
             // 
@@ -427,10 +402,8 @@ namespace Spirit_Studio
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabKeyboard.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtTextCameraReceive)).EndInit();
-            this.tabPhotoshoot.ResumeLayout(false);
-            this.tabPhotoshoot.PerformLayout();
+            this.tabPhotoBooth.ResumeLayout(false);
+            this.tabPhotoBooth.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
@@ -447,8 +420,7 @@ namespace Spirit_Studio
         private System.Windows.Forms.PictureBox picCamera;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabKeyboard;
-        private System.Windows.Forms.TabPage tabPhotoshoot;
+        private System.Windows.Forms.TabPage tabPhotoBooth;
         private System.Windows.Forms.TabPage tabRandom;
         private System.Windows.Forms.Label labelZerosPercentages;
         private System.Windows.Forms.Label labelOnesPercentage;
@@ -472,7 +444,6 @@ namespace Spirit_Studio
         private System.Windows.Forms.Label lblTrackBarFileSave;
         private System.Windows.Forms.Label lblSavedToFile;
         private System.Windows.Forms.Button btnOpenCountDownUI;
-        private System.Windows.Forms.PictureBox pictureBoxtTextCameraReceive;
         private System.Windows.Forms.Button btnOpenSlideshowUI;
     }
 }
