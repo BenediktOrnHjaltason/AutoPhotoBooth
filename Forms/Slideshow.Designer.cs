@@ -48,7 +48,7 @@
             // 
             this.pictureBoxSlideshow.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxSlideshow.Name = "pictureBoxSlideshow";
-            this.pictureBoxSlideshow.Size = new System.Drawing.Size(1472, 798);
+            this.pictureBoxSlideshow.Size = new System.Drawing.Size(1507, 798);
             this.pictureBoxSlideshow.TabIndex = 1;
             this.pictureBoxSlideshow.TabStop = false;
             // 
@@ -62,7 +62,7 @@
             this.Name = "Slideshow";
             this.Text = "Slideshow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Slideshow_FormClosing);
-            this.Enter += new System.EventHandler(this.Slideshow_Enter);
+            this.Load += new System.EventHandler(this.Slideshow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlideshow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

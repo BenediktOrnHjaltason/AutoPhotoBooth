@@ -28,11 +28,12 @@ namespace Spirit_Studio.Forms
         public void AddImage(Image bitmap)
         {
             images.AddFirst(bitmap);
-        }
+            currentImageIndex = 0;
 
-        private void Slideshow_Enter(object sender, EventArgs e)
-        {
-            StartSlideshow();
+            if (!slideshowRunning) 
+            {
+                StartSlideshow();
+            }
         }
 
         private async void StartSlideshow()
@@ -44,7 +45,7 @@ namespace Spirit_Studio.Forms
                 pictureBoxSlideshow.Image = images.ElementAt(currentImageIndex);
                 lbCounter.Text = $"{currentImageIndex + 1} / {images.Count}";
 
-                currentImageIndex = currentImageIndex + 1 <= images.Count -1 ? ++currentImageIndex : 0;
+                currentImageIndex = currentImageIndex + 1 <= images.Count - 1 ? ++currentImageIndex : 0;
 
                 await Task.Delay(5000);
             }
@@ -58,6 +59,14 @@ namespace Spirit_Studio.Forms
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void Slideshow_Load(object sender, EventArgs e)
+        {
+            if (images.Count > 0 && !slideshowRunning) 
+            {
+                StartSlideshow();
             }
         }
     }
