@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace SpiritLab
 {
@@ -14,11 +15,17 @@ namespace SpiritLab
     {
         private SDKHandler _sdkHandler;
 
+        public Bitmap capturedStill { get; set; }
+        public Bitmap capturedLiveViewFrame { get; set; }
+
         public CanonImageSource() { }
 
         public void Initialize()
         {
             _sdkHandler = new SDKHandler();
+            _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
+            _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
+            _sdkHandler.LiveViewUpdated += ReceiveLiveViewstream;
         }
 
         public List<string> GetImageSourceNames() 
@@ -26,9 +33,50 @@ namespace SpiritLab
             return _sdkHandler.GetCameraList().Select(x => x.Info.szDeviceDescription).ToList();
         }
 
+        public void SetActiveSource(string name)
+        {
+            var cameraList = _sdkHandler.GetCameraList();
+
+            foreach(var camera in cameraList) 
+            {
+                if (camera.Info.szDeviceDescription == name)
+                {
+                    Debug.WriteLine("Set active camera: " + name);
+                    _sdkHandler.OpenSession(camera);
+
+                    break;
+                }
+            }
+        }
+
+        public async Task<Bitmap> TakeStillImage()
+        {
+            capturedStill = null;
+            _sdkHandler.TakePhoto();
+
+            while(capturedStill == null) 
+            {
+                await Task.Delay(25);
+            }
+
+            return capturedStill;
+        }
+
+        Action<Bitmap> OnLiveViewReceived;
+        public void StartLiveView(Action<Bitmap> onLiveViewReceived)
+        {
+            OnLiveViewReceived += onLiveViewReceived;
+            _sdkHandler.StartLiveView();
+        }
+
+        public Bitmap GetLiveViewFrame()
+        {
+            return capturedLiveViewFrame;
+        }
+
         public void Close()
         { 
-        
+            _sdkHandler.CloseSession();
         }
 
         public uint EdsObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
@@ -45,8 +93,7 @@ namespace SpiritLab
         {
             if (bitmap != null)
             {
-                _sdkHandler.LiveViewUpdated += ReceiveLiveViewstream;
-                _sdkHandler.StartLiveView();
+                capturedStill = bitmap;
             }
         }
 
@@ -54,7 +101,8 @@ namespace SpiritLab
         {
             if (str != null)
             {
-
+                capturedLiveViewFrame = (Bitmap)Image.FromStream(str);
+                OnLiveViewReceived?.Invoke(capturedLiveViewFrame);
             }
         }
     }

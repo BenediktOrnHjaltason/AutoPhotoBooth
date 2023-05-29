@@ -76,6 +76,7 @@ namespace SpiritLab
             this.cboCamera.Name = "cboCamera";
             this.cboCamera.Size = new System.Drawing.Size(358, 21);
             this.cboCamera.TabIndex = 0;
+            this.cboCamera.SelectedValueChanged += new System.EventHandler(this.cboCamera_SelectedValueChanged);
             // 
             // btnStartPhotoshoot
             // 
@@ -395,6 +396,7 @@ namespace SpiritLab
             this.btnLiveView.TabIndex = 17;
             this.btnLiveView.Text = "Live View";
             this.btnLiveView.UseVisualStyleBackColor = true;
+            this.btnLiveView.Click += new System.EventHandler(this.btnLiveView_Click);
             // 
             // SpiritLabForm
             // 

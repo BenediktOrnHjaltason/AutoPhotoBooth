@@ -14,7 +14,6 @@ using System.Drawing.Imaging;
 using SpiritLab.CustomTypes;
 using SpiritLab.Configuration;
 using SpiritLab.Forms;
-using EDSDK;
 
 namespace SpiritLab
 {
@@ -25,6 +24,7 @@ namespace SpiritLab
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
         private CountDown _countdownUI;
         private Slideshow _slideshowUI;
+        private CameraLiveView _cameraLiveView;
         
 
         public SpiritLabForm()
@@ -59,7 +59,6 @@ namespace SpiritLab
             _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
             _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
             
-            _sdkHandler.OpenSession(cameraList.First());
 
             _sdkHandler.TakePhoto();
             */
@@ -126,7 +125,7 @@ namespace SpiritLab
             _countdownUI.SetCountdownVisible(false);
             await CountDown(5);
 
-            picReference.Image =  Utils.ResizeImage(_photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
+            picReference.Image =  Utils.ResizeImage(_photoBooth.TakeReferenceImage().GetAwaiter().GetResult(), new Size(picReference.Width, picReference.Height));
 
             lblRefImageNotifier.Text = "Next image in";
 
@@ -144,7 +143,7 @@ namespace SpiritLab
                 _countdownUI.SetCountdownVisible(false);
                 _countdownUI.SetImageVisible(false);
 
-                PhotoshootResult result = _photoBooth.TakeStillImage();
+                var result = await _photoBooth.CompareNewImage();
 
                 lblDiffPercentage.Visible = true;
                 lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
@@ -276,8 +275,19 @@ namespace SpiritLab
         {
             ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
 
-            _photoBooth.CloseVideoContext();
-            //_sdkHandler.CloseSession();
+            _photoBooth.Close();
+        }
+
+        private void btnLiveView_Click(object sender, EventArgs e)
+        {
+            _cameraLiveView = new CameraLiveView();
+            _photoBooth.StartLiveView(_cameraLiveView.UpdateLiveView);
+            _cameraLiveView.Show();
+        }
+
+        private void cboCamera_SelectedValueChanged(object sender, EventArgs e)
+        {
+            _photoBooth.SetActiveImageSource(cboCamera.SelectedItem.ToString());
         }
     }
 }

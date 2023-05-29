@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace SpiritLab.CustomTypes
 {
-    public struct PhotoshootResult
+    public struct ComparisonResult
     {
         public Image ProcessedImage;
         public Image NewImage;

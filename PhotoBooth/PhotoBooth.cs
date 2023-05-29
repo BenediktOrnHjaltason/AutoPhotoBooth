@@ -2,19 +2,19 @@
 using System.Drawing;
 using SpiritLab.CustomTypes;
 using EDSDK;
-
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System;
 
 namespace SpiritLab
 {
     public class PhotoBooth
     {
-        
-        private WebcamImageSource _webcamImageSource = new WebcamImageSource();
-        private CanonImageSource _canonImageSource = new CanonImageSource();
-
         private List<IImageSource> availableImageSources = new List<IImageSource>();
-
         private IImageSource _activeImageSource;
+
+        public Bitmap _savedReference { get; set; }
+        public Bitmap _savedNewImage { get; set; }
 
         public PhotoBooth() { }
 
@@ -26,19 +26,29 @@ namespace SpiritLab
             availableImageSources.ForEach(x => x.Initialize());
         }
 
-        public void CloseVideoContext()
+        public void SetActiveImageSource(string name)
         {
-            
+            foreach(var source in availableImageSources)
+            {
+                if (source.GetImageSourceNames().Contains(name))
+                {
+                    source.SetActiveSource(name);
+                    _activeImageSource = source;
+                    break;
+                }
+            }
         }
 
-        Bitmap capturedStill;
-        Bitmap capturedLiveViewFrame;
-
-        Bitmap savedReference;
-        Bitmap savedNewImage;
-
+        public void Close()
+        {
+            _activeImageSource.Close();
+        }
 
         
+        public void StartLiveView(Action<Bitmap> onLiveViewUpdated)
+        {
+            _activeImageSource.StartLiveView(onLiveViewUpdated);
+        }
 
         public List<string> GetImageSourceNames()
         {
@@ -49,28 +59,26 @@ namespace SpiritLab
                 cameraNames.AddRange(camera.GetImageSourceNames());
             }
 
-
-
             return cameraNames;
         }
 
-        public Image TakeReferenceImage()
+        public async Task<Image> TakeReferenceImage()
         {
-            savedReference = capturedStill;
+            _savedReference = await _activeImageSource.TakeStillImage();
 
-            return savedReference;
+            return _savedReference;
         }
 
-        public PhotoshootResult TakeStillImage()
+        public async Task<ComparisonResult> CompareNewImage()
         {
-            savedNewImage = capturedStill;
+            _savedNewImage = await _activeImageSource.TakeStillImage();
 
-            ImageDifference difference = ComputerVision.GetAbsDifference(savedReference, savedNewImage);
+            ImageDifference difference = ComputerVision.GetAbsDifference(_savedReference, _savedNewImage);
 
-            return new PhotoshootResult
+            return new ComparisonResult
             {
                 ProcessedImage = difference.ProcessedImage,
-                NewImage = savedNewImage,
+                NewImage = _savedNewImage,
                 DifferencePercentage = difference.Percentage,
             };
         }
