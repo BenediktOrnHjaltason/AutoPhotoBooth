@@ -32,7 +32,6 @@ namespace SpiritLab
             this.cboCamera = new System.Windows.Forms.ComboBox();
             this.btnStartPhotoshoot = new System.Windows.Forms.Button();
             this.picCamera = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPhotoBooth = new System.Windows.Forms.TabPage();
             this.btnOpenSlideshowUI = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@ namespace SpiritLab
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
+            this.btnLiveView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPhotoBooth.SuspendLayout();
@@ -70,8 +70,9 @@ namespace SpiritLab
             // 
             // cboCamera
             // 
+            this.cboCamera.Enabled = false;
             this.cboCamera.FormattingEnabled = true;
-            this.cboCamera.Location = new System.Drawing.Point(73, 26);
+            this.cboCamera.Location = new System.Drawing.Point(184, 23);
             this.cboCamera.Name = "cboCamera";
             this.cboCamera.Size = new System.Drawing.Size(358, 21);
             this.cboCamera.TabIndex = 0;
@@ -95,15 +96,6 @@ namespace SpiritLab
             this.picCamera.TabIndex = 2;
             this.picCamera.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Camera";
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPhotoBooth);
@@ -117,6 +109,7 @@ namespace SpiritLab
             // 
             // tabPhotoBooth
             // 
+            this.tabPhotoBooth.Controls.Add(this.btnLiveView);
             this.tabPhotoBooth.Controls.Add(this.btnOpenSlideshowUI);
             this.tabPhotoBooth.Controls.Add(this.btnOpenCountDownUI);
             this.tabPhotoBooth.Controls.Add(this.lblSavedToFile);
@@ -131,7 +124,6 @@ namespace SpiritLab
             this.tabPhotoBooth.Controls.Add(this.lblRefImageNotifier);
             this.tabPhotoBooth.Controls.Add(this.lblRefImageCountdown);
             this.tabPhotoBooth.Controls.Add(this.picCamera);
-            this.tabPhotoBooth.Controls.Add(this.label1);
             this.tabPhotoBooth.Controls.Add(this.cboCamera);
             this.tabPhotoBooth.Controls.Add(this.btnStartPhotoshoot);
             this.tabPhotoBooth.Location = new System.Drawing.Point(4, 22);
@@ -227,9 +219,9 @@ namespace SpiritLab
             // btnGetCameras
             // 
             this.btnGetCameras.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetCameras.Location = new System.Drawing.Point(437, 20);
+            this.btnGetCameras.Location = new System.Drawing.Point(73, 17);
             this.btnGetCameras.Name = "btnGetCameras";
-            this.btnGetCameras.Size = new System.Drawing.Size(153, 29);
+            this.btnGetCameras.Size = new System.Drawing.Size(105, 29);
             this.btnGetCameras.TabIndex = 8;
             this.btnGetCameras.Text = "Get cameras";
             this.btnGetCameras.UseVisualStyleBackColor = true;
@@ -393,6 +385,17 @@ namespace SpiritLab
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
+            // btnLiveView
+            // 
+            this.btnLiveView.Enabled = false;
+            this.btnLiveView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLiveView.Location = new System.Drawing.Point(548, 18);
+            this.btnLiveView.Name = "btnLiveView";
+            this.btnLiveView.Size = new System.Drawing.Size(99, 31);
+            this.btnLiveView.TabIndex = 17;
+            this.btnLiveView.Text = "Live View";
+            this.btnLiveView.UseVisualStyleBackColor = true;
+            // 
             // SpiritLabForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,7 +423,6 @@ namespace SpiritLab
         private System.Windows.Forms.ComboBox cboCamera;
         private System.Windows.Forms.Button btnStartPhotoshoot;
         private System.Windows.Forms.PictureBox picCamera;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPhotoBooth;
         private System.Windows.Forms.TabPage tabRandom;
@@ -447,6 +449,7 @@ namespace SpiritLab
         private System.Windows.Forms.Label lblSavedToFile;
         private System.Windows.Forms.Button btnOpenCountDownUI;
         private System.Windows.Forms.Button btnOpenSlideshowUI;
+        private System.Windows.Forms.Button btnLiveView;
     }
 }
 

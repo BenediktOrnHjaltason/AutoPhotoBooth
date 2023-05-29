@@ -72,13 +72,19 @@ namespace SpiritLab
         private void btnGetCameras_Click(object sender, EventArgs e)
         {
             cboCamera.Items.Clear();
+            cboCamera.Enabled = btnStartPhotoshoot.Enabled = btnLiveView.Enabled = false;
 
-            foreach (var cameraName in _photoBooth.GetImageSourceNames())
-                cboCamera.Items.Add(cameraName);
+            var imageSourcesNames = _photoBooth.GetImageSourceNames();
 
-            btnStartPhotoshoot.Enabled = cboCamera.Items.Count > 0;
+            if (imageSourcesNames.Any() ) 
+            {
+                cboCamera.Enabled = btnStartPhotoshoot.Enabled = btnLiveView.Enabled = true;
 
-            cboCamera.SelectedIndex = 0;
+                foreach (var cameraName in imageSourcesNames)
+                    cboCamera.Items.Add(cameraName);
+
+                cboCamera.SelectedIndex = 0;
+            }
         }
 
         private bool photoShootRunning = false;
