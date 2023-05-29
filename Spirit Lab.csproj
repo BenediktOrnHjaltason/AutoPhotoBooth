@@ -67,7 +67,10 @@
     <Compile Include="Forms\Slideshow.Designer.cs">
       <DependentUpon>Slideshow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhotoShoot\PhotoShoot.cs" />
+    <Compile Include="PhotoBooth\ImageSources\CanonImageSource.cs" />
+    <Compile Include="PhotoBooth\ImageSources\ImageSource.cs" />
+    <Compile Include="PhotoBooth\ImageSources\WebcamImageSource.cs" />
+    <Compile Include="PhotoBooth\PhotoBooth.cs" />
     <Compile Include="Spirit Lab.cs">
       <SubType>Form</SubType>
     </Compile>

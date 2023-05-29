@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SpiritLab;
 
 using static EDSDK.EDSDKLib;
 
 namespace EDSDK
 {
     /// <summary>
-    /// A container for camera related information
+    /// A container for camera related information (Not anymore)
     /// </summary>
     public class CanonCamera
     {

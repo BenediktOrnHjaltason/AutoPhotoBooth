@@ -20,12 +20,12 @@ namespace SpiritLab
 {
     public partial class SpiritLabForm : Form
     {
-        private PhotoShoot _photoShoot = new PhotoShoot();
+        private PhotoBooth _photoBooth = new PhotoBooth();
 
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
         private CountDown _countdownUI;
         private Slideshow _slideshowUI;
-        private SDKHandler _sdkHandler;
+        
 
         public SpiritLabForm()
         {
@@ -48,9 +48,9 @@ namespace SpiritLab
 
             UpdateTrackBarThresholdLabel();
 
+            _photoBooth.Initialize();
+
             /*
-            _sdkHandler = new SDKHandler();
-            
             
             var cameraList = _sdkHandler.GetCameraList();
 
@@ -65,38 +65,15 @@ namespace SpiritLab
             */
         }
 
-        public uint EdsObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
-        {
-            if ( inEvent == 516 ) 
-            {
-                _sdkHandler.DownloadImage(inRef);
-            }
-
-            return 0;
-        }
-
-        public void ReceiveDownloadedImage(Bitmap bitmap)
-        {
-            if (bitmap != null)
-            {
-                _sdkHandler.LiveViewUpdated += ReceiveLiveViewstream;
-                _sdkHandler.StartLiveView();
-            }
-        }
-
-        public void ReceiveLiveViewstream(Stream str)
-        {
-            if (str != null) 
-            {
-
-            }
-        }
+        
 
         #region Photo shoot
 
         private void btnGetCameras_Click(object sender, EventArgs e)
         {
-            foreach (var cameraName in _photoShoot.GetCameras())
+            cboCamera.Items.Clear();
+
+            foreach (var cameraName in _photoBooth.GetImageSourceNames())
                 cboCamera.Items.Add(cameraName);
 
             btnStartPhotoshoot.Enabled = cboCamera.Items.Count > 0;
@@ -109,21 +86,19 @@ namespace SpiritLab
         {
             if (photoShootRunning == false)
             {
-                btnStartPhotoshoot.Text = "Stop after\nnext";
+                btnStartPhotoshoot.Text = "Stop";
 
                 photoShootRunning = true;
 
                 lblRefImageNotifier.Visible = true;
                 lblRefImageCountdown.Visible = true;
 
-                _photoShoot.Initialize(cboCamera.SelectedIndex);
-
                 _countdownUI = new CountDown();
                 _slideshowUI = new Slideshow();
 
                 btnOpenCountDownUI.Enabled = btnOpenSlideshowUI.Enabled = true;
 
-                RunPhotoShoot();
+                RunPhotoBooth();
             }
 
             else
@@ -140,12 +115,12 @@ namespace SpiritLab
             }
         }
 
-        private async void RunPhotoShoot()
+        private async void RunPhotoBooth()
         {
             _countdownUI.SetCountdownVisible(false);
             await CountDown(5);
 
-            picReference.Image =  Utils.ResizeImage(_photoShoot.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
+            picReference.Image =  Utils.ResizeImage(_photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
             lblRefImageNotifier.Text = "Next image in";
 
@@ -163,8 +138,7 @@ namespace SpiritLab
                 _countdownUI.SetCountdownVisible(false);
                 _countdownUI.SetImageVisible(false);
 
-
-                PhotoshootResult result = _photoShoot.TakeSpiritImage();
+                PhotoshootResult result = _photoBooth.TakeStillImage();
 
                 lblDiffPercentage.Visible = true;
                 lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
@@ -280,24 +254,24 @@ namespace SpiritLab
 
         #endregion
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
-
-            _photoShoot.CloseVideoContext();
-            //_sdkHandler.CloseSession();
-        }
-
         private void btnOpenSlideshowUI_Click(object sender, EventArgs e)
         {
             if (_slideshowUI != null)
-            _slideshowUI.Show();
+                _slideshowUI.Show();
         }
 
         private void btnOpenCountDownUI_Click(object sender, EventArgs e)
         {
             if (_countdownUI != null)
                 _countdownUI.Show();
+        }
+
+        private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
+
+            _photoBooth.CloseVideoContext();
+            //_sdkHandler.CloseSession();
         }
     }
 }

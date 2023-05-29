@@ -401,7 +401,7 @@ namespace SpiritLab
             this.Controls.Add(this.tabControl1);
             this.Name = "SpiritLabForm";
             this.Text = "Spirit Lab";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpiritLabForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPhotoBooth.ResumeLayout(false);
