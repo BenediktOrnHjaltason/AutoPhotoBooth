@@ -13,8 +13,8 @@ namespace SpiritLab
 {
     public class WebcamImageSource : IImageSource
     {
-        public Bitmap capturedStill { get; set; }
-        public Bitmap capturedLiveViewFrame { get; set; }
+        public Bitmap capturedStill = null;
+        public Bitmap capturedLiveViewFrame = null;
         
 
         private FilterInfoCollection filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -61,8 +61,14 @@ namespace SpiritLab
             OnLiveViewReceived?.Invoke(capturedLiveViewFrame);
         }
 
-        public async Task<Bitmap> TakeStillImage()
+        public async Task<Bitmap> TakeStillImage(ImagePurpose purpose)
         {
+            if (purpose == ImagePurpose.REFERENCE) 
+                PhotoBooth.CapturedReference = capturedLiveViewFrame;
+
+            else if (purpose == ImagePurpose.COMPARISON)
+                    PhotoBooth.CapturedComparison = capturedLiveViewFrame;
+
             return capturedLiveViewFrame;
         }
 

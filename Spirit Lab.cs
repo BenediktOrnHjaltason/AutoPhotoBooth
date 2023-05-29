@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 using SpiritLab.CustomTypes;
 using SpiritLab.Configuration;
 using SpiritLab.Forms;
+using System.Reflection;
 
 namespace SpiritLab
 {
@@ -125,7 +126,7 @@ namespace SpiritLab
             _countdownUI.SetCountdownVisible(false);
             await CountDown(5);
 
-            picReference.Image =  Utils.ResizeImage(_photoBooth.TakeReferenceImage().GetAwaiter().GetResult(), new Size(picReference.Width, picReference.Height));
+            picReference.Image =  Utils.ResizeImage(await _photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
             lblRefImageNotifier.Text = "Next image in";
 
@@ -158,7 +159,13 @@ namespace SpiritLab
                 {
                     _countdownUI.UpdateCommunication("Thank you!");
                     lblSavedToFile.Visible = true;
-                    result.NewImage.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
+
+                    var bitmap = new Bitmap(result.NewImage);
+
+                    bitmap.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
+
+                    bitmap.Dispose();
+
                     _slideshowUI.AddImage(result.NewImage);
                 }
                 else lblSavedToFile.Visible = false;

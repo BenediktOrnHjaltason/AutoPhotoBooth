@@ -15,17 +15,19 @@ namespace SpiritLab
     {
         private SDKHandler _sdkHandler;
 
-        public Bitmap capturedStill { get; set; }
-        public Bitmap capturedLiveViewFrame { get; set; }
+        public Bitmap capturedStill = null;
+        public Bitmap capturedLiveViewFrame = null;
 
         public CanonImageSource() { }
 
         public void Initialize()
         {
+            Debug.WriteLine("CannonImageSource: Initializing!");
+
             _sdkHandler = new SDKHandler();
-            _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
+            _sdkHandler.SDKObjectEvent += SDKObjectEventReceiver;
             _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
-            _sdkHandler.LiveViewUpdated += ReceiveLiveViewstream;
+            _sdkHandler.LiveViewUpdated += ReceiveLiveViewStream;
         }
 
         public List<string> GetImageSourceNames() 
@@ -49,17 +51,43 @@ namespace SpiritLab
             }
         }
 
-        public async Task<Bitmap> TakeStillImage()
+        Action<Bitmap> OnImageDownloaded;
+        ImagePurpose LastImagePurpose;
+        public async Task<Bitmap> TakeStillImage(ImagePurpose purpose)
         {
-            capturedStill = null;
-            _sdkHandler.TakePhoto();
+            LastImagePurpose = purpose;
 
-            while(capturedStill == null) 
+            if (purpose == ImagePurpose.REFERENCE)
             {
-                await Task.Delay(25);
+                PhotoBooth.CapturedReference = null;
             }
 
-            return capturedStill;
+            else PhotoBooth.CapturedComparison = null;
+
+            _sdkHandler.TakePhoto();
+
+            if (purpose == ImagePurpose.REFERENCE)
+            {
+                PhotoBooth.CapturedReference = null;
+
+                while (PhotoBooth.CapturedReference == null)
+                {
+                    await Task.Delay(100);
+                }
+
+                return PhotoBooth.CapturedReference;
+            }
+            else
+            {
+                PhotoBooth.CapturedComparison = null;
+
+                while (PhotoBooth.CapturedComparison == null)
+                {
+                    await Task.Delay(100);
+                }
+
+                return PhotoBooth.CapturedComparison;
+            }
         }
 
         Action<Bitmap> OnLiveViewReceived;
@@ -79,7 +107,7 @@ namespace SpiritLab
             _sdkHandler.CloseSession();
         }
 
-        public uint EdsObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
+        public uint SDKObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
         {
             if (inEvent == 516)
             {
@@ -93,11 +121,15 @@ namespace SpiritLab
         {
             if (bitmap != null)
             {
-                capturedStill = bitmap;
+                if (LastImagePurpose == ImagePurpose.REFERENCE) 
+                {
+                    PhotoBooth.CapturedReference = bitmap;
+                }
+                else PhotoBooth.CapturedComparison = bitmap;
             }
         }
 
-        public void ReceiveLiveViewstream(Stream str)
+        public void ReceiveLiveViewStream(Stream str)
         {
             if (str != null)
             {

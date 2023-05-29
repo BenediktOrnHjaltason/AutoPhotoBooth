@@ -13,8 +13,8 @@ namespace SpiritLab
         private List<IImageSource> availableImageSources = new List<IImageSource>();
         private IImageSource _activeImageSource;
 
-        public Bitmap _savedReference { get; set; }
-        public Bitmap _savedNewImage { get; set; }
+        public static Bitmap CapturedReference { get; set; }
+        public static Bitmap CapturedComparison { get; set; }
 
         public PhotoBooth() { }
 
@@ -41,10 +41,10 @@ namespace SpiritLab
 
         public void Close()
         {
-            _activeImageSource.Close();
+            if (_activeImageSource != null)
+                _activeImageSource.Close();
         }
 
-        
         public void StartLiveView(Action<Bitmap> onLiveViewUpdated)
         {
             _activeImageSource.StartLiveView(onLiveViewUpdated);
@@ -62,25 +62,29 @@ namespace SpiritLab
             return cameraNames;
         }
 
-        public async Task<Image> TakeReferenceImage()
+        public async Task<Bitmap> TakeReferenceImage()
         {
-            _savedReference = await _activeImageSource.TakeStillImage();
-
-            return _savedReference;
+            return await _activeImageSource.TakeStillImage(ImagePurpose.REFERENCE);
         }
 
         public async Task<ComparisonResult> CompareNewImage()
         {
-            _savedNewImage = await _activeImageSource.TakeStillImage();
+            var newImage = await _activeImageSource.TakeStillImage(ImagePurpose.COMPARISON);
 
-            ImageDifference difference = ComputerVision.GetAbsDifference(_savedReference, _savedNewImage);
+            ImageDifference difference = ComputerVision.GetAbsDifference(CapturedReference, newImage);
 
             return new ComparisonResult
             {
                 ProcessedImage = difference.ProcessedImage,
-                NewImage = _savedNewImage,
+                NewImage = newImage,
                 DifferencePercentage = difference.Percentage,
             };
         }
+    }
+
+    public enum ImagePurpose
+    {
+        REFERENCE = 0,
+        COMPARISON = 1
     }
 }

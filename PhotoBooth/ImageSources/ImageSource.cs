@@ -9,16 +9,13 @@ namespace SpiritLab
 {
     public interface IImageSource
     {
-        Bitmap capturedStill { get; set; }
-        Bitmap capturedLiveViewFrame { get; set; }
-
         void Initialize();
 
         List<string> GetImageSourceNames();
 
         void SetActiveSource(string name);
 
-        Task<Bitmap> TakeStillImage();
+        Task<Bitmap> TakeStillImage(ImagePurpose purpose);
 
         Bitmap GetLiveViewFrame();
 
