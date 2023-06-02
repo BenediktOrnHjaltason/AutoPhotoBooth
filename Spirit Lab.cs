@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 using SpiritLab.Utilities;
 using System.IO;
 using System.Drawing.Imaging;
 using SpiritLab.CustomTypes;
 using SpiritLab.Configuration;
 using SpiritLab.Forms;
-using System.Reflection;
 
 namespace SpiritLab
 {
@@ -50,22 +45,7 @@ namespace SpiritLab
             UpdateTrackBarThresholdLabel();
 
             _photoBooth.Initialize();
-
-            /*
-            
-            var cameraList = _sdkHandler.GetCameraList();
-
-            Debug.WriteLine("number of cameras:" + cameraList.Count);
-
-            _sdkHandler.SDKObjectEvent += EdsObjectEventReceiver;
-            _sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
-            
-
-            _sdkHandler.TakePhoto();
-            */
         }
-
-        
 
         #region Photo shoot
 

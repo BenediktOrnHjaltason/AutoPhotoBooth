@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using SpiritLab.CustomTypes;
-using EDSDK;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System;
 
