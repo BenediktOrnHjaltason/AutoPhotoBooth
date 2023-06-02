@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,6 +17,15 @@ namespace SpiritLab.Forms
         public Slideshow()
         {
             InitializeComponent();
+        }
+
+        public void Initialize()
+        {
+            lbCounter.Text = "0 / 0";
+            slideshowRunning = false;
+            currentImageIndex = 0;
+            images.Clear();
+            pictureBoxSlideshow.Image = null;
         }
 
         public void AddImage(Image bitmap)

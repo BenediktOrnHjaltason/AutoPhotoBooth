@@ -57,7 +57,6 @@ namespace SpiritLab.Forms
             this.lblCountdown.Name = "lblCountdown";
             this.lblCountdown.Size = new System.Drawing.Size(803, 864);
             this.lblCountdown.TabIndex = 1;
-            this.lblCountdown.Text = "5";
             // 
             // lblCommunication
             // 

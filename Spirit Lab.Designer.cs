@@ -34,6 +34,7 @@ namespace SpiritLab
             this.picCamera = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPhotoBooth = new System.Windows.Forms.TabPage();
+            this.btnLiveView = new System.Windows.Forms.Button();
             this.btnOpenSlideshowUI = new System.Windows.Forms.Button();
             this.btnOpenCountDownUI = new System.Windows.Forms.Button();
             this.lblSavedToFile = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@ namespace SpiritLab
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.btnLiveView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPhotoBooth.SuspendLayout();
@@ -136,9 +136,20 @@ namespace SpiritLab
             this.tabPhotoBooth.Text = "Photo booth";
             this.tabPhotoBooth.UseVisualStyleBackColor = true;
             // 
+            // btnLiveView
+            // 
+            this.btnLiveView.Enabled = false;
+            this.btnLiveView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLiveView.Location = new System.Drawing.Point(548, 18);
+            this.btnLiveView.Name = "btnLiveView";
+            this.btnLiveView.Size = new System.Drawing.Size(99, 31);
+            this.btnLiveView.TabIndex = 17;
+            this.btnLiveView.Text = "Live View";
+            this.btnLiveView.UseVisualStyleBackColor = true;
+            this.btnLiveView.Click += new System.EventHandler(this.btnLiveView_Click);
+            // 
             // btnOpenSlideshowUI
             // 
-            this.btnOpenSlideshowUI.Enabled = false;
             this.btnOpenSlideshowUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSlideshowUI.Location = new System.Drawing.Point(745, 676);
             this.btnOpenSlideshowUI.Name = "btnOpenSlideshowUI";
@@ -150,7 +161,6 @@ namespace SpiritLab
             // 
             // btnOpenCountDownUI
             // 
-            this.btnOpenCountDownUI.Enabled = false;
             this.btnOpenCountDownUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenCountDownUI.Location = new System.Drawing.Point(745, 591);
             this.btnOpenCountDownUI.Name = "btnOpenCountDownUI";
@@ -385,18 +395,6 @@ namespace SpiritLab
             this.labelValue.Size = new System.Drawing.Size(412, 453);
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
-            // 
-            // btnLiveView
-            // 
-            this.btnLiveView.Enabled = false;
-            this.btnLiveView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLiveView.Location = new System.Drawing.Point(548, 18);
-            this.btnLiveView.Name = "btnLiveView";
-            this.btnLiveView.Size = new System.Drawing.Size(99, 31);
-            this.btnLiveView.TabIndex = 17;
-            this.btnLiveView.Text = "Live View";
-            this.btnLiveView.UseVisualStyleBackColor = true;
-            this.btnLiveView.Click += new System.EventHandler(this.btnLiveView_Click);
             // 
             // SpiritLabForm
             // 

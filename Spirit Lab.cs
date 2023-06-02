@@ -18,10 +18,9 @@ namespace SpiritLab
         private PhotoBooth _photoBooth = new PhotoBooth();
 
         private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
-        private CountDown _countdownUI;
-        private Slideshow _slideshowUI;
+        private CountDown _countdownUI = new CountDown();
+        private Slideshow _slideshowUI = new Slideshow();
         private CameraLiveView _cameraLiveView;
-        
 
         public SpiritLabForm()
         {
@@ -74,30 +73,27 @@ namespace SpiritLab
             {
                 btnStartPhotoshoot.Text = "Stop";
 
-                photoShootRunning = true;
-
-                lblRefImageNotifier.Visible = true;
+                photoShootRunning =
+                lblRefImageNotifier.Visible =
                 lblRefImageCountdown.Visible = true;
-
-                _countdownUI = new CountDown();
-                _slideshowUI = new Slideshow();
-
-                btnOpenCountDownUI.Enabled = btnOpenSlideshowUI.Enabled = true;
 
                 RunPhotoBooth();
             }
 
             else
             {
-                photoShootRunning = false;
+                photoShootRunning =
+                lblRefImageNotifier.Visible =
+                lblRefImageCountdown.Visible =
+                lblDiffPercentage.Visible = false;
                 btnStartPhotoshoot.Text = "Start";
                 lblRefImageNotifier.Text = "Saving reference image in";
-                lblRefImageNotifier.Visible = false;
+                
                 lblRefImageCountdown.Text = "5";
-                lblRefImageCountdown.Visible = false;
-                lblDiffPercentage.Visible = false;
+                
 
-                btnOpenCountDownUI.Enabled = btnOpenSlideshowUI.Enabled = false;
+                _slideshowUI.Initialize();
+                _countdownUI.Initialize();
             }
         }
 
