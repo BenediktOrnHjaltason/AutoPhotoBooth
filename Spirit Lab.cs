@@ -34,15 +34,15 @@ namespace SpiritLab
             lblDiffPercentage.Visible =
             lblSavedToFile.Visible = false;
 
-            Config config = ConfigurationHandler.LoadConfig(_configPath);
+            _config = ConfigurationHandler.LoadConfig(_configPath);
 
-            if (config == null)
+            if (_config == null)
                 _config = new Config();
 
-            trackBarSaveFileThreshold.Value = config.PhotoBoothConfig.FileSaveThreshold;
-            lblTrackBarFileSave.Text = config.PhotoBoothConfig.FileSaveThreshold.ToString();
-            numUpDownShootInterval.Value = config.PhotoBoothConfig.ShootInterval;
-            numUpDownSlideshowInterval.Value = config.PhotoBoothConfig.SlideshowInterval;
+            trackBarSaveFileThreshold.Value = _config.PhotoBoothConfig.FileSaveThreshold;
+            lblTrackBarFileSave.Text = _config.PhotoBoothConfig.FileSaveThreshold.ToString();
+            numUpDownShootInterval.Value = _config.PhotoBoothConfig.ShootInterval;
+            numUpDownSlideshowInterval.Value = _config.PhotoBoothConfig.SlideshowInterval;
 
             _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
             _countdownUI.Initialize();
