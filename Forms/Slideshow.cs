@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,29 +12,31 @@ namespace SpiritLab.Forms
     {
         private LinkedList<Image> images = new LinkedList<Image>();
 
-        private bool slideshowRunning;
-        private int currentImageIndex;
+        private bool _slideshowRunning;
+        private int _currentImageIndex;
+        private int _interval;
 
         public Slideshow()
         {
             InitializeComponent();
         }
 
-        public void Initialize()
+        public void Initialize(int interval)
         {
             lbCounter.Text = "0 / 0";
-            slideshowRunning = false;
-            currentImageIndex = 0;
+            _slideshowRunning = false;
+            _currentImageIndex = 0;
             images.Clear();
             pictureBoxSlideshow.Image = null;
+            _interval = interval;
         }
 
         public void AddImage(Image bitmap)
         {
             images.AddFirst(bitmap);
-            currentImageIndex = 0;
+            _currentImageIndex = 0;
 
-            if (!slideshowRunning) 
+            if (!_slideshowRunning) 
             {
                 StartSlideshow();
             }
@@ -41,22 +44,24 @@ namespace SpiritLab.Forms
 
         private async void StartSlideshow()
         {
-            currentImageIndex = 0;
-            slideshowRunning = true;
-            while (slideshowRunning) 
+            _currentImageIndex = 0;
+            _slideshowRunning = true;
+            while (_slideshowRunning) 
             {
-                pictureBoxSlideshow.Image = images.ElementAt(currentImageIndex);
-                lbCounter.Text = $"{currentImageIndex + 1} / {images.Count}";
+                pictureBoxSlideshow.Image = images.ElementAt(_currentImageIndex);
+                lbCounter.Text = $"{_currentImageIndex + 1} / {images.Count}";
 
-                currentImageIndex = currentImageIndex + 1 <= images.Count - 1 ? ++currentImageIndex : 0;
+                _currentImageIndex = _currentImageIndex + 1 <= images.Count - 1 ? ++_currentImageIndex : 0;
 
-                await Task.Delay(5000);
+                Debug.WriteLine($"Slideshow setting stuff done. Now waiting for {_interval * 1000} milliseconds");
+
+                await Task.Delay(_interval * 1000);
             }
         }
 
         private void Slideshow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            slideshowRunning = false;
+            _slideshowRunning = false;
 
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -67,7 +72,7 @@ namespace SpiritLab.Forms
 
         private void Slideshow_Load(object sender, EventArgs e)
         {
-            if (images.Count > 0 && !slideshowRunning) 
+            if (images.Count > 0 && !_slideshowRunning) 
             {
                 StartSlideshow();
             }

@@ -17,7 +17,8 @@ namespace SpiritLab
     {
         private PhotoBooth _photoBooth = new PhotoBooth();
 
-        private const string configPath = "C:/ProgramData/Spirit Lab/config.json";
+        private const string _configPath = "C:/ProgramData/Spirit Lab/config.json";
+        private Config _config;
         private CountDown _countdownUI = new CountDown();
         private Slideshow _slideshowUI = new Slideshow();
         private CameraLiveView _cameraLiveView;
@@ -33,13 +34,18 @@ namespace SpiritLab
             lblDiffPercentage.Visible =
             lblSavedToFile.Visible = false;
 
-            Config config = ConfigurationHandler.LoadConfig(configPath);
+            Config config = ConfigurationHandler.LoadConfig(_configPath);
 
-            if(config != null)
-            {
-                trackBarSaveFileThreshold.Value = config.FileSaveThreshold;
-                lblTrackBarFileSave.Text = config.FileSaveThreshold.ToString();
-            }
+            if (config == null)
+                _config = new Config();
+
+            trackBarSaveFileThreshold.Value = config.PhotoBoothConfig.FileSaveThreshold;
+            lblTrackBarFileSave.Text = config.PhotoBoothConfig.FileSaveThreshold.ToString();
+            numUpDownShootInterval.Value = config.PhotoBoothConfig.ShootInterval;
+            numUpDownSlideshowInterval.Value = config.PhotoBoothConfig.SlideshowInterval;
+
+            _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
+            _countdownUI.Initialize();
 
             UpdateTrackBarThresholdLabel();
 
@@ -92,7 +98,7 @@ namespace SpiritLab
                 lblRefImageCountdown.Text = "5";
                 
 
-                _slideshowUI.Initialize();
+                _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
                 _countdownUI.Initialize();
             }
         }
@@ -112,7 +118,7 @@ namespace SpiritLab
                 _countdownUI.SetCountdownVisible(true);
                 lblRefImageCountdown.Visible = true;
 
-                await CountDown(5);
+                await CountDown((int)numUpDownShootInterval.Value);
 
                 if (!photoShootRunning)
                     break;
@@ -256,7 +262,9 @@ namespace SpiritLab
 
         private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ConfigurationHandler.SaveConfig(new Config { FileSaveThreshold = trackBarSaveFileThreshold.Value }, configPath);
+            ConfigurationHandler.SaveConfig(new Config { PhotoBoothConfig = new PhotoBoothConfig { FileSaveThreshold = trackBarSaveFileThreshold.Value,
+                                                                                                   ShootInterval = (int)numUpDownShootInterval.Value,
+                                                                                                   SlideshowInterval = (int)numUpDownSlideshowInterval.Value}}, _configPath);
 
             _photoBooth.Close();
         }

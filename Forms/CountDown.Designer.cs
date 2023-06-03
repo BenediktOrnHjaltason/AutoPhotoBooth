@@ -80,7 +80,7 @@ namespace SpiritLab.Forms
             this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.picDisplay);
             this.Name = "CountDown";
-            this.Text = "SpiritUI";
+            this.Text = "Countdown";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CountDownUI_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             this.ResumeLayout(false);

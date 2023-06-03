@@ -49,7 +49,6 @@ namespace SpiritLab
             }
         }
 
-        Action<Bitmap> OnImageDownloaded;
         ImagePurpose LastImagePurpose;
         public async Task<Bitmap> TakeStillImage(ImagePurpose purpose)
         {
