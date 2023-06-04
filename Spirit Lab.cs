@@ -86,6 +86,8 @@ namespace SpiritLab
                 lblRefImageNotifier.Visible =
                 lblRefImageCountdown.Visible = true;
 
+                lblRefImageCountdown.Text = "5";
+
                 RunPhotoBooth();
             }
 
@@ -98,8 +100,10 @@ namespace SpiritLab
                 btnStartPhotoshoot.Text = "Start";
                 lblRefImageNotifier.Text = "Saving reference image in";
                 
-                lblRefImageCountdown.Text = "5";
-                
+                lblRefImageCountdown.Text = "0";
+
+                lblSavedToFile.Visible = false;
+
 
                 _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
                 _countdownUI.Initialize();
@@ -113,7 +117,7 @@ namespace SpiritLab
 
             picReference.Image =  Utils.ResizeImage(await _photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
-            lblRefImageNotifier.Text = "Next image in";
+            lblRefImageNotifier.Text = "Next image in:";
 
             while (photoShootRunning)
             {
@@ -143,7 +147,9 @@ namespace SpiritLab
                 if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
                 {
                     _soundPlayer.Play();
-                    _countdownUI.UpdateCommunication("Thank you!");
+                    _countdownUI.UpdateCommunication("");
+                    _countdownUI.SetCountdownVisible(true);
+                    _countdownUI.UpdateCounter("✔");
                     lblSavedToFile.Visible = true;
 
                     var bitmap = new Bitmap(result.NewImage);

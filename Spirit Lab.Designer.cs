@@ -34,6 +34,10 @@ namespace SpiritLab
             this.picCamera = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPhotoBooth = new System.Windows.Forms.TabPage();
+            this.numUpDownSlideshowInterval = new System.Windows.Forms.NumericUpDown();
+            this.numUpDownShootInterval = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblShootInterval = new System.Windows.Forms.Label();
             this.btnLiveView = new System.Windows.Forms.Button();
             this.btnOpenSlideshowUI = new System.Windows.Forms.Button();
             this.btnOpenCountDownUI = new System.Windows.Forms.Button();
@@ -59,19 +63,15 @@ namespace SpiritLab
             this.labelOnes = new System.Windows.Forms.Label();
             this.labelZeros = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
-            this.lblShootInterval = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numUpDownShootInterval = new System.Windows.Forms.NumericUpDown();
-            this.numUpDownSlideshowInterval = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPhotoBooth.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownSlideshowInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownShootInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.tabRandom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDownShootInterval)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDownSlideshowInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCamera
@@ -145,6 +145,42 @@ namespace SpiritLab
             this.tabPhotoBooth.TabIndex = 1;
             this.tabPhotoBooth.Text = "Photo booth";
             this.tabPhotoBooth.UseVisualStyleBackColor = true;
+            // 
+            // numUpDownSlideshowInterval
+            // 
+            this.numUpDownSlideshowInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numUpDownSlideshowInterval.Location = new System.Drawing.Point(1313, 633);
+            this.numUpDownSlideshowInterval.Name = "numUpDownSlideshowInterval";
+            this.numUpDownSlideshowInterval.Size = new System.Drawing.Size(59, 29);
+            this.numUpDownSlideshowInterval.TabIndex = 21;
+            // 
+            // numUpDownShootInterval
+            // 
+            this.numUpDownShootInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numUpDownShootInterval.Location = new System.Drawing.Point(1251, 603);
+            this.numUpDownShootInterval.Name = "numUpDownShootInterval";
+            this.numUpDownShootInterval.Size = new System.Drawing.Size(59, 29);
+            this.numUpDownShootInterval.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1035, 635);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(210, 24);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Slideshow interval secs:";
+            // 
+            // lblShootInterval
+            // 
+            this.lblShootInterval.AutoSize = true;
+            this.lblShootInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShootInterval.Location = new System.Drawing.Point(1035, 602);
+            this.lblShootInterval.Name = "lblShootInterval";
+            this.lblShootInterval.Size = new System.Drawing.Size(172, 24);
+            this.lblShootInterval.TabIndex = 18;
+            this.lblShootInterval.Text = "Shoot interval secs:";
             // 
             // btnLiveView
             // 
@@ -270,21 +306,20 @@ namespace SpiritLab
             // 
             this.lblRefImageNotifier.AutoSize = true;
             this.lblRefImageNotifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRefImageNotifier.Location = new System.Drawing.Point(67, 635);
+            this.lblRefImageNotifier.Location = new System.Drawing.Point(36, 653);
             this.lblRefImageNotifier.Name = "lblRefImageNotifier";
-            this.lblRefImageNotifier.Size = new System.Drawing.Size(327, 31);
+            this.lblRefImageNotifier.Size = new System.Drawing.Size(255, 31);
             this.lblRefImageNotifier.TabIndex = 5;
-            this.lblRefImageNotifier.Text = "Saving reference image in";
+            this.lblRefImageNotifier.Text = "Saving reference in:";
             // 
             // lblRefImageCountdown
             // 
             this.lblRefImageCountdown.AutoSize = true;
             this.lblRefImageCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 90F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRefImageCountdown.Location = new System.Drawing.Point(414, 584);
+            this.lblRefImageCountdown.Location = new System.Drawing.Point(300, 602);
             this.lblRefImageCountdown.Name = "lblRefImageCountdown";
-            this.lblRefImageCountdown.Size = new System.Drawing.Size(124, 135);
+            this.lblRefImageCountdown.Size = new System.Drawing.Size(0, 135);
             this.lblRefImageCountdown.TabIndex = 4;
-            this.lblRefImageCountdown.Text = "5";
             // 
             // tabRandom
             // 
@@ -406,42 +441,6 @@ namespace SpiritLab
             this.labelValue.TabIndex = 0;
             this.labelValue.Text = "#";
             // 
-            // lblShootInterval
-            // 
-            this.lblShootInterval.AutoSize = true;
-            this.lblShootInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShootInterval.Location = new System.Drawing.Point(1035, 602);
-            this.lblShootInterval.Name = "lblShootInterval";
-            this.lblShootInterval.Size = new System.Drawing.Size(172, 24);
-            this.lblShootInterval.TabIndex = 18;
-            this.lblShootInterval.Text = "Shoot interval secs:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1035, 635);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 24);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Slideshow interval secs:";
-            // 
-            // numUpDownShootInterval
-            // 
-            this.numUpDownShootInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numUpDownShootInterval.Location = new System.Drawing.Point(1251, 603);
-            this.numUpDownShootInterval.Name = "numUpDownShootInterval";
-            this.numUpDownShootInterval.Size = new System.Drawing.Size(59, 29);
-            this.numUpDownShootInterval.TabIndex = 20;
-            // 
-            // numUpDownSlideshowInterval
-            // 
-            this.numUpDownSlideshowInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numUpDownSlideshowInterval.Location = new System.Drawing.Point(1313, 633);
-            this.numUpDownSlideshowInterval.Name = "numUpDownSlideshowInterval";
-            this.numUpDownSlideshowInterval.Size = new System.Drawing.Size(59, 29);
-            this.numUpDownSlideshowInterval.TabIndex = 21;
-            // 
             // SpiritLabForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,13 +454,13 @@ namespace SpiritLab
             this.tabControl1.ResumeLayout(false);
             this.tabPhotoBooth.ResumeLayout(false);
             this.tabPhotoBooth.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownSlideshowInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownShootInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.tabRandom.ResumeLayout(false);
             this.tabRandom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDownShootInterval)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDownSlideshowInterval)).EndInit();
             this.ResumeLayout(false);
 
         }

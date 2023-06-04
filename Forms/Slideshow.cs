@@ -53,8 +53,6 @@ namespace SpiritLab.Forms
 
                 _currentImageIndex = _currentImageIndex + 1 <= images.Count - 1 ? ++_currentImageIndex : 0;
 
-                Debug.WriteLine($"Slideshow setting stuff done. Now waiting for {_interval * 1000} milliseconds");
-
                 await Task.Delay(_interval * 1000);
             }
         }

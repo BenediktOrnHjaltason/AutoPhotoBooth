@@ -51,12 +51,13 @@ namespace SpiritLab.Forms
             this.lblCountdown.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblCountdown.BackColor = System.Drawing.Color.Transparent;
             this.lblCountdown.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblCountdown.Font = new System.Drawing.Font("Times New Roman", 500.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountdown.ForeColor = System.Drawing.Color.White;
-            this.lblCountdown.Location = new System.Drawing.Point(415, 54);
+            this.lblCountdown.Font = new System.Drawing.Font("Times New Roman", 500.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountdown.ForeColor = System.Drawing.Color.Green;
+            this.lblCountdown.Location = new System.Drawing.Point(166, 54);
             this.lblCountdown.Name = "lblCountdown";
-            this.lblCountdown.Size = new System.Drawing.Size(803, 864);
+            this.lblCountdown.Size = new System.Drawing.Size(1076, 864);
             this.lblCountdown.TabIndex = 1;
+            this.lblCountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCommunication
             // 
