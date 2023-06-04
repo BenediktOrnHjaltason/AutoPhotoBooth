@@ -13,6 +13,10 @@ namespace SpiritLab.Configuration
     {
         public static Config LoadConfig(string filePath)
         {
+            if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+
             if(File.Exists(filePath))
             {
                 string jsonString = File.ReadAllText(filePath);
