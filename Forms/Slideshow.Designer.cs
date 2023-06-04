@@ -49,6 +49,7 @@
             this.pictureBoxSlideshow.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxSlideshow.Name = "pictureBoxSlideshow";
             this.pictureBoxSlideshow.Size = new System.Drawing.Size(1507, 798);
+            this.pictureBoxSlideshow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSlideshow.TabIndex = 1;
             this.pictureBoxSlideshow.TabStop = false;
             // 
