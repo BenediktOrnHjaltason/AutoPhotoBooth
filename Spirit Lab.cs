@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using SpiritLab.CustomTypes;
 using SpiritLab.Configuration;
 using SpiritLab.Forms;
+using System.Diagnostics;
 
 namespace SpiritLab
 {
@@ -273,15 +274,6 @@ namespace SpiritLab
                 _countdownUI.Show();
         }
 
-        private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ConfigurationHandler.SaveConfig(new Config { PhotoBoothConfig = new PhotoBoothConfig { FileSaveThreshold = trackBarSaveFileThreshold.Value,
-                                                                                                   ShootInterval = (int)numUpDownShootInterval.Value,
-                                                                                                   SlideshowInterval = (int)numUpDownSlideshowInterval.Value}}, _configPath);
-
-            _photoBooth.Close();
-        }
-
         private void btnLiveView_Click(object sender, EventArgs e)
         {
             _cameraLiveView = new CameraLiveView();
@@ -292,6 +284,25 @@ namespace SpiritLab
         private void cboCamera_SelectedValueChanged(object sender, EventArgs e)
         {
             _photoBooth.SetActiveImageSource(cboCamera.SelectedItem.ToString());
+        }
+
+        private void SpiritLabForm_Deactivate(object sender, EventArgs e)
+        {
+            ConfigurationHandler.SaveConfig(new Config
+            {
+                PhotoBoothConfig = new PhotoBoothConfig
+                {
+                    FileSaveThreshold = trackBarSaveFileThreshold.Value,
+                    ShootInterval = (int)numUpDownShootInterval.Value,
+                    SlideshowInterval = (int)numUpDownSlideshowInterval.Value
+                }
+            }, _configPath);
+            
+        }
+
+        private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _photoBooth.Close();
         }
     }
 }

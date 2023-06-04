@@ -33,7 +33,7 @@ namespace SpiritLab.Forms
 
         public void AddImage(Image bitmap)
         {
-            images.AddFirst(bitmap);
+            images.AddFirst(Utilities.Utils.ResizeImage(bitmap, new Size(pictureBoxSlideshow.Width, pictureBoxSlideshow.Height)));
             _currentImageIndex = 0;
 
             if (!_slideshowRunning) 

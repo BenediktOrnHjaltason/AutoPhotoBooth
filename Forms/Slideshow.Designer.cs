@@ -48,7 +48,7 @@
             // 
             this.pictureBoxSlideshow.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxSlideshow.Name = "pictureBoxSlideshow";
-            this.pictureBoxSlideshow.Size = new System.Drawing.Size(1507, 798);
+            this.pictureBoxSlideshow.Size = new System.Drawing.Size(1746, 1165);
             this.pictureBoxSlideshow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSlideshow.TabIndex = 1;
             this.pictureBoxSlideshow.TabStop = false;
@@ -57,7 +57,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1541, 822);
+            this.ClientSize = new System.Drawing.Size(1766, 822);
             this.Controls.Add(this.lbCounter);
             this.Controls.Add(this.pictureBoxSlideshow);
             this.Name = "Slideshow";

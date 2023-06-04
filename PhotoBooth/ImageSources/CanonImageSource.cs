@@ -44,6 +44,8 @@ namespace SpiritLab
                     Debug.WriteLine("Set active camera: " + name);
                     _sdkHandler.OpenSession(camera);
 
+
+
                     break;
                 }
             }
