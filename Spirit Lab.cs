@@ -154,6 +154,9 @@ namespace SpiritLab
 
                     var bitmap = new Bitmap(result.NewImage);
 
+                    if (!Directory.Exists("C:/ProgramData/Spirit Lab/PhotoShoot"))
+                        Directory.CreateDirectory("C:/ProgramData/Spirit Lab/PhotoShoot");
+
                     bitmap.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
 
                     bitmap.Dispose();
