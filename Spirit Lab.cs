@@ -98,7 +98,7 @@ namespace SpiritLab
                 lblRefImageCountdown.Visible =
                 lblDiffPercentage.Visible = false;
                 btnStartPhotoshoot.Text = "Start";
-                lblRefImageNotifier.Text = "Saving reference image in";
+                lblRefImageNotifier.Text = "Saving reference in:";
                 
                 lblRefImageCountdown.Text = "0";
 
