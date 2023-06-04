@@ -23,6 +23,9 @@ namespace SpiritLab
         private Slideshow _slideshowUI = new Slideshow();
         private CameraLiveView _cameraLiveView;
 
+        System.Media.SoundPlayer _soundPlayer = new System.Media.SoundPlayer(@"SuccessSound.wav");
+        
+
         public SpiritLabForm()
         {
             InitializeComponent();
@@ -139,6 +142,7 @@ namespace SpiritLab
 
                 if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
                 {
+                    _soundPlayer.Play();
                     _countdownUI.UpdateCommunication("Thank you!");
                     lblSavedToFile.Visible = true;
 
