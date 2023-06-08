@@ -117,7 +117,7 @@ namespace SpiritLab
 
                     Debug.WriteLine("Image Path: " + _lastCapturedImagePath);
 
-                    await Task.Delay(2000);
+                    await Task.Delay(100);
 
                     Bitmap bmp2 = null;
 
