@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using AForge.Video;
 using System.Drawing;
 using System.Diagnostics;
+using Emgu.CV.Reg;
+using System.Drawing.Imaging;
+using System.IO;
+using SpiritLab.Configuration;
 
 namespace SpiritLab
 {
@@ -75,10 +79,19 @@ namespace SpiritLab
             return capturedLiveViewFrame;
         }
 
-        
         public void StartLiveView(Action<Bitmap> onLiveViewReceived)
         {
             OnLiveViewReceived += onLiveViewReceived;
+        }
+
+        public void SaveToPositiveResults()
+        {
+            PhotoBooth.CapturedComparison.Save(Path.Combine(ConfigurationHandler.PositiveResultSavePath, $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
+        }
+
+        public void DeleteComparison()
+        {
+
         }
 
         public void Close()

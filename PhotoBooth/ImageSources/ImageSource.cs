@@ -15,6 +15,10 @@ namespace SpiritLab
 
         Task<Bitmap> TakeStillImage(ImagePurpose purpose);
 
+        void SaveToPositiveResults();
+
+        void DeleteComparison();
+
         Bitmap GetLiveViewFrame();
 
         void StartLiveView(Action<Bitmap> OnLiveViewReceived);

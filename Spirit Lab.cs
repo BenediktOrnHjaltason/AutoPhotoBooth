@@ -18,7 +18,6 @@ namespace SpiritLab
     {
         private PhotoBooth _photoBooth = new PhotoBooth();
 
-        private const string _configPath = "C:/ProgramData/Spirit Lab/config.json";
         private Config _config;
         private CountDown _countdownUI = new CountDown();
         private Slideshow _slideshowUI = new Slideshow();
@@ -38,7 +37,7 @@ namespace SpiritLab
             lblDiffPercentage.Visible =
             lblSavedToFile.Visible = false;
 
-            _config = ConfigurationHandler.LoadConfig(_configPath);
+            _config = ConfigurationHandler.LoadConfig();
 
             if (_config == null)
                 _config = new Config();
@@ -153,18 +152,16 @@ namespace SpiritLab
                     _countdownUI.UpdateCounter("✔");
                     lblSavedToFile.Visible = true;
 
-                    var bitmap = new Bitmap(result.NewImage);
-
-                    if (!Directory.Exists("C:/ProgramData/Spirit Lab/PhotoShoot"))
-                        Directory.CreateDirectory("C:/ProgramData/Spirit Lab/PhotoShoot");
-
-                    bitmap.Save(Path.Combine("C:/ProgramData/Spirit Lab/PhotoShoot", $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
-
-                    bitmap.Dispose();
+                    _photoBooth.SaveToPositiveResults();
 
                     _slideshowUI.AddImage(result.NewImage);
                 }
-                else lblSavedToFile.Visible = false;
+                else
+                {
+                    lblSavedToFile.Visible = false;
+                    _photoBooth.DeleteComparison();
+                }
+                
 
                 lblRefImageCountdown.Visible = false;
 
@@ -296,7 +293,7 @@ namespace SpiritLab
                     ShootInterval = (int)numUpDownShootInterval.Value,
                     SlideshowInterval = (int)numUpDownSlideshowInterval.Value
                 }
-            }, _configPath);
+            }, ConfigurationHandler.ConfigPath);
             
         }
 

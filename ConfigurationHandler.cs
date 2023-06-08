@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 using Newtonsoft.Json;
 using SpiritLab.CustomTypes;
 
@@ -11,15 +6,25 @@ namespace SpiritLab.Configuration
 {
     public class ConfigurationHandler
     {
-        public static Config LoadConfig(string filePath)
+
+        public static readonly string PositiveResultSavePath = "C:/ProgramData/Spirit Lab/Photo Booth/Captures";
+        public static readonly string TempImagePath = "C:/ProgramData/Spirit Lab/Photo Booth/Temp";
+        public static readonly string ConfigPath = "C:/ProgramData/Spirit Lab/config.json";
+
+        public static Config LoadConfig()
         {
-            if (!Directory.Exists(Path.GetDirectoryName(filePath)))
-                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+            if (!Directory.Exists(Path.GetDirectoryName(ConfigPath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(ConfigPath));
 
+            if (!Directory.Exists(PositiveResultSavePath))
+                Directory.CreateDirectory(PositiveResultSavePath);
 
-            if(File.Exists(filePath))
+            if (!Directory.Exists(TempImagePath))
+                Directory.CreateDirectory(TempImagePath);
+
+            if(File.Exists(ConfigPath))
             {
-                string jsonString = File.ReadAllText(filePath);
+                string jsonString = File.ReadAllText(ConfigPath);
 
                 return JsonConvert.DeserializeObject<Config>(jsonString);
             }

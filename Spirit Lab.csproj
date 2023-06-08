@@ -135,6 +135,9 @@
     <PackageReference Include="Emgu.CV.runtime.windows">
       <Version>4.6.0.5131</Version>
     </PackageReference>
+    <PackageReference Include="HurlbertVisionLab.LibRawWrapper">
+      <Version>1.0.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>

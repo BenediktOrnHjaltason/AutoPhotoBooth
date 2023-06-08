@@ -3,6 +3,8 @@ using System.Drawing;
 using SpiritLab.CustomTypes;
 using System.Threading.Tasks;
 using System;
+using SpiritLab.Configuration;
+using System.IO;
 
 namespace SpiritLab
 {
@@ -77,6 +79,16 @@ namespace SpiritLab
                 NewImage = newImage,
                 DifferencePercentage = difference.Percentage,
             };
+        }
+
+        public void SaveToPositiveResults()
+        {
+            _activeImageSource.SaveToPositiveResults();
+        }
+
+        public void DeleteComparison()
+        {
+            _activeImageSource?.DeleteComparison();
         }
     }
 

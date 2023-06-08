@@ -40,7 +40,7 @@ namespace EDSDK
         /// <summary>
         /// Directory to where photos will be saved
         /// </summary>
-        public string ImageSaveDirectory { get; set; }
+        public string ImageSaveDirectory { get; set; } = SpiritLab.Configuration.ConfigurationHandler.TempImagePath;
         /// <summary>
         /// The focus and zoom border rectangle for live view (set after first use of live view)
         /// </summary>
@@ -315,6 +315,8 @@ namespace EDSDK
         /// <returns>An EDSDK errorcode</returns>
         private uint Camera_SDKProgressCallbackEvent(uint inPercent, IntPtr inContext, ref bool outCancel)
         {
+            Debug.WriteLine($"Camera_SDKProgressCallbackEvent. inPercent {inPercent}");
+
             //Handle progress here
             if (ProgressChanged != null) ProgressChanged((int)inPercent);
             return EDS_ERR_OK;
@@ -580,8 +582,6 @@ namespace EDSDK
         /// <param name="directory">Path to where the image will be saved to</param>
         public void DownloadImage(IntPtr ObjectPointer, string directory)
         {
-            Debug.WriteLine("DownloadImage called");
-
             EdsDirectoryItemInfo dirInfo;
             IntPtr streamRef;
             //get information about object
