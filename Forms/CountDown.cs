@@ -45,6 +45,11 @@ namespace SpiritLab.Forms
             lblCountdown.Visible = visible;
         }
 
+        public void SetCameraIconVisible(bool visible) 
+        {
+            lblCommunication.Visible = visible;
+        }
+
         public void UpdateCommunication(string text)
         {
             lblCommunication.Text = text;

@@ -173,8 +173,6 @@ namespace SpiritLab
 
         public void SaveToPositiveResults()
         {
-            Debug.WriteLine($"Saving positive result. last captured path: {_lastCapturedImagePath}. New constructed path: {ConfigurationHandler.PositiveResultSavePath}/{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.jpg");
-
             File.Move(_lastCapturedImagePath, $"{ConfigurationHandler.PositiveResultSavePath}/{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.jpg");
         }
 
@@ -203,39 +201,5 @@ namespace SpiritLab
 
             _sdkHandler.CloseSession();
         }
-
-        /*
-        public uint SDKObjectEventReceiver(uint inEvent, IntPtr inRef, IntPtr inContext)
-        {
-            if (inEvent == 516)
-            {
-                _lastDownloadedImage = inRef;
-                _sdkHandler.DownloadImage(inRef);
-            }
-
-            if (inEvent == 520)
-            {
-                
-            }
-
-            Debug.WriteLine($"SdkObjectEventReceiver: inEvent: {inEvent}");
-
-            return 0;
-        }
-
-        
-        public void ReceiveDownloadedImage(Bitmap bitmap)
-        {
-            Debug.WriteLine("Receiving downloaded image");
-
-            if (bitmap != null)
-            {
-                if (LastImagePurpose == ImagePurpose.REFERENCE) 
-                {
-                    PhotoBooth.CapturedReference = bitmap;
-                }
-                else PhotoBooth.CapturedComparison = bitmap;
-            }
-        }*/
     }
 }

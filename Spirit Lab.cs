@@ -121,8 +121,9 @@ namespace SpiritLab
 
             while (photoShootRunning)
             {
-                _countdownUI.UpdateCommunication("Might we have a picture of you?");
+                _countdownUI.UpdateCommunication("📷");
                 _countdownUI.SetCountdownVisible(true);
+                _countdownUI.SetCameraIconVisible(true);
                 lblRefImageCountdown.Visible = true;
 
                 await CountDown((int)numUpDownShootInterval.Value);
@@ -131,6 +132,7 @@ namespace SpiritLab
                     break;
 
                 _countdownUI.SetCountdownVisible(false);
+                _countdownUI.SetCameraIconVisible(false);
                 _countdownUI.SetImageVisible(false);
 
                 var result = await _photoBooth.CompareNewImage();
@@ -185,12 +187,24 @@ namespace SpiritLab
                 lblRefImageCountdown.Text = countDownIterator.ToString();
 
                 if (_countdownUI != null)
-                    _countdownUI.UpdateCounter(countDownIterator.ToString());
+                    _countdownUI.UpdateCounter(FormatCountdownString(countDownIterator));
 
                 await Task.Delay(1000);
 
                 countDownIterator--;
             }
+        }
+
+        private string FormatCountdownString(int counter)
+        {
+            int minutes = counter / 60;
+            int seconds = counter % 60;
+
+            string minutes_s = minutes < 10 ? ("0" + minutes.ToString() + ":") : minutes.ToString() + ":";
+            string seconds_s = seconds < 10 ? ("0" + seconds.ToString()) : seconds.ToString();
+
+
+            return $"{minutes_s}{seconds_s}";
         }
 
         private void trackBarSaveFileThreshold_Scroll(object sender, EventArgs e)

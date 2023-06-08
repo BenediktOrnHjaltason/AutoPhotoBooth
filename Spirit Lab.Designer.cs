@@ -158,8 +158,13 @@ namespace SpiritLab
             // 
             this.numUpDownShootInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numUpDownShootInterval.Location = new System.Drawing.Point(1251, 603);
+            this.numUpDownShootInterval.Maximum = new decimal(new int[] {
+            3599,
+            0,
+            0,
+            0});
             this.numUpDownShootInterval.Name = "numUpDownShootInterval";
-            this.numUpDownShootInterval.Size = new System.Drawing.Size(59, 29);
+            this.numUpDownShootInterval.Size = new System.Drawing.Size(87, 29);
             this.numUpDownShootInterval.TabIndex = 20;
             // 
             // label1

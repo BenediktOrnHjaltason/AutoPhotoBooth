@@ -51,23 +51,25 @@ namespace SpiritLab.Forms
             this.lblCountdown.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblCountdown.BackColor = System.Drawing.Color.Transparent;
             this.lblCountdown.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblCountdown.Font = new System.Drawing.Font("Times New Roman", 500.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountdown.Font = new System.Drawing.Font("Times New Roman", 360F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountdown.ForeColor = System.Drawing.Color.Green;
-            this.lblCountdown.Location = new System.Drawing.Point(166, 54);
+            this.lblCountdown.Location = new System.Drawing.Point(23, 54);
             this.lblCountdown.Name = "lblCountdown";
-            this.lblCountdown.Size = new System.Drawing.Size(1076, 864);
+            this.lblCountdown.Size = new System.Drawing.Size(1378, 864);
             this.lblCountdown.TabIndex = 1;
+            this.lblCountdown.Text = "00:00";
             this.lblCountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCommunication
             // 
+            this.lblCommunication.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblCommunication.AutoSize = true;
             this.lblCommunication.BackColor = System.Drawing.Color.Transparent;
-            this.lblCommunication.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCommunication.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblCommunication.Location = new System.Drawing.Point(224, 18);
+            this.lblCommunication.Font = new System.Drawing.Font("Microsoft Sans Serif", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCommunication.ForeColor = System.Drawing.Color.Green;
+            this.lblCommunication.Location = new System.Drawing.Point(534, 0);
             this.lblCommunication.Name = "lblCommunication";
-            this.lblCommunication.Size = new System.Drawing.Size(0, 63);
+            this.lblCommunication.Size = new System.Drawing.Size(0, 226);
             this.lblCommunication.TabIndex = 2;
             this.lblCommunication.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
