@@ -33,6 +33,10 @@ namespace SpiritLab
                 if (source.GetImageSourceNames().Contains(name))
                 {
                     source.SetActiveSource(name);
+
+                    if (_activeImageSource != null)
+                        _activeImageSource.Close();
+
                     _activeImageSource = source;
                     break;
                 }
