@@ -42,7 +42,7 @@ namespace SpiritLab.Forms
             this.picDisplay.Location = new System.Drawing.Point(0, 0);
             this.picDisplay.Name = "picDisplay";
             this.picDisplay.Size = new System.Drawing.Size(1422, 805);
-            this.picDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             // 
