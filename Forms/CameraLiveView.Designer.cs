@@ -34,9 +34,10 @@
             // 
             // pictureBoxLiveView
             // 
-            this.pictureBoxLiveView.Location = new System.Drawing.Point(7, 9);
+            this.pictureBoxLiveView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxLiveView.Location = new System.Drawing.Point(12, 8);
             this.pictureBoxLiveView.Name = "pictureBoxLiveView";
-            this.pictureBoxLiveView.Size = new System.Drawing.Size(1344, 780);
+            this.pictureBoxLiveView.Size = new System.Drawing.Size(1164, 777);
             this.pictureBoxLiveView.TabIndex = 0;
             this.pictureBoxLiveView.TabStop = false;
             // 
@@ -44,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1355, 793);
+            this.ClientSize = new System.Drawing.Size(1193, 797);
             this.Controls.Add(this.pictureBoxLiveView);
             this.Name = "CameraLiveView";
             this.Text = "CameraLiveView";

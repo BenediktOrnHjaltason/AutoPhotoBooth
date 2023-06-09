@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 using SpiritLab.Configuration;
-using HurlbertVisionLab.LibRawWrapper;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 
 namespace SpiritLab
 {
