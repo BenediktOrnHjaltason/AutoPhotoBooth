@@ -10,7 +10,6 @@ using System.Drawing.Imaging;
 using SpiritLab.CustomTypes;
 using SpiritLab.Configuration;
 using SpiritLab.Forms;
-using System.Diagnostics;
 
 namespace SpiritLab
 {
@@ -56,12 +55,12 @@ namespace SpiritLab
         }
 
         #region Photo shoot
-
+        
         private void btnGetCameras_Click(object sender, EventArgs e)
         {
             cboCamera.Items.Clear();
             cboCamera.Enabled = btnStartPhotoshoot.Enabled = btnLiveView.Enabled = false;
-
+            
             var imageSourcesNames = _photoBooth.GetImageSourceNames();
 
             if (imageSourcesNames.Any() ) 
@@ -321,6 +320,7 @@ namespace SpiritLab
         private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _photoBooth.Close();
-        }
+            _photoBooth.Dispose();
+    }
     }
 }

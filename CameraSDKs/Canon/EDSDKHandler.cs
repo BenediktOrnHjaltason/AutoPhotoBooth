@@ -3,13 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Drawing;
 using System.Threading;
-using System.Globalization;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
 using static EDSDK.EDSDKLib;
-using Emgu.CV.DepthAI;
 using System.Diagnostics;
 
 namespace EDSDK

@@ -94,6 +94,11 @@ namespace SpiritLab
         {
             _activeImageSource?.DeleteComparison();
         }
+
+        public void Dispose()
+        {
+            availableImageSources.ForEach(x => x.Dispose());
+        }
     }
 
     public enum ImagePurpose

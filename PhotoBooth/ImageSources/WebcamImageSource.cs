@@ -99,5 +99,11 @@ namespace SpiritLab
             if (videoCaptureDevice != null && videoCaptureDevice.IsRunning)
                 videoCaptureDevice.Stop();
         }
+
+        public void Dispose()
+        {
+            filterInfoCollection.Clear();
+            videoCaptureDevice = null;
+        }
     }
 }

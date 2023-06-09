@@ -9,6 +9,8 @@ namespace SpiritLab
     {
         void Initialize();
 
+        void Dispose();
+
         List<string> GetImageSourceNames();
 
         void SetActiveSource(string name);
@@ -24,6 +26,5 @@ namespace SpiritLab
         void StartLiveView(Action<Bitmap> OnLiveViewReceived);
 
         void Close();
-
     }
 }

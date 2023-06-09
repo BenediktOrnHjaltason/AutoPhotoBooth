@@ -198,5 +198,10 @@ namespace SpiritLab
 
             _sdkHandler.CloseSession();
         }
+
+        public void Dispose()
+        {
+            _sdkHandler.Dispose();
+        }
     }
 }
