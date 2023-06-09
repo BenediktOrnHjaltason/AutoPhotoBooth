@@ -201,7 +201,14 @@ namespace SpiritLab
             int seconds = counter % 60;
 
             string minutes_s = minutes > 0 ? (minutes.ToString() + ":") : "";
-            string seconds_s = seconds > 9 ?  seconds.ToString() : "0" + seconds.ToString();
+
+            string seconds_s;
+
+            if (minutes > 0)
+            {
+                seconds_s = seconds < 10 ? ("0" + seconds.ToString()) : seconds.ToString();
+            }
+            else seconds_s = seconds.ToString();
 
 
             return $"{minutes_s}{seconds_s}";
