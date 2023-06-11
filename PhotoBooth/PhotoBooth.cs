@@ -11,7 +11,7 @@ namespace SpiritLab
     public class PhotoBooth
     {
         private List<IImageSource> availableImageSources = new List<IImageSource>();
-        private IImageSource _activeImageSource;
+        private static IImageSource _activeImageSource;
 
         public static Bitmap CapturedReference { get; set; }
         public static Bitmap CapturedComparison { get; set; }
@@ -52,6 +52,11 @@ namespace SpiritLab
         public void StartLiveView(Action<Bitmap> onLiveViewUpdated)
         {
             _activeImageSource.StartLiveView(onLiveViewUpdated);
+        }
+
+        public static void StopLiveView()
+        {
+            _activeImageSource.StopLiveView();
         }
 
         public List<string> GetImageSourceNames()

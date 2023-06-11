@@ -293,6 +293,7 @@ namespace SpiritLab
 
         private void btnLiveView_Click(object sender, EventArgs e)
         {
+            _cameraLiveView?.Dispose();
             _cameraLiveView = new CameraLiveView();
             _photoBooth.StartLiveView(_cameraLiveView.UpdateLiveView);
             _cameraLiveView.Show();

@@ -33,7 +33,7 @@ namespace SpiritLab
             _sdkHandler.SDKProgressCallbackEvent += SDKProgressCallbackEvent;
         }
 
-        public List<string> GetImageSourceNames() 
+        public List<string> GetImageSourceNames()
         {
             return _sdkHandler.GetCameraList().Select(x => x.Info.szDeviceDescription).ToList();
         }
@@ -42,7 +42,7 @@ namespace SpiritLab
         {
             var cameraList = _sdkHandler.GetCameraList();
 
-            foreach(var camera in cameraList) 
+            foreach (var camera in cameraList)
             {
                 if (camera.Info.szDeviceDescription == name)
                 {
@@ -151,9 +151,9 @@ namespace SpiritLab
             _sdkHandler.StartLiveView();
         }
 
-        public Bitmap GetLiveViewFrame()
+        public void StopLiveView()
         {
-            return capturedLiveViewFrame;
+            _sdkHandler?.StopLiveView();
         }
 
         private uint SDKProgressCallbackEvent(uint inPercent, IntPtr inContext, ref bool outCancel)

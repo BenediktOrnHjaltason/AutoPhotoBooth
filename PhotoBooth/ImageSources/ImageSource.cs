@@ -21,9 +21,9 @@ namespace SpiritLab
 
         void DeleteComparison();
 
-        Bitmap GetLiveViewFrame();
-
         void StartLiveView(Action<Bitmap> OnLiveViewReceived);
+
+        void StopLiveView();
 
         void Close();
     }

@@ -79,10 +79,9 @@ namespace SpiritLab
             return capturedLiveViewFrame;
         }
 
-        public Bitmap GetLiveViewFrame()
+        public void StopLiveView()
         {
 
-            return capturedLiveViewFrame;
         }
 
         public void StartLiveView(Action<Bitmap> onLiveViewReceived)
