@@ -70,6 +70,7 @@ namespace SpiritLab
 
                 if (purpose == ImagePurpose.REFERENCE)
                 {
+                    PhotoBooth.CapturedReference.Dispose();
                     PhotoBooth.CapturedReference = null;
 
                     while (PhotoBooth.CapturedReference == null)
@@ -81,6 +82,7 @@ namespace SpiritLab
                 }
                 else
                 {
+                    PhotoBooth.CapturedComparison.Dispose();
                     PhotoBooth.CapturedComparison = null;
 
                     while (PhotoBooth.CapturedComparison == null)
