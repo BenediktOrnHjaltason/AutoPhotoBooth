@@ -23,7 +23,7 @@ namespace SpiritLab.CustomTypes
     public class PhotoBoothConfig
     {
         public int FileSaveThreshold = 3;
-        public int ShootInterval = 30;
+        public int ShootInterval = 10;
         public int SlideshowInterval = 10;
     }
 }
