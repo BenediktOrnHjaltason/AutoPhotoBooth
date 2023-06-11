@@ -58,6 +58,7 @@ namespace SpiritLab
         Action<Bitmap> OnLiveViewReceived;
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
+            capturedLiveViewFrame?.Dispose();
             capturedLiveViewFrame = (Bitmap)eventArgs.Frame.Clone();
             OnLiveViewReceived?.Invoke(capturedLiveViewFrame);
         }
