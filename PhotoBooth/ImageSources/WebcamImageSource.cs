@@ -68,15 +68,16 @@ namespace SpiritLab
             {
                 PhotoBooth.CapturedReference?.Dispose();
                 PhotoBooth.CapturedReference = (Bitmap)capturedLiveViewFrame.Clone();
+
+                return PhotoBooth.CapturedReference;
             }
-            else if (purpose == ImagePurpose.COMPARISON)
+            else
             {
                 PhotoBooth.CapturedComparison?.Dispose();
                 PhotoBooth.CapturedComparison = (Bitmap)capturedLiveViewFrame.Clone();
-            }
-                    
 
-            return capturedLiveViewFrame;
+                return PhotoBooth.CapturedComparison;
+            }
         }
 
         public void StopLiveView()

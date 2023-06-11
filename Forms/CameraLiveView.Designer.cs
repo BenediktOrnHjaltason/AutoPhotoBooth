@@ -49,6 +49,7 @@
             this.Controls.Add(this.pictureBoxLiveView);
             this.Name = "CameraLiveView";
             this.Text = "CameraLiveView";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CameraLiveView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLiveView)).EndInit();
             this.ResumeLayout(false);
 

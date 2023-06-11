@@ -18,5 +18,10 @@ namespace SpiritLab
 
             pictureBoxLiveView.Image = image;
         }
+
+        private void CameraLiveView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            PhotoBooth.StopLiveView();
+        }
     }
 }
