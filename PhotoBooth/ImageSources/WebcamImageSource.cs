@@ -64,11 +64,17 @@ namespace SpiritLab
 
         public async Task<Bitmap> TakeStillImage(ImagePurpose purpose)
         {
-            if (purpose == ImagePurpose.REFERENCE) 
-                PhotoBooth.CapturedReference = capturedLiveViewFrame;
-
+            if (purpose == ImagePurpose.REFERENCE)
+            {
+                PhotoBooth.CapturedReference?.Dispose();
+                PhotoBooth.CapturedReference = (Bitmap)capturedLiveViewFrame.Clone();
+            }
             else if (purpose == ImagePurpose.COMPARISON)
-                    PhotoBooth.CapturedComparison = capturedLiveViewFrame;
+            {
+                PhotoBooth.CapturedComparison?.Dispose();
+                PhotoBooth.CapturedComparison = (Bitmap)capturedLiveViewFrame.Clone();
+            }
+                    
 
             return capturedLiveViewFrame;
         }

@@ -13,6 +13,9 @@ namespace SpiritLab
 
         public void UpdateLiveView(Image image) 
         {
+            pictureBoxLiveView?.Image?.Dispose();
+
+
             pictureBoxLiveView.Image = image;
         }
     }
