@@ -14,8 +14,13 @@ namespace SpiritLab
             Mat absDiffed = new Mat();
             CvInvoke.AbsDiff( referenceMat, newImageMat, absDiffed);
 
+            referenceMat.Dispose();
+            newImageMat.Dispose();
+
             Mat thresholded = new Mat();
             CvInvoke.Threshold(absDiffed, thresholded, 50, 255, Emgu.CV.CvEnum.ThresholdType.ToZero);
+
+            absDiffed.Dispose();
 
             Mat grayScaleConverted = new Mat();
             CvInvoke.CvtColor(thresholded, grayScaleConverted, Emgu.CV.CvEnum.ColorConversion.Rgb2Gray);
@@ -23,11 +28,19 @@ namespace SpiritLab
             double nonZerolements = CvInvoke.CountNonZero(grayScaleConverted);
             double totalPixels = grayScaleConverted.Height * grayScaleConverted.Width;
 
+            grayScaleConverted.Dispose();
+
             float percentageChanged = ((float)nonZerolements / (float)totalPixels) * 100;
 
-            return new ImageDifference { 
-                ProcessedImage = thresholded.ToBitmap(), 
-                Percentage = percentageChanged};
+            var absdiffed = new ImageDifference
+            {
+                ProcessedImage = (Bitmap)thresholded.ToBitmap().Clone(),
+                Percentage = percentageChanged
+            };
+
+            thresholded.Dispose();
+
+            return absdiffed;
         }
     }
 }
