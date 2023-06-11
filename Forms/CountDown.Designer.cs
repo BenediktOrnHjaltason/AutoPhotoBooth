@@ -37,7 +37,7 @@ namespace SpiritLab.Forms
             // 
             // picDisplay
             // 
-            this.picDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.picDisplay.BackColor = System.Drawing.Color.Black;
             this.picDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picDisplay.Location = new System.Drawing.Point(0, 0);
             this.picDisplay.Name = "picDisplay";
