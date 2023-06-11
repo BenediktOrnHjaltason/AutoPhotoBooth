@@ -125,6 +125,7 @@ namespace SpiritLab
 
                     if (purpose == ImagePurpose.REFERENCE)
                     {
+                        PhotoBooth.CapturedReference?.Dispose();
                         PhotoBooth.CapturedReference = bmp2;
 
                         File.Delete(_lastCapturedImagePath);
@@ -132,6 +133,7 @@ namespace SpiritLab
                     }
                     else
                     {
+                        PhotoBooth.CapturedComparison?.Dispose();
                         PhotoBooth.CapturedComparison = bmp2;
                     }
                 }
