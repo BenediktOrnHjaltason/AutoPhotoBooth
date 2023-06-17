@@ -87,6 +87,8 @@ namespace SpiritLab
 
                 lblRefImageCountdown.Text = "5";
 
+                btnLiveView.Enabled = false;
+
                 RunPhotoBooth();
             }
 
@@ -106,6 +108,8 @@ namespace SpiritLab
 
                 _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
                 _countdownUI.Initialize();
+
+                btnLiveView.Enabled = true;
 
                 GC.Collect();
             }
@@ -177,11 +181,11 @@ namespace SpiritLab
                 GC.Collect();
             }
 
-            picCamera?.Image.Dispose();
+            picCamera?.Image?.Dispose();
             picCamera.Image = null;
-            picReference?.Image.Dispose();
+            picReference?.Image?.Dispose();
             picReference.Image = null;
-            picNewImage?.Image.Dispose();
+            picNewImage?.Image?.Dispose();
             picNewImage.Image = null;
 
             GC.Collect();
