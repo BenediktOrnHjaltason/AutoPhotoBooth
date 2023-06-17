@@ -106,6 +106,8 @@ namespace SpiritLab
 
                 _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
                 _countdownUI.Initialize();
+
+                GC.Collect();
             }
         }
 
@@ -114,7 +116,8 @@ namespace SpiritLab
             _countdownUI.SetCountdownVisible(false);
             await CountDown(5);
 
-            picReference.Image =  Utils.ResizeImage(await _photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
+            picReference.Image?.Dispose();
+            picReference.Image = Utils.ResizeImage(await _photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
 
             lblRefImageNotifier.Text = "Next image in:";
 
@@ -139,11 +142,13 @@ namespace SpiritLab
                 lblDiffPercentage.Visible = true;
                 lblDiffPercentage.Text = $"Difference:\n{result.DifferencePercentage.ToString("0.000")}%";
 
-                picNewImage.Image = Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height));
-                _countdownUI.UpdateImage(result.NewImage);
+                picNewImage.Image?.Dispose();
+                picNewImage.Image = (Bitmap)Utils.ResizeImage(result.NewImage, new Size(picNewImage.Width, picNewImage.Height)).Clone();
+                _countdownUI.UpdateImage((Bitmap)result.NewImage.Clone());
                 _countdownUI.SetImageVisible(true);
 
-                picCamera.Image = Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height));
+                picCamera.Image?.Dispose();
+                picCamera.Image = (Bitmap)Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height)).Clone();
 
                 if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
                 {
@@ -155,23 +160,30 @@ namespace SpiritLab
 
                     _photoBooth.SaveToPositiveResults();
 
-                    _slideshowUI.AddImage(result.NewImage);
+                    _slideshowUI.AddImage((Bitmap)result.NewImage.Clone());
                 }
                 else
                 {
                     lblSavedToFile.Visible = false;
                     _photoBooth.DeleteComparison();
                 }
-                
+
+                result.Dispose();
+                GC.Collect();
 
                 lblRefImageCountdown.Visible = false;
 
                 await Task.Delay(3000);
             }
 
+            picCamera?.Image.Dispose();
             picCamera.Image = null;
+            picReference?.Image.Dispose();
             picReference.Image = null;
+            picNewImage?.Image.Dispose();
             picNewImage.Image = null;
+
+            GC.Collect();
         }
 
         private async Task CountDown(int duration)
@@ -232,8 +244,6 @@ namespace SpiritLab
         private int lastGeneratedValue;
         private int sumGeneratedZeros = 0;
         private int sumGeneratedOnes = 0;
-
-        private List<int> generatedValuesQueue = new List<int>();
 
         private void btnRandomStartStop_Click(object sender, EventArgs e)
         {

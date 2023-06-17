@@ -1,18 +1,30 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace SpiritLab.CustomTypes
 {
-    public struct ComparisonResult
+    public struct ComparisonResult : IDisposable
     {
         public Image ProcessedImage;
         public Image NewImage;
         public float DifferencePercentage;
+
+        public void Dispose() 
+        {
+            ProcessedImage?.Dispose();
+            NewImage?.Dispose();
+        }
     }
 
     public struct ImageDifference
     {
         public Image ProcessedImage;
         public float Percentage;
+
+        public void Dispose()
+        {
+            ProcessedImage?.Dispose();
+        }
     }
 
     public class Config

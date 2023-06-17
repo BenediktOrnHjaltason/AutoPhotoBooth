@@ -10,7 +10,7 @@ namespace SpiritLab.Forms
 {
     public partial class Slideshow : Form
     {
-        private LinkedList<Image> images = new LinkedList<Image>();
+        private LinkedList<Image> _images = new LinkedList<Image>();
 
         private bool _slideshowRunning;
         private int _currentImageIndex;
@@ -26,15 +26,22 @@ namespace SpiritLab.Forms
             lbCounter.Text = "0 / 0";
             _slideshowRunning = false;
             _currentImageIndex = 0;
-            images.Clear();
+            _images.Clear();
             pictureBoxSlideshow.Image = null;
             _interval = interval;
         }
 
         public void AddImage(Image bitmap)
         {
-            images.AddFirst(Utilities.Utils.ResizeImage(bitmap, new Size(pictureBoxSlideshow.Width, pictureBoxSlideshow.Height)));
+            
+            _images.AddFirst((Bitmap)Utilities.Utils.ResizeImage(bitmap, new Size(pictureBoxSlideshow.Width, pictureBoxSlideshow.Height)).Clone());
             _currentImageIndex = 0;
+
+            if (_images.Count > 5) 
+            {
+                _images.ElementAt(_images.Count - 1).Dispose();
+                _images.RemoveLast();
+            }
 
             if (!_slideshowRunning) 
             {
@@ -48,10 +55,11 @@ namespace SpiritLab.Forms
             _slideshowRunning = true;
             while (_slideshowRunning) 
             {
-                pictureBoxSlideshow.Image = images.ElementAt(_currentImageIndex);
-                lbCounter.Text = $"{_currentImageIndex + 1} / {images.Count}";
+                pictureBoxSlideshow.Image?.Dispose();
+                pictureBoxSlideshow.Image = (Bitmap)_images.ElementAt(_currentImageIndex).Clone();
+                lbCounter.Text = $"{_currentImageIndex + 1} / {_images.Count}";
 
-                _currentImageIndex = _currentImageIndex + 1 <= images.Count - 1 ? ++_currentImageIndex : 0;
+                _currentImageIndex = _currentImageIndex + 1 <= _images.Count - 1 ? ++_currentImageIndex : 0;
 
                 await Task.Delay(_interval * 1000);
             }
@@ -70,7 +78,7 @@ namespace SpiritLab.Forms
 
         private void Slideshow_Load(object sender, EventArgs e)
         {
-            if (images.Count > 0 && !_slideshowRunning) 
+            if (_images.Count > 0 && !_slideshowRunning) 
             {
                 StartSlideshow();
             }

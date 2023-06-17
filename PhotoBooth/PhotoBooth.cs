@@ -82,12 +82,16 @@ namespace SpiritLab
 
             ImageDifference difference = ComputerVision.GetAbsDifference(CapturedReference, newImage);
 
-            return new ComparisonResult
+            var result = new ComparisonResult
             {
-                ProcessedImage = difference.ProcessedImage,
-                NewImage = newImage,
+                ProcessedImage = (Bitmap)difference.ProcessedImage.Clone(),
+                NewImage = (Bitmap)newImage.Clone(),
                 DifferencePercentage = difference.Percentage,
             };
+
+            difference.Dispose();
+
+            return result;
         }
 
         public void SaveToPositiveResults()

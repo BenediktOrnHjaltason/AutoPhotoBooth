@@ -14,9 +14,7 @@ namespace SpiritLab
 {
     public class WebcamImageSource : IImageSource
     {
-        public Bitmap capturedStill = null;
         public Bitmap capturedLiveViewFrame = null;
-        
 
         private FilterInfoCollection filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         private VideoCaptureDevice videoCaptureDevice;
@@ -98,7 +96,7 @@ namespace SpiritLab
 
         public void DeleteComparison()
         {
-
+            PhotoBooth.CapturedComparison?.Dispose();
         }
 
         public void Close()

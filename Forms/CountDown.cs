@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using SpiritLab.Utilities;
 
 namespace SpiritLab.Forms
 {
@@ -25,7 +26,8 @@ namespace SpiritLab.Forms
 
         public void UpdateImage(Image image)
         {
-            picDisplay.Image = Utilities.Utils.ResizeImage(image, new Size(picDisplay.Width, picDisplay.Height));
+            picDisplay.Image?.Dispose();
+            picDisplay.Image = (Bitmap)Utils.ResizeImage(image, new Size(picDisplay.Width, picDisplay.Height)).Clone();
         }
 
         public void SetImageVisible(bool visible)
