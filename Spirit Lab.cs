@@ -23,6 +23,7 @@ namespace SpiritLab
         private CameraLiveView _cameraLiveView;
         private const float _saveThresholdBase = 0.01f;
         private float _saveThreshold = 0.01f;
+        private ushort _referencePhotoCountdown = 10;
 
         System.Media.SoundPlayer _soundPlayer = new System.Media.SoundPlayer(@"SuccessSound.wav");
         
@@ -124,7 +125,7 @@ namespace SpiritLab
         private async void RunPhotoBooth()
         {
             _countdownUI.SetCountdownVisible(false);
-            await CountDown(5);
+            await CountDown(_referencePhotoCountdown);
 
             picReference.Image?.Dispose();
             picReference.Image = Utils.ResizeImage(await _photoBooth.TakeReferenceImage(), new Size(picReference.Width, picReference.Height));
