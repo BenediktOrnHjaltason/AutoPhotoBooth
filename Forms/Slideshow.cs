@@ -26,7 +26,12 @@ namespace SpiritLab.Forms
             lbCounter.Text = "0 / 0";
             _slideshowRunning = false;
             _currentImageIndex = 0;
+
+            foreach (Image image in _images)
+                image.Dispose();
+                
             _images.Clear();
+
             pictureBoxSlideshow.Image = null;
             _interval = interval;
         }

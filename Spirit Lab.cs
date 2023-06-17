@@ -169,11 +169,12 @@ namespace SpiritLab
                 }
 
                 result.Dispose();
-                GC.Collect();
 
                 lblRefImageCountdown.Visible = false;
 
                 await Task.Delay(3000);
+
+                GC.Collect();
             }
 
             picCamera?.Image.Dispose();
