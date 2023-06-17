@@ -43,7 +43,7 @@ namespace SpiritLab
             this.btnOpenCountDownUI = new System.Windows.Forms.Button();
             this.lblSavedToFile = new System.Windows.Forms.Label();
             this.lblTrackBarFileSave = new System.Windows.Forms.Label();
-            this.trackBarSaveFileThreshold = new System.Windows.Forms.TrackBar();
+            this.trackBarSaveFileThresholdMultiplier = new System.Windows.Forms.TrackBar();
             this.lblDiffPercentage = new System.Windows.Forms.Label();
             this.lblNewImage = new System.Windows.Forms.Label();
             this.picNewImage = new System.Windows.Forms.PictureBox();
@@ -68,7 +68,7 @@ namespace SpiritLab
             this.tabPhotoBooth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownSlideshowInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownShootInterval)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThresholdMultiplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
             this.tabRandom.SuspendLayout();
@@ -125,7 +125,7 @@ namespace SpiritLab
             this.tabPhotoBooth.Controls.Add(this.btnOpenCountDownUI);
             this.tabPhotoBooth.Controls.Add(this.lblSavedToFile);
             this.tabPhotoBooth.Controls.Add(this.lblTrackBarFileSave);
-            this.tabPhotoBooth.Controls.Add(this.trackBarSaveFileThreshold);
+            this.tabPhotoBooth.Controls.Add(this.trackBarSaveFileThresholdMultiplier);
             this.tabPhotoBooth.Controls.Add(this.lblDiffPercentage);
             this.tabPhotoBooth.Controls.Add(this.lblNewImage);
             this.tabPhotoBooth.Controls.Add(this.picNewImage);
@@ -241,14 +241,16 @@ namespace SpiritLab
             this.lblTrackBarFileSave.TabIndex = 13;
             this.lblTrackBarFileSave.Text = "Change percentage required to save new image";
             // 
-            // trackBarSaveFileThreshold
+            // trackBarSaveFileThresholdMultiplier
             // 
-            this.trackBarSaveFileThreshold.Location = new System.Drawing.Point(1039, 676);
-            this.trackBarSaveFileThreshold.Maximum = 100;
-            this.trackBarSaveFileThreshold.Name = "trackBarSaveFileThreshold";
-            this.trackBarSaveFileThreshold.Size = new System.Drawing.Size(394, 45);
-            this.trackBarSaveFileThreshold.TabIndex = 12;
-            this.trackBarSaveFileThreshold.Scroll += new System.EventHandler(this.trackBarSaveFileThreshold_Scroll);
+            this.trackBarSaveFileThresholdMultiplier.Location = new System.Drawing.Point(1039, 676);
+            this.trackBarSaveFileThresholdMultiplier.Maximum = 1000;
+            this.trackBarSaveFileThresholdMultiplier.Minimum = 1;
+            this.trackBarSaveFileThresholdMultiplier.Name = "trackBarSaveFileThresholdMultiplier";
+            this.trackBarSaveFileThresholdMultiplier.Size = new System.Drawing.Size(394, 45);
+            this.trackBarSaveFileThresholdMultiplier.TabIndex = 12;
+            this.trackBarSaveFileThresholdMultiplier.Value = 1;
+            this.trackBarSaveFileThresholdMultiplier.Scroll += new System.EventHandler(this.trackBarSaveFileThreshold_Scroll);
             // 
             // lblDiffPercentage
             // 
@@ -462,7 +464,7 @@ namespace SpiritLab
             this.tabPhotoBooth.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownSlideshowInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownShootInterval)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThreshold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSaveFileThresholdMultiplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
             this.tabRandom.ResumeLayout(false);
@@ -497,7 +499,7 @@ namespace SpiritLab
         private System.Windows.Forms.Label lblNewImage;
         private System.Windows.Forms.PictureBox picNewImage;
         private System.Windows.Forms.Label lblDiffPercentage;
-        private System.Windows.Forms.TrackBar trackBarSaveFileThreshold;
+        private System.Windows.Forms.TrackBar trackBarSaveFileThresholdMultiplier;
         private System.Windows.Forms.Label lblTrackBarFileSave;
         private System.Windows.Forms.Label lblSavedToFile;
         private System.Windows.Forms.Button btnOpenCountDownUI;

@@ -21,6 +21,8 @@ namespace SpiritLab
         private CountDown _countdownUI = new CountDown();
         private Slideshow _slideshowUI = new Slideshow();
         private CameraLiveView _cameraLiveView;
+        private const float _saveThresholdBase = 0.01f;
+        private float _saveThreshold = 0.01f;
 
         System.Media.SoundPlayer _soundPlayer = new System.Media.SoundPlayer(@"SuccessSound.wav");
         
@@ -41,8 +43,12 @@ namespace SpiritLab
             if (_config == null)
                 _config = new Config();
 
-            trackBarSaveFileThreshold.Value = _config.PhotoBoothConfig.FileSaveThreshold;
-            lblTrackBarFileSave.Text = _config.PhotoBoothConfig.FileSaveThreshold.ToString();
+            trackBarSaveFileThresholdMultiplier.Value = _config.PhotoBoothConfig.FileSaveThresholdMultiplier;
+
+            _saveThreshold = _saveThresholdBase * trackBarSaveFileThresholdMultiplier.Value;
+
+            lblTrackBarFileSave.Text = _saveThreshold.ToString();
+
             numUpDownShootInterval.Value = _config.PhotoBoothConfig.ShootInterval;
             numUpDownSlideshowInterval.Value = _config.PhotoBoothConfig.SlideshowInterval;
 
@@ -154,7 +160,7 @@ namespace SpiritLab
                 picCamera.Image?.Dispose();
                 picCamera.Image = (Bitmap)Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height)).Clone();
 
-                if (result.DifferencePercentage > trackBarSaveFileThreshold.Value)
+                if (result.DifferencePercentage > _saveThreshold)
                 {
                     _soundPlayer.Play();
                     _countdownUI.UpdateCommunication("");
@@ -237,7 +243,8 @@ namespace SpiritLab
 
         private void UpdateTrackBarThresholdLabel()
         {
-            lblTrackBarFileSave.Text = $"Change percentage required to save new image: {trackBarSaveFileThreshold.Value}%";
+            _saveThreshold = _saveThresholdBase * trackBarSaveFileThresholdMultiplier.Value;
+            lblTrackBarFileSave.Text = $"Change percentage required to save new image: {_saveThreshold}%";
         }
 
         #endregion
@@ -325,7 +332,7 @@ namespace SpiritLab
             {
                 PhotoBoothConfig = new PhotoBoothConfig
                 {
-                    FileSaveThreshold = trackBarSaveFileThreshold.Value,
+                    FileSaveThresholdMultiplier = trackBarSaveFileThresholdMultiplier.Value,
                     ShootInterval = (int)numUpDownShootInterval.Value,
                     SlideshowInterval = (int)numUpDownSlideshowInterval.Value
                 }
