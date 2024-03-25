@@ -40,18 +40,7 @@ namespace SpiritLab
             lblSavedToFile.Visible = false;
 
             _config = ConfigurationHandler.LoadConfig();
-
-            if (_config == null)
-                _config = new Config();
-
-            trackBarSaveFileThresholdMultiplier.Value = _config.PhotoBoothConfig.FileSaveThresholdMultiplier;
-
-            _saveThreshold = _saveThresholdBase * trackBarSaveFileThresholdMultiplier.Value;
-
-            lblTrackBarFileSave.Text = _saveThreshold.ToString();
-
-            numUpDownShootInterval.Value = _config.PhotoBoothConfig.ShootInterval;
-            numUpDownSlideshowInterval.Value = _config.PhotoBoothConfig.SlideshowInterval;
+            InitializeControls(_config);
 
             _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
             _countdownUI.Initialize();
@@ -59,6 +48,16 @@ namespace SpiritLab
             UpdateTrackBarThresholdLabel();
 
             _photoBooth.Initialize();
+        }
+
+        private void InitializeControls(Config config)
+        {
+            trackBarSaveFileThresholdMultiplier.Value = _config.PhotoBoothConfig.FileSaveThresholdMultiplier;
+            _saveThreshold = _saveThresholdBase * trackBarSaveFileThresholdMultiplier.Value;
+            lblTrackBarFileSave.Text = _saveThreshold.ToString();
+
+            numUpDownShootInterval.Value = _config.PhotoBoothConfig.ShootInterval;
+            numUpDownSlideshowInterval.Value = _config.PhotoBoothConfig.SlideshowInterval;
         }
 
         #region Photo shoot
@@ -346,5 +345,10 @@ namespace SpiritLab
             _photoBooth.Close();
             _photoBooth.Dispose();
     }
+
+        private void btnPhotoBoothSettings_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
