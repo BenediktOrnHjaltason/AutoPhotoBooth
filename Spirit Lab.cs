@@ -39,10 +39,6 @@ namespace SpiritLab
             lblSavedToFile.Visible = false;
 
             _config = ConfigurationHandler.LoadConfig();
-            InitializeControls(_config);
-
-            _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
-            _countdownUI.Initialize();
 
             _settingsUI = new Settings(_config.PhotoBoothConfig);
 
