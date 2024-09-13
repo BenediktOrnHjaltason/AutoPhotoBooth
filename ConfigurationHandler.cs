@@ -32,11 +32,11 @@ namespace SpiritLab.Configuration
             return null;
         }
 
-        public static void SaveConfig(Config config, string filePath)
+        public static void SaveConfig(Config config)
         {
             string jsonString = JsonConvert.SerializeObject(config);
 
-            File.WriteAllText(filePath, jsonString);
+            File.WriteAllText(ConfigPath, jsonString);
         }
     }
 }

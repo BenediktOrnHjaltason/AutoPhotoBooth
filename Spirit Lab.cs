@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpiritLab.Utilities;
-using System.IO;
-using System.Drawing.Imaging;
 using SpiritLab.CustomTypes;
 using SpiritLab.Configuration;
 using SpiritLab.Forms;
+using Spirit_Studio.Forms;
 
 namespace SpiritLab
 {
@@ -20,9 +18,10 @@ namespace SpiritLab
         private Config _config;
         private CountDown _countdownUI = new CountDown();
         private Slideshow _slideshowUI = new Slideshow();
+        private Settings _settingsUI;
         private CameraLiveView _cameraLiveView;
-        private const float _saveThresholdBase = 0.01f;
-        private float _saveThreshold = 0.01f;
+        
+        //private float _saveThreshold = 0.01f;
         private ushort _referencePhotoCountdown = 10;
 
         System.Media.SoundPlayer _soundPlayer = new System.Media.SoundPlayer(@"SuccessSound.wav");
@@ -44,20 +43,10 @@ namespace SpiritLab
             if (_config == null)
                 _config = new Config();
 
-            trackBarSaveFileThresholdMultiplier.Value = _config.PhotoBoothConfig.FileSaveThresholdMultiplier;
+            _settingsUI = new Settings(_config.PhotoBoothConfig);
 
-            _saveThreshold = _saveThresholdBase * trackBarSaveFileThresholdMultiplier.Value;
-
-            lblTrackBarFileSave.Text = _saveThreshold.ToString();
-
-            numUpDownShootInterval.Value = _config.PhotoBoothConfig.ShootInterval;
-            numUpDownSlideshowInterval.Value = _config.PhotoBoothConfig.SlideshowInterval;
-
-            _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
+            _slideshowUI.Initialize(_settingsUI.Config.SlideshowInterval);
             _countdownUI.Initialize();
-
-            UpdateTrackBarThresholdLabel();
-
             _photoBooth.Initialize();
         }
 
@@ -113,7 +102,7 @@ namespace SpiritLab
                 lblSavedToFile.Visible = false;
 
 
-                _slideshowUI.Initialize((int)numUpDownSlideshowInterval.Value);
+                _slideshowUI.Initialize(_settingsUI.Config.SlideshowInterval);
                 _countdownUI.Initialize();
 
                 btnLiveView.Enabled = true;
@@ -139,7 +128,7 @@ namespace SpiritLab
                 _countdownUI.SetCameraIconVisible(true);
                 lblRefImageCountdown.Visible = true;
 
-                await CountDown((int)numUpDownShootInterval.Value);
+                await CountDown(_settingsUI.Config.PictureInterval);
 
                 if (!photoShootRunning)
                     break;
@@ -161,7 +150,7 @@ namespace SpiritLab
                 picCamera.Image?.Dispose();
                 picCamera.Image = (Bitmap)Utils.ResizeImage(result.ProcessedImage, new Size(picCamera.Width, picCamera.Height)).Clone();
 
-                if (result.DifferencePercentage > _saveThreshold)
+                if (result.DifferencePercentage > _settingsUI.SaveThreshold)
                 {
                     _soundPlayer.Play();
                     _countdownUI.UpdateCommunication("");
@@ -235,17 +224,6 @@ namespace SpiritLab
 
 
             return $"{minutes_s}{seconds_s}";
-        }
-
-        private void trackBarSaveFileThreshold_Scroll(object sender, EventArgs e)
-        {
-            UpdateTrackBarThresholdLabel();
-        }
-
-        private void UpdateTrackBarThresholdLabel()
-        {
-            _saveThreshold = _saveThresholdBase * trackBarSaveFileThresholdMultiplier.Value;
-            lblTrackBarFileSave.Text = $"Change percentage required to save new image: {_saveThreshold}%";
         }
 
         #endregion
@@ -333,18 +311,23 @@ namespace SpiritLab
             {
                 PhotoBoothConfig = new PhotoBoothConfig
                 {
-                    FileSaveThresholdMultiplier = trackBarSaveFileThresholdMultiplier.Value,
-                    ShootInterval = (int)numUpDownShootInterval.Value,
-                    SlideshowInterval = (int)numUpDownSlideshowInterval.Value
+                    FileSaveThresholdMultiplier = _settingsUI.Config.FileSaveThresholdMultiplier,
+                    PictureInterval = _settingsUI.Config.PictureInterval,
+                    SlideshowInterval = _settingsUI.Config.SlideshowInterval,
+                    ShootDuration = _settingsUI.Config.ShootDuration
                 }
-            }, ConfigurationHandler.ConfigPath);
-            
+            });
         }
 
         private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _photoBooth.Close();
             _photoBooth.Dispose();
-    }
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            _settingsUI.Show();
+        }
     }
 }
