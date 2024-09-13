@@ -29,12 +29,12 @@ namespace SpiritLab.Configuration
                 return JsonConvert.DeserializeObject<Config>(jsonString);
             }
 
-            return null;
+            return new Config();
         }
 
         public static void SaveConfig(Config config)
         {
-            string jsonString = JsonConvert.SerializeObject(config);
+            string jsonString = JsonConvert.SerializeObject(config, Formatting.Indented);
 
             File.WriteAllText(ConfigPath, jsonString);
         }
