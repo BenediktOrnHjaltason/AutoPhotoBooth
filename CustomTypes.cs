@@ -39,4 +39,10 @@ namespace SpiritLab.CustomTypes
         public int SlideshowInterval = 10;
         public int ShootDuration = 0;
     }
+
+    public enum ImagePurpose
+    {
+        REFERENCE = 0,
+        COMPARISON = 1
+    }
 }

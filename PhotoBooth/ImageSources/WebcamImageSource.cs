@@ -9,6 +9,7 @@ using Emgu.CV.Reg;
 using System.Drawing.Imaging;
 using System.IO;
 using SpiritLab.Configuration;
+using SpiritLab.CustomTypes;
 
 namespace SpiritLab
 {
