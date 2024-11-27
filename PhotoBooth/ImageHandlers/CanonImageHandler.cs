@@ -21,9 +21,12 @@ namespace AutoPhotoBooth
 
         private uint _transferProgress = 0;
 
-        public CanonImageHandler() { }
+        public CanonImageHandler() 
+        {
+            Initialize();
+        }
 
-        public void Initialize()
+        private void Initialize()
         {
             Debug.WriteLine("CannonImageSource: Initializing!");
 

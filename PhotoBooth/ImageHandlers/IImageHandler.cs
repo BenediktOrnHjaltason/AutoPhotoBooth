@@ -8,8 +8,6 @@ namespace AutoPhotoBooth
 {
     public interface IImageHandler
     {
-        void Initialize();
-
         void Dispose();
 
         List<string> GetImageHandlerNames();

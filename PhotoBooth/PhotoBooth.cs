@@ -20,8 +20,6 @@ namespace AutoPhotoBooth
         {
             availableImageHandlers.Add(new CanonImageHandler());
             availableImageHandlers.Add(new WebcamImageHandler());
-
-            availableImageHandlers.ForEach(x => x.Initialize());
         }
 
         public void SetActiveImageHandler(string name)

@@ -21,11 +21,6 @@ namespace AutoPhotoBooth
 
         public WebcamImageHandler() { }
 
-        public void Initialize()
-        {
-            
-        }
-
         public List<string> GetImageHandlerNames() 
         {
             var cameras = new FilterInfoCollection(FilterCategory.VideoInputDevice);
