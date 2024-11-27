@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 using SpiritLab.Configuration;
+using SpiritLab.CustomTypes;
 
 namespace SpiritLab
 {

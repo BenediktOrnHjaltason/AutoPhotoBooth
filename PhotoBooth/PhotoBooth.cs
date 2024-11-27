@@ -3,8 +3,6 @@ using System.Drawing;
 using SpiritLab.CustomTypes;
 using System.Threading.Tasks;
 using System;
-using SpiritLab.Configuration;
-using System.IO;
 
 namespace SpiritLab
 {
@@ -108,11 +106,5 @@ namespace SpiritLab
         {
             availableImageSources.ForEach(x => x.Dispose());
         }
-    }
-
-    public enum ImagePurpose
-    {
-        REFERENCE = 0,
-        COMPARISON = 1
     }
 }
