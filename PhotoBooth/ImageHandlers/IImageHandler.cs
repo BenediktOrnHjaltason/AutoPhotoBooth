@@ -8,6 +8,10 @@ namespace AutoPhotoBooth
 {
     public interface IImageHandler
     {
+        Bitmap CapturedReference { get; }
+
+        Bitmap CapturedNew { get;}
+
         void Dispose();
 
         List<string> GetImageHandlerNames();

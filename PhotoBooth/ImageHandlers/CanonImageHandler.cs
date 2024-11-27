@@ -21,6 +21,9 @@ namespace AutoPhotoBooth
 
         private uint _transferProgress = 0;
 
+        public Bitmap CapturedReference { get; private set; }
+        public Bitmap CapturedNew { get; private set; }
+
         public CanonImageHandler() 
         {
             Initialize();
@@ -72,27 +75,27 @@ namespace AutoPhotoBooth
 
                 if (purpose == ImagePurpose.REFERENCE)
                 {
-                    PhotoBooth.CapturedReference?.Dispose();
-                    PhotoBooth.CapturedReference = null;
+                    CapturedReference?.Dispose();
+                    CapturedReference = null;
 
-                    while (PhotoBooth.CapturedReference == null)
+                    while (CapturedReference == null)
                     {
                         await Task.Delay(100);
                     }
 
-                    return PhotoBooth.CapturedReference;
+                    return CapturedReference;
                 }
                 else
                 {
-                    PhotoBooth.CapturedComparison?.Dispose();
-                    PhotoBooth.CapturedComparison = null;
+                    CapturedNew?.Dispose();
+                    CapturedNew = null;
 
-                    while (PhotoBooth.CapturedComparison == null)
+                    while (CapturedNew == null)
                     {
                         await Task.Delay(100);
                     }
 
-                    return PhotoBooth.CapturedComparison;
+                    return CapturedNew;
                 }
             }
             catch (Exception e)
@@ -120,25 +123,25 @@ namespace AutoPhotoBooth
 
                     await Task.Delay(100);
 
-                    Bitmap bmp2 = null;
+                    Bitmap bmp = null;
 
                     using (var stream = File.OpenRead(_lastCapturedImagePath))
                     {
-                        bmp2 = (Bitmap)Bitmap.FromStream(stream);
+                        bmp = (Bitmap)Bitmap.FromStream(stream);
                     }
 
                     if (purpose == ImagePurpose.REFERENCE)
                     {
-                        PhotoBooth.CapturedReference?.Dispose();
-                        PhotoBooth.CapturedReference = bmp2;
+                        CapturedReference?.Dispose();
+                        CapturedReference = bmp;
 
                         File.Delete(_lastCapturedImagePath);
                         _lastCapturedImagePath = "";
                     }
                     else
                     {
-                        PhotoBooth.CapturedComparison?.Dispose();
-                        PhotoBooth.CapturedComparison = bmp2;
+                        CapturedNew?.Dispose();
+                        CapturedNew = bmp;
                     }
                 }
                 else throw new Exception("More than one file in temp directory");

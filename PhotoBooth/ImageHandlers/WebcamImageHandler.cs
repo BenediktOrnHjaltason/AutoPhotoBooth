@@ -14,6 +14,9 @@ namespace AutoPhotoBooth
 {
     public class WebcamImageHandler : IImageHandler
     {
+        public Bitmap CapturedReference { get; private set; }
+        public Bitmap CapturedNew { get; private set; }
+
         public Bitmap capturedLiveViewFrame = null;
 
         private FilterInfoCollection filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -60,17 +63,17 @@ namespace AutoPhotoBooth
         {
             if (purpose == ImagePurpose.REFERENCE)
             {
-                PhotoBooth.CapturedReference?.Dispose();
-                PhotoBooth.CapturedReference = (Bitmap)capturedLiveViewFrame.Clone();
+                CapturedReference?.Dispose();
+                CapturedReference = (Bitmap)capturedLiveViewFrame.Clone();
 
-                return PhotoBooth.CapturedReference;
+                return CapturedReference;
             }
             else
             {
-                PhotoBooth.CapturedComparison?.Dispose();
-                PhotoBooth.CapturedComparison = (Bitmap)capturedLiveViewFrame.Clone();
+                CapturedNew?.Dispose();
+                CapturedNew = (Bitmap)capturedLiveViewFrame.Clone();
 
-                return PhotoBooth.CapturedComparison;
+                return CapturedNew;
             }
         }
 
@@ -86,12 +89,12 @@ namespace AutoPhotoBooth
 
         public void SaveToPositiveResults()
         {
-            PhotoBooth.CapturedComparison.Save(Path.Combine(ConfigurationHandler.PositiveResultSavePath, $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
+            CapturedNew.Save(Path.Combine(ConfigurationHandler.PositiveResultSavePath, $"{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.bmp"), ImageFormat.Bmp);
         }
 
         public void DeleteComparison()
         {
-            PhotoBooth.CapturedComparison?.Dispose();
+            CapturedNew?.Dispose();
         }
 
         public void Close()

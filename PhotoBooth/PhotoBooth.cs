@@ -11,9 +11,6 @@ namespace AutoPhotoBooth
         private List<IImageHandler> availableImageHandlers = new List<IImageHandler>();
         private static IImageHandler _activeImageHandler;
 
-        public static Bitmap CapturedReference { get; set; }
-        public static Bitmap CapturedComparison { get; set; }
-
         public PhotoBooth() { }
 
         public void Initialize()
@@ -74,14 +71,14 @@ namespace AutoPhotoBooth
 
         public async Task<ComparisonResult> CompareNewImage()
         {
-            var newImage = await _activeImageHandler.TakeStillImage(ImagePurpose.COMPARISON);
+            await _activeImageHandler.TakeStillImage(ImagePurpose.COMPARISON);
 
-            ImageDifference difference = ComputerVision.GetAbsDifference(CapturedReference, newImage);
+            ImageDifference difference = ComputerVision.GetAbsDifference(_activeImageHandler.CapturedReference, _activeImageHandler.CapturedNew);
 
             var result = new ComparisonResult
             {
                 ProcessedImage = (Bitmap)difference.ProcessedImage.Clone(),
-                NewImage = (Bitmap)newImage.Clone(),
+                NewImage = (Bitmap)_activeImageHandler.CapturedNew.Clone(),
                 DifferencePercentage = difference.Percentage,
             };
 
