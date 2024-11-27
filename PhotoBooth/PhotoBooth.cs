@@ -8,8 +8,8 @@ namespace AutoPhotoBooth
 {
     public class PhotoBooth
     {
-        private List<IImageSource> availableImageSources = new List<IImageSource>();
-        private static IImageSource _activeImageSource;
+        private List<IImageHandler> availableImageHandlers = new List<IImageHandler>();
+        private static IImageHandler _activeImageHandler;
 
         public static Bitmap CapturedReference { get; set; }
         public static Bitmap CapturedComparison { get; set; }
@@ -18,24 +18,24 @@ namespace AutoPhotoBooth
 
         public void Initialize()
         {
-            availableImageSources.Add(new CanonImageSource());
-            availableImageSources.Add(new WebcamImageSource());
-            
-            availableImageSources.ForEach(x => x.Initialize());
+            availableImageHandlers.Add(new CanonImageHandler());
+            availableImageHandlers.Add(new WebcamImageHandler());
+
+            availableImageHandlers.ForEach(x => x.Initialize());
         }
 
-        public void SetActiveImageSource(string name)
+        public void SetActiveImageHandler(string name)
         {
-            foreach(var source in availableImageSources)
+            foreach(var handler in availableImageHandlers)
             {
-                if (source.GetImageSourceNames().Contains(name))
+                if (handler.GetImageHandlerNames().Contains(name))
                 {
-                    source.SetActiveSource(name);
+                    handler.SetActiveHandler(name);
 
-                    if (_activeImageSource != null)
-                        _activeImageSource.Close();
+                    if (_activeImageHandler != null)
+                        _activeImageHandler.Close();
 
-                    _activeImageSource = source;
+                    _activeImageHandler = handler;
                     break;
                 }
             }
@@ -43,40 +43,40 @@ namespace AutoPhotoBooth
 
         public void Close()
         {
-            if (_activeImageSource != null)
-                _activeImageSource.Close();
+            if (_activeImageHandler != null)
+                _activeImageHandler.Close();
         }
 
         public void StartLiveView(Action<Bitmap> onLiveViewUpdated)
         {
-            _activeImageSource.StartLiveView(onLiveViewUpdated);
+            _activeImageHandler.StartLiveView(onLiveViewUpdated);
         }
 
         public static void StopLiveView()
         {
-            _activeImageSource.StopLiveView();
+            _activeImageHandler.StopLiveView();
         }
 
-        public List<string> GetImageSourceNames()
+        public List<string> GetImageHandlerNames()
         {
-            List<string> cameraNames = new List<string>();
+            List<string> handlerNames = new List<string>();
 
-            foreach(var camera in availableImageSources) 
+            foreach(var handler in availableImageHandlers) 
             {
-                cameraNames.AddRange(camera.GetImageSourceNames());
+                handlerNames.AddRange(handler.GetImageHandlerNames());
             }
 
-            return cameraNames;
+            return handlerNames;
         }
 
         public async Task<Bitmap> TakeReferenceImage()
         {
-            return await _activeImageSource.TakeStillImage(ImagePurpose.REFERENCE);
+            return await _activeImageHandler.TakeStillImage(ImagePurpose.REFERENCE);
         }
 
         public async Task<ComparisonResult> CompareNewImage()
         {
-            var newImage = await _activeImageSource.TakeStillImage(ImagePurpose.COMPARISON);
+            var newImage = await _activeImageHandler.TakeStillImage(ImagePurpose.COMPARISON);
 
             ImageDifference difference = ComputerVision.GetAbsDifference(CapturedReference, newImage);
 
@@ -94,17 +94,17 @@ namespace AutoPhotoBooth
 
         public void SaveToPositiveResults()
         {
-            _activeImageSource.SaveToPositiveResults();
+            _activeImageHandler.SaveToPositiveResults();
         }
 
         public void DeleteComparison()
         {
-            _activeImageSource?.DeleteComparison();
+            _activeImageHandler?.DeleteComparison();
         }
 
         public void Dispose()
         {
-            availableImageSources.ForEach(x => x.Dispose());
+            availableImageHandlers.ForEach(x => x.Dispose());
         }
     }
 }

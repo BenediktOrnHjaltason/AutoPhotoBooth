@@ -6,15 +6,15 @@ using AutoPhotoBooth.CustomTypes;
 
 namespace AutoPhotoBooth
 {
-    public interface IImageSource
+    public interface IImageHandler
     {
         void Initialize();
 
         void Dispose();
 
-        List<string> GetImageSourceNames();
+        List<string> GetImageHandlerNames();
 
-        void SetActiveSource(string name);
+        void SetActiveHandler(string name);
 
         Task<Bitmap> TakeStillImage(ImagePurpose purpose);
 

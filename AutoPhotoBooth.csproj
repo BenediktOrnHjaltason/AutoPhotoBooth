@@ -94,9 +94,9 @@
     <Compile Include="Forms\Slideshow.Designer.cs">
       <DependentUpon>Slideshow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhotoBooth\ImageSources\CanonImageSource.cs" />
-    <Compile Include="PhotoBooth\ImageSources\ImageSource.cs" />
-    <Compile Include="PhotoBooth\ImageSources\WebcamImageSource.cs" />
+    <Compile Include="PhotoBooth\ImageHandlers\CanonImageHandler.cs" />
+    <Compile Include="PhotoBooth\ImageHandlers\IImageHandler.cs" />
+    <Compile Include="PhotoBooth\ImageHandlers\WebcamImageHandler.cs" />
     <Compile Include="PhotoBooth\PhotoBooth.cs" />
     <Compile Include="AutoPhotoBooth.cs">
       <SubType>Form</SubType>

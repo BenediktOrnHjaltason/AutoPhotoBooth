@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AForge.Video;
 using System.Drawing;
 using System.Diagnostics;
-using Emgu.CV.Reg;
 using System.Drawing.Imaging;
 using System.IO;
 using AutoPhotoBooth.Configuration;
@@ -13,21 +12,21 @@ using AutoPhotoBooth.CustomTypes;
 
 namespace AutoPhotoBooth
 {
-    public class WebcamImageSource : IImageSource
+    public class WebcamImageHandler : IImageHandler
     {
         public Bitmap capturedLiveViewFrame = null;
 
         private FilterInfoCollection filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         private VideoCaptureDevice videoCaptureDevice;
 
-        public WebcamImageSource() { }
+        public WebcamImageHandler() { }
 
         public void Initialize()
         {
             
         }
 
-        public List<string> GetImageSourceNames() 
+        public List<string> GetImageHandlerNames() 
         {
             var cameras = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
@@ -39,13 +38,13 @@ namespace AutoPhotoBooth
             return cameraNames;
         }
 
-        public void SetActiveSource(string name)
+        public void SetActiveHandler(string name)
         {
             for (int i = 0; i < filterInfoCollection.Count; i++) 
             {
                 if (filterInfoCollection[i].Name == name)
                 {
-                    Debug.WriteLine($"Set active image source: {name}");
+                    Debug.WriteLine($"Set active image handler: {name}");
 
                     videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[i].MonikerString);
                     videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;

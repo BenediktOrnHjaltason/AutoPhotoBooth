@@ -52,7 +52,7 @@ namespace AutoPhotoBooth
             cboCamera.Items.Clear();
             cboCamera.Enabled = btnStartPhotoshoot.Enabled = btnLiveView.Enabled = false;
             
-            var imageSourcesNames = _photoBooth.GetImageSourceNames();
+            var imageSourcesNames = _photoBooth.GetImageHandlerNames();
 
             if (imageSourcesNames.Any() ) 
             {
@@ -240,7 +240,7 @@ namespace AutoPhotoBooth
 
         private void cboCamera_SelectedValueChanged(object sender, EventArgs e)
         {
-            _photoBooth.SetActiveImageSource(cboCamera.SelectedItem.ToString());
+            _photoBooth.SetActiveImageHandler(cboCamera.SelectedItem.ToString());
         }
 
         private void AutoPhotoBoothForm_Deactivate(object sender, EventArgs e)

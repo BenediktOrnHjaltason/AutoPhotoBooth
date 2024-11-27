@@ -11,7 +11,7 @@ using AutoPhotoBooth.CustomTypes;
 
 namespace AutoPhotoBooth
 {
-    public class CanonImageSource : IImageSource
+    public class CanonImageHandler : IImageHandler
     {
         private SDKHandler _sdkHandler;
 
@@ -21,7 +21,7 @@ namespace AutoPhotoBooth
 
         private uint _transferProgress = 0;
 
-        public CanonImageSource() { }
+        public CanonImageHandler() { }
 
         public void Initialize()
         {
@@ -32,12 +32,12 @@ namespace AutoPhotoBooth
             _sdkHandler.SDKProgressCallbackEvent += SDKProgressCallbackEvent;
         }
 
-        public List<string> GetImageSourceNames()
+        public List<string> GetImageHandlerNames()
         {
             return _sdkHandler.GetCameraList().Select(x => x.Info.szDeviceDescription).ToList();
         }
 
-        public void SetActiveSource(string name)
+        public void SetActiveHandler(string name)
         {
             var cameraList = _sdkHandler.GetCameraList();
 
