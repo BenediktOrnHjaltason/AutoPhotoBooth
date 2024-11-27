@@ -28,8 +28,6 @@ namespace AutoPhotoBooth
             Debug.WriteLine("CannonImageSource: Initializing!");
 
             _sdkHandler = new SDKHandler();
-            //_sdkHandler.SDKObjectEvent += SDKObjectEventReceiver;
-            //_sdkHandler.ImageDownloaded += ReceiveDownloadedImage;
             _sdkHandler.LiveViewUpdated += ReceiveLiveViewStream;
             _sdkHandler.SDKProgressCallbackEvent += SDKProgressCallbackEvent;
         }

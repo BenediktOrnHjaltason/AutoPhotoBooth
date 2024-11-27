@@ -20,13 +20,11 @@ namespace AutoPhotoBooth
         private Slideshow _slideshowUI = new Slideshow();
         private Settings _settingsUI;
         private CameraLiveView _cameraLiveView;
-        
-        //private float _saveThreshold = 0.01f;
+
         private ushort _referencePhotoCountdown = 10;
 
         System.Media.SoundPlayer _soundPlayer = new System.Media.SoundPlayer(@"SuccessSound.wav");
         
-
         public AutoPhotoBoothForm()
         {
             InitializeComponent();
@@ -79,7 +77,6 @@ namespace AutoPhotoBooth
                 lblRefImageCountdown.Visible = true;
 
                 lblRefImageCountdown.Text = "5";
-
                 btnLiveView.Enabled = false;
 
                 RunPhotoBooth();
@@ -91,13 +88,11 @@ namespace AutoPhotoBooth
                 lblRefImageNotifier.Visible =
                 lblRefImageCountdown.Visible =
                 lblDiffPercentage.Visible = false;
+
                 btnStartPhotoshoot.Text = "Start";
                 lblRefImageNotifier.Text = "Saving reference in:";
-                
                 lblRefImageCountdown.Text = "0";
-
                 lblSavedToFile.Visible = false;
-
 
                 _slideshowUI.Initialize(_settingsUI.Config.SlideshowInterval);
                 _countdownUI.Initialize();
@@ -180,7 +175,6 @@ namespace AutoPhotoBooth
             picReference.Image = null;
             picNewImage?.Image?.Dispose();
             picNewImage.Image = null;
-
             GC.Collect();
         }
 
@@ -218,7 +212,6 @@ namespace AutoPhotoBooth
                 seconds_s = seconds < 10 ? ("0" + seconds.ToString()) : seconds.ToString();
             }
             else seconds_s = seconds.ToString();
-
 
             return $"{minutes_s}{seconds_s}";
         }
