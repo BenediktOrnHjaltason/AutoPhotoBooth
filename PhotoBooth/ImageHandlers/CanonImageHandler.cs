@@ -107,6 +107,19 @@ namespace AutoPhotoBooth
             }
         }
 
+        private uint SDKProgressCallbackEvent(uint inPercent, IntPtr inContext, ref bool outCancel)
+        {
+            _transferProgress = inPercent;
+
+            if (_transferProgress == 100)
+            {
+                LoadCapturedImage(LastImagePurpose);
+            }
+
+            return 0;
+        }
+
+        //The Canon SDK stores the images it takes to disk and they need to be loaded
         private async void LoadCapturedImage(ImagePurpose purpose)
         {
             try
@@ -163,18 +176,6 @@ namespace AutoPhotoBooth
         public void StopLiveView()
         {
             _sdkHandler?.StopLiveView();
-        }
-
-        private uint SDKProgressCallbackEvent(uint inPercent, IntPtr inContext, ref bool outCancel)
-        {
-            _transferProgress = inPercent;
-
-            if (_transferProgress == 100)
-            {
-                LoadCapturedImage(LastImagePurpose);
-            }
-
-            return 0;
         }
 
         public void SaveToPositiveResults()
