@@ -98,11 +98,11 @@
     <Compile Include="PhotoBooth\ImageSources\ImageSource.cs" />
     <Compile Include="PhotoBooth\ImageSources\WebcamImageSource.cs" />
     <Compile Include="PhotoBooth\PhotoBooth.cs" />
-    <Compile Include="Spirit Lab.cs">
+    <Compile Include="AutoPhotoBooth.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Spirit Lab.Designer.cs">
-      <DependentUpon>Spirit Lab.cs</DependentUpon>
+    <Compile Include="AutoPhotoBooth.Designer.cs">
+      <DependentUpon>AutoPhotoBooth.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,8 +121,8 @@
     <EmbeddedResource Include="Forms\Slideshow.resx">
       <DependentUpon>Slideshow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Spirit Lab.resx">
-      <DependentUpon>Spirit Lab.cs</DependentUpon>
+    <EmbeddedResource Include="AutoPhotoBooth.resx">
+      <DependentUpon>AutoPhotoBooth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
