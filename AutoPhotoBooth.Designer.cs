@@ -277,7 +277,7 @@ namespace AutoPhotoBooth
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AutoPhotoBoothForm";
-            this.Text = "Spirit Lab";
+            this.Text = "Auto Photo Booth";
             this.Deactivate += new System.EventHandler(this.AutoPhotoBoothForm_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AutoPhotoBoothForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
