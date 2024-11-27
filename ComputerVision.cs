@@ -17,6 +17,8 @@ namespace AutoPhotoBooth
             referenceMat.Dispose();
             newImageMat.Dispose();
 
+            //Two JPG images taken with identical camera settings and physical room characteristics will always produce different JPG compression artifacts.
+            //To avoid detecting these small changes as changes in the scene, we remove them from the 'difference' image. 
             Mat thresholded = new Mat();
             CvInvoke.Threshold(absDiffed, thresholded, 50, 255, Emgu.CV.CvEnum.ThresholdType.ToZero);
 
