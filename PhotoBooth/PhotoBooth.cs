@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using SpiritLab.CustomTypes;
+using AutoPhotoBooth.CustomTypes;
 using System.Threading.Tasks;
 using System;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     public class PhotoBooth
     {

@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
-using SpiritLab.CustomTypes;
+using AutoPhotoBooth.CustomTypes;
 
-namespace SpiritLab.Configuration
+namespace AutoPhotoBooth.Configuration
 {
     public class ConfigurationHandler
     {

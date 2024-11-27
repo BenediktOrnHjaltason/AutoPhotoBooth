@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     static class Program
     {
@@ -13,7 +13,7 @@ namespace SpiritLab
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SpiritLabForm());
+            Application.Run(new AutoPhotoBoothForm());
         }
     }
 }

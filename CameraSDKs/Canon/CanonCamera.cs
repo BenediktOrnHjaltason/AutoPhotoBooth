@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SpiritLab;
+using AutoPhotoBooth;
 
 using static EDSDK.EDSDKLib;
 

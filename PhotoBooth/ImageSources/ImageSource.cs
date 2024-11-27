@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
-using SpiritLab.CustomTypes;
+using AutoPhotoBooth.CustomTypes;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     public interface IImageSource
     {

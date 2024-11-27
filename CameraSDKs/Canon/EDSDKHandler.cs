@@ -37,7 +37,7 @@ namespace EDSDK
         /// <summary>
         /// Directory to where photos will be saved
         /// </summary>
-        public string ImageSaveDirectory { get; set; } = SpiritLab.Configuration.ConfigurationHandler.TempImagePath;
+        public string ImageSaveDirectory { get; set; } = AutoPhotoBooth.Configuration.ConfigurationHandler.TempImagePath;
         /// <summary>
         /// The focus and zoom border rectangle for live view (set after first use of live view)
         /// </summary>

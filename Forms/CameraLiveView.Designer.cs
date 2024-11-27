@@ -1,4 +1,4 @@
-﻿namespace SpiritLab
+﻿namespace AutoPhotoBooth
 {
     partial class CameraLiveView
     {

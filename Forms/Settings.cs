@@ -1,5 +1,5 @@
-﻿using SpiritLab.Configuration;
-using SpiritLab.CustomTypes;
+﻿using AutoPhotoBooth.Configuration;
+using AutoPhotoBooth.CustomTypes;
 using System;
 using System.Windows.Forms;
 

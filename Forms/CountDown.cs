@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using SpiritLab.Utilities;
+using AutoPhotoBooth.Utilities;
 
-namespace SpiritLab.Forms
+namespace AutoPhotoBooth.Forms
 {
     public partial class CountDown : Form
     {

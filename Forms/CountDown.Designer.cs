@@ -1,5 +1,5 @@
 ﻿
-namespace SpiritLab.Forms
+namespace AutoPhotoBooth.Forms
 {
     partial class CountDown
     {

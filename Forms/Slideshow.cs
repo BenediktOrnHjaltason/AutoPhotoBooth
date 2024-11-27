@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SpiritLab.Forms
+namespace AutoPhotoBooth.Forms
 {
     public partial class Slideshow : Form
     {

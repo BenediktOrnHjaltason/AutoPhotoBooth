@@ -1,8 +1,8 @@
-﻿using SpiritLab.Utilities;
+﻿using AutoPhotoBooth.Utilities;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     public partial class CameraLiveView : Form
     {

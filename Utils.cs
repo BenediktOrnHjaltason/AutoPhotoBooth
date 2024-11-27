@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Diagnostics;
 
-namespace SpiritLab.Utilities
+namespace AutoPhotoBooth.Utilities
 {
     public class Utils
     {

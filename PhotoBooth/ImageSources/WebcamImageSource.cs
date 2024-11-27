@@ -8,10 +8,10 @@ using System.Diagnostics;
 using Emgu.CV.Reg;
 using System.Drawing.Imaging;
 using System.IO;
-using SpiritLab.Configuration;
-using SpiritLab.CustomTypes;
+using AutoPhotoBooth.Configuration;
+using AutoPhotoBooth.CustomTypes;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     public class WebcamImageSource : IImageSource
     {

@@ -6,10 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
-using SpiritLab.Configuration;
-using SpiritLab.CustomTypes;
+using AutoPhotoBooth.Configuration;
+using AutoPhotoBooth.CustomTypes;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     public class CanonImageSource : IImageSource
     {

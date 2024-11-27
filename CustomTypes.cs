@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace SpiritLab.CustomTypes
+namespace AutoPhotoBooth.CustomTypes
 {
     public struct ComparisonResult : IDisposable
     {

@@ -3,15 +3,15 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SpiritLab.Utilities;
-using SpiritLab.CustomTypes;
-using SpiritLab.Configuration;
-using SpiritLab.Forms;
+using AutoPhotoBooth.Utilities;
+using AutoPhotoBooth.CustomTypes;
+using AutoPhotoBooth.Configuration;
+using AutoPhotoBooth.Forms;
 using Spirit_Studio.Forms;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
-    public partial class SpiritLabForm : Form
+    public partial class AutoPhotoBoothForm : Form
     {
         private PhotoBooth _photoBooth = new PhotoBooth();
 
@@ -27,7 +27,7 @@ namespace SpiritLab
         System.Media.SoundPlayer _soundPlayer = new System.Media.SoundPlayer(@"SuccessSound.wav");
         
 
-        public SpiritLabForm()
+        public AutoPhotoBoothForm()
         {
             InitializeComponent();
 
@@ -225,58 +225,6 @@ namespace SpiritLab
 
         #endregion
 
-        #region RandomNumbers
-
-        private bool randomNumbersRunning = false;
-        private Random random = new Random();
-        private int lastGeneratedValue;
-        private int sumGeneratedZeros = 0;
-        private int sumGeneratedOnes = 0;
-
-        private void btnRandomStartStop_Click(object sender, EventArgs e)
-        {
-            randomNumbersRunning = !randomNumbersRunning;
-
-            if (randomNumbersRunning)
-            {
-                btnRandomStartStop.Text = "Stop";
-                GenerateRandomNumbers();
-            }
-            else
-            {
-                btnRandomStartStop.Text = "Start";
-                labelValue.Text = "#";
-
-                sumGeneratedOnes = sumGeneratedZeros = 0;
-                labelOnesPercentage.Text = labelZerosPercentages.Text = labelOnesTotal.Text = labelZerosTotal.Text = "0";
-            }
-        }
-
-        private async void GenerateRandomNumbers()
-        {
-            while(randomNumbersRunning)
-            {
-                lastGeneratedValue = random.Next(0, 2);
-
-                labelValue.Text = lastGeneratedValue.ToString();
-
-                if (lastGeneratedValue == 0)
-                    sumGeneratedZeros++;
-                else if (lastGeneratedValue == 1)
-                    sumGeneratedOnes++;
-
-                labelOnesTotal.Text = sumGeneratedOnes.ToString();
-                labelZerosTotal.Text = sumGeneratedZeros.ToString();
-
-                labelZerosPercentages.Text = (((float)sumGeneratedZeros / ((float)sumGeneratedZeros + (float)sumGeneratedOnes)) * 100.0f).ToString("0.0");
-                labelOnesPercentage.Text = (100.0f - float.Parse(labelZerosPercentages.Text)).ToString();
-
-                await Task.Delay(50);
-            }
-        }
-
-        #endregion
-
         private void btnOpenSlideshowUI_Click(object sender, EventArgs e)
         {
             if (_slideshowUI != null)
@@ -302,7 +250,7 @@ namespace SpiritLab
             _photoBooth.SetActiveImageSource(cboCamera.SelectedItem.ToString());
         }
 
-        private void SpiritLabForm_Deactivate(object sender, EventArgs e)
+        private void AutoPhotoBoothForm_Deactivate(object sender, EventArgs e)
         {
             ConfigurationHandler.SaveConfig(new Config
             {
@@ -316,7 +264,7 @@ namespace SpiritLab
             });
         }
 
-        private void SpiritLabForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void AutoPhotoBoothForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _photoBooth.Close();
             _photoBooth.Dispose();

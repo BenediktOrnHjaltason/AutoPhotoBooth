@@ -1,8 +1,8 @@
 ﻿using Emgu.CV;
 using System.Drawing;
-using SpiritLab.CustomTypes;
+using AutoPhotoBooth.CustomTypes;
 
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
     class ComputerVision
     {

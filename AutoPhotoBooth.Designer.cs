@@ -1,7 +1,7 @@
 ﻿
-namespace SpiritLab
+namespace AutoPhotoBooth
 {
-    partial class SpiritLabForm
+    partial class AutoPhotoBoothForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,6 +35,7 @@ namespace SpiritLab
             this.picCamera = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPhotoBooth = new System.Windows.Forms.TabPage();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.btnLiveView = new System.Windows.Forms.Button();
             this.btnOpenSlideshowUI = new System.Windows.Forms.Button();
             this.btnOpenCountDownUI = new System.Windows.Forms.Button();
@@ -47,25 +48,12 @@ namespace SpiritLab
             this.picReference = new System.Windows.Forms.PictureBox();
             this.lblRefImageNotifier = new System.Windows.Forms.Label();
             this.lblRefImageCountdown = new System.Windows.Forms.Label();
-            this.tabRandom = new System.Windows.Forms.TabPage();
-            this.labelZerosTotal = new System.Windows.Forms.Label();
-            this.labelOnesTotal = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnRandomStartStop = new System.Windows.Forms.Button();
-            this.labelZerosPercentages = new System.Windows.Forms.Label();
-            this.labelOnesPercentage = new System.Windows.Forms.Label();
-            this.labelOnes = new System.Windows.Forms.Label();
-            this.labelZeros = new System.Windows.Forms.Label();
-            this.labelValue = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.settingsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPhotoBooth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).BeginInit();
-            this.tabRandom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +92,6 @@ namespace SpiritLab
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPhotoBooth);
-            this.tabControl1.Controls.Add(this.tabRandom);
             this.tabControl1.Location = new System.Drawing.Point(15, 30);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -138,6 +125,17 @@ namespace SpiritLab
             this.tabPhotoBooth.TabIndex = 1;
             this.tabPhotoBooth.Text = "Photo booth";
             this.tabPhotoBooth.UseVisualStyleBackColor = true;
+            // 
+            // settingsButton
+            // 
+            this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settingsButton.Location = new System.Drawing.Point(1304, 769);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(142, 123);
+            this.settingsButton.TabIndex = 18;
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // btnLiveView
             // 
@@ -271,167 +269,23 @@ namespace SpiritLab
             this.lblRefImageCountdown.Size = new System.Drawing.Size(0, 170);
             this.lblRefImageCountdown.TabIndex = 4;
             // 
-            // tabRandom
-            // 
-            this.tabRandom.Controls.Add(this.labelZerosTotal);
-            this.tabRandom.Controls.Add(this.labelOnesTotal);
-            this.tabRandom.Controls.Add(this.label3);
-            this.tabRandom.Controls.Add(this.label2);
-            this.tabRandom.Controls.Add(this.btnRandomStartStop);
-            this.tabRandom.Controls.Add(this.labelZerosPercentages);
-            this.tabRandom.Controls.Add(this.labelOnesPercentage);
-            this.tabRandom.Controls.Add(this.labelOnes);
-            this.tabRandom.Controls.Add(this.labelZeros);
-            this.tabRandom.Controls.Add(this.labelValue);
-            this.tabRandom.Location = new System.Drawing.Point(4, 25);
-            this.tabRandom.Margin = new System.Windows.Forms.Padding(4);
-            this.tabRandom.Name = "tabRandom";
-            this.tabRandom.Size = new System.Drawing.Size(2187, 937);
-            this.tabRandom.TabIndex = 2;
-            this.tabRandom.Text = "Random number generator";
-            this.tabRandom.UseVisualStyleBackColor = true;
-            // 
-            // labelZerosTotal
-            // 
-            this.labelZerosTotal.AutoSize = true;
-            this.labelZerosTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelZerosTotal.Location = new System.Drawing.Point(779, 379);
-            this.labelZerosTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelZerosTotal.Name = "labelZerosTotal";
-            this.labelZerosTotal.Size = new System.Drawing.Size(173, 189);
-            this.labelZerosTotal.TabIndex = 9;
-            this.labelZerosTotal.Text = "0";
-            // 
-            // labelOnesTotal
-            // 
-            this.labelOnesTotal.AutoSize = true;
-            this.labelOnesTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOnesTotal.Location = new System.Drawing.Point(779, 191);
-            this.labelOnesTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelOnesTotal.Name = "labelOnesTotal";
-            this.labelOnesTotal.Size = new System.Drawing.Size(173, 189);
-            this.labelOnesTotal.TabIndex = 8;
-            this.labelOnesTotal.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(855, 106);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 39);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Total:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1321, 106);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(217, 39);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Percentages:";
-            // 
-            // btnRandomStartStop
-            // 
-            this.btnRandomStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRandomStartStop.Location = new System.Drawing.Point(765, 677);
-            this.btnRandomStartStop.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRandomStartStop.Name = "btnRandomStartStop";
-            this.btnRandomStartStop.Size = new System.Drawing.Size(337, 58);
-            this.btnRandomStartStop.TabIndex = 5;
-            this.btnRandomStartStop.Text = "Start";
-            this.btnRandomStartStop.UseVisualStyleBackColor = true;
-            this.btnRandomStartStop.Click += new System.EventHandler(this.btnRandomStartStop_Click);
-            // 
-            // labelZerosPercentages
-            // 
-            this.labelZerosPercentages.AutoSize = true;
-            this.labelZerosPercentages.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelZerosPercentages.Location = new System.Drawing.Point(1239, 379);
-            this.labelZerosPercentages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelZerosPercentages.Name = "labelZerosPercentages";
-            this.labelZerosPercentages.Size = new System.Drawing.Size(173, 189);
-            this.labelZerosPercentages.TabIndex = 4;
-            this.labelZerosPercentages.Text = "0";
-            // 
-            // labelOnesPercentage
-            // 
-            this.labelOnesPercentage.AutoSize = true;
-            this.labelOnesPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOnesPercentage.Location = new System.Drawing.Point(1239, 191);
-            this.labelOnesPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelOnesPercentage.Name = "labelOnesPercentage";
-            this.labelOnesPercentage.Size = new System.Drawing.Size(173, 189);
-            this.labelOnesPercentage.TabIndex = 3;
-            this.labelOnesPercentage.Text = "0";
-            // 
-            // labelOnes
-            // 
-            this.labelOnes.AutoSize = true;
-            this.labelOnes.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOnes.Location = new System.Drawing.Point(469, 188);
-            this.labelOnes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelOnes.Name = "labelOnes";
-            this.labelOnes.Size = new System.Drawing.Size(219, 189);
-            this.labelOnes.TabIndex = 2;
-            this.labelOnes.Text = "1:";
-            // 
-            // labelZeros
-            // 
-            this.labelZeros.AutoSize = true;
-            this.labelZeros.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelZeros.Location = new System.Drawing.Point(469, 377);
-            this.labelZeros.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelZeros.Name = "labelZeros";
-            this.labelZeros.Size = new System.Drawing.Size(219, 189);
-            this.labelZeros.TabIndex = 1;
-            this.labelZeros.Text = "0:";
-            // 
-            // labelValue
-            // 
-            this.labelValue.AutoSize = true;
-            this.labelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 300F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValue.Location = new System.Drawing.Point(4, 89);
-            this.labelValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelValue.Name = "labelValue";
-            this.labelValue.Size = new System.Drawing.Size(515, 566);
-            this.labelValue.TabIndex = 0;
-            this.labelValue.Text = "#";
-            // 
-            // settingsButton
-            // 
-            this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsButton.Location = new System.Drawing.Point(1304, 769);
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(142, 123);
-            this.settingsButton.TabIndex = 18;
-            this.settingsButton.Text = "Settings";
-            this.settingsButton.UseVisualStyleBackColor = true;
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
-            // 
-            // SpiritLabForm
+            // AutoPhotoBoothForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2224, 1002);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "SpiritLabForm";
+            this.Name = "AutoPhotoBoothForm";
             this.Text = "Spirit Lab";
-            this.Deactivate += new System.EventHandler(this.SpiritLabForm_Deactivate);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpiritLabForm_FormClosing);
+            this.Deactivate += new System.EventHandler(this.AutoPhotoBoothForm_Deactivate);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AutoPhotoBoothForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPhotoBooth.ResumeLayout(false);
             this.tabPhotoBooth.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReference)).EndInit();
-            this.tabRandom.ResumeLayout(false);
-            this.tabRandom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -444,17 +298,6 @@ namespace SpiritLab
         private System.Windows.Forms.PictureBox picCamera;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPhotoBooth;
-        private System.Windows.Forms.TabPage tabRandom;
-        private System.Windows.Forms.Label labelZerosPercentages;
-        private System.Windows.Forms.Label labelOnesPercentage;
-        private System.Windows.Forms.Label labelOnes;
-        private System.Windows.Forms.Label labelZeros;
-        private System.Windows.Forms.Label labelValue;
-        private System.Windows.Forms.Button btnRandomStartStop;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label labelZerosTotal;
-        private System.Windows.Forms.Label labelOnesTotal;
         private System.Windows.Forms.Label labelReference;
         private System.Windows.Forms.PictureBox picReference;
         private System.Windows.Forms.Label lblRefImageNotifier;
